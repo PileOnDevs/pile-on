@@ -11,6 +11,7 @@
     <string name="back_to_main">Back to menu</string>
     <string name="about_screen">This is a shitty app created by Matt Bailey and saved from complete chaos by the participation of Nicholas Cross</string>
     <string name="help_screen">Enter game rules and scoring description Enter game rules and scoring description Enter game rules and scoring description Enter game rules and scoring description Enter game rules and scoring description Enter game rules and scoring description Enter game rules and scoring description Enter game rules and scoring description</string>
+    <string name="logoDescription">Logo goes here</string>
     
 
 </resources>

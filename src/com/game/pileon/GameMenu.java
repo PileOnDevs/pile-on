@@ -32,7 +32,8 @@ public class GameMenu extends Activity {
     public void launchGame(View view) {
     	Intent intent = new Intent(this, MainGame.class);
     	startActivity(intent);
-    }
+    }    
+    
     
     protected void onDestroy() {
         super.onDestroy();
