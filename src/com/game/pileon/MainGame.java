@@ -10,7 +10,7 @@ public class MainGame extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_screen);
+        setContentView(R.layout.activity_game_menu);
     }
 
     

@@ -5,7 +5,7 @@
     android:orientation="horizontal" >
 
    <ImageView       
-        android:contentDescription="@string/logoDescription"
+        android:contentDescription="@string/GameMenu_logoDescription"
         android:id="@+id/horizontalLogo"
         android:src="@drawable/logo_design_1"
         android:layout_width="wrap_content"
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:padding="@dimen/padding_medium"
-        android:text="@string/menu_screen" />
+        android:text="@string/GameMenu_welcome_text" />
 
     <Button
         android:id="@+id/button1"
@@ -28,7 +28,7 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="@string/new_game" />
+        android:text="@string/GameMenu_new_game_button" />
     <Button
         android:id="@+id/button2"
         style="?android:attr/buttonStyleSmall"
@@ -37,7 +37,7 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:text="@string/help"
+        android:text="@string/GameMenu_help_button"
         android:onClick="help" />
     <Button
         android:id="@+id/button3"
@@ -47,7 +47,7 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="140dp"
-        android:text="@string/about"
+        android:text="@string/GameMenu_about_button"
         android:onClick="about" />
 
      
