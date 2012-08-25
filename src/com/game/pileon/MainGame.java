@@ -7,10 +7,14 @@ import android.view.View;
 
 public class MainGame extends Activity {
 
+	private GameType mGameType;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
+        
+        mGameType = new DefaultGameType();
     }
 
     

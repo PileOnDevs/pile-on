@@ -28,7 +28,9 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="@string/new_game" />
+        android:text="@string/new_game"
+        android:onClick="launchGame" />
+    	
     <Button
         android:id="@+id/button2"
         style="?android:attr/buttonStyleSmall"

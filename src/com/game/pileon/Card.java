@@ -18,7 +18,7 @@ public interface Card {
 	 * 
 	 * @return Color, The color of the card
 	 */
-	public Color getColor();
+	public int getColor();
 	
 	/**
 	 * Gets the value of the card
