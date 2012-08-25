@@ -8,7 +8,7 @@
     
     <!--  Info boxes at top -->
     <ImageView       
-        android:contentDescription="@string/logoDescription"
+        android:contentDescription="@string/GameMenu_logoDescription"
         android:id="@+id/cardsLeftBox"
         android:src="@drawable/info_box"
         android:paddingLeft="5dp"       
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"/>  
         
     <ImageView       
-        android:contentDescription="@string/logoDescription"
+        android:contentDescription="@string/GameMenu_logoDescription"
         android:id="@+id/elapsedTimeBox"
         android:src="@drawable/info_box"
         android:paddingLeft="25dp"       
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"/> 
         
     <ImageView       
-        android:contentDescription="@string/logoDescription"
+        android:contentDescription="@string/GameMenu_logoDescription"
         android:id="@+id/pointsAccumulatedBox"
         android:src="@drawable/info_box"
         android:paddingLeft="25dp"       
@@ -38,7 +38,7 @@
     
     <!--  Pile boxes in center -->
     <ImageView       
-        android:contentDescription="@string/logoDescription"
+        android:contentDescription="@string/GameMenu_logoDescription"
         android:id="@+id/pile0"
         android:src="@drawable/card_pile"
         android:paddingLeft="40dp"  
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"/>
     
     <ImageView       
-        android:contentDescription="@string/logoDescription"
+        android:contentDescription="@string/GameMenu_logoDescription"
         android:id="@+id/pile1"
         android:src="@drawable/card_pile"
         android:paddingLeft="20dp"   
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"/>
     
     <ImageView       
-        android:contentDescription="@string/logoDescription"
+        android:contentDescription="@string/GameMenu_logoDescription"
         android:id="@+id/pile2"
         android:src="@drawable/card_pile"
         android:paddingLeft="20dp"   
@@ -71,7 +71,7 @@
     
     <!--  Hand boxes at bottom -->
     <ImageView       
-        android:contentDescription="@string/logoDescription"
+        android:contentDescription="@string/GameMenu_logoDescription"
         android:id="@+id/hand0"
         android:src="@drawable/card_hand"
         android:paddingLeft="10dp"   
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"/>
     
     <ImageView       
-        android:contentDescription="@string/logoDescription"
+        android:contentDescription="@string/GameMenu_logoDescription"
         android:id="@+id/hand1"
         android:src="@drawable/card_hand"
         android:paddingLeft="10dp"   
@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"/>
     
     <ImageView       
-        android:contentDescription="@string/logoDescription"
+        android:contentDescription="@string/GameMenu_logoDescription"
         android:id="@+id/hand2"
         android:src="@drawable/card_hand"
         android:paddingLeft="10dp"   
@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"/>
     
     <ImageView       
-        android:contentDescription="@string/logoDescription"
+        android:contentDescription="@string/GameMenu_logoDescription"
         android:id="@+id/hand3"
         android:src="@drawable/card_hand"
         android:paddingLeft="10dp"   
@@ -114,7 +114,7 @@
         android:layout_height="wrap_content"/>
     
     <ImageView       
-        android:contentDescription="@string/logoDescription"
+        android:contentDescription="@string/GameMenu_logoDescription"
         android:id="@+id/hand4"
         android:src="@drawable/card_hand"
         android:paddingLeft="10dp"   
@@ -134,7 +134,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:padding="@dimen/padding_medium"
-        android:text="@string/about_screen" />
+        android:text="@string/GameScreen_filler" />
 
     <Button
         android:id="@+id/button1"
@@ -144,7 +144,7 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="@string/back_to_main" 
+        android:text="@string/GameScreen_back_to_main" 
         android:onClick="backToMain"/>
     
 

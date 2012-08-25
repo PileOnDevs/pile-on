@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:padding="@dimen/padding_medium"
-        android:text="@string/about_screen" />
+        android:text="@string/AboutScreen_about_game" />
 
     <Button
         android:id="@+id/button1"
@@ -20,7 +20,7 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="@string/back_to_main" 
+        android:text="@string/AboutScreen_back_to_main" 
         android:onClick="backToMain"/>
     
 
