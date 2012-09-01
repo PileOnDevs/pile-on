@@ -8,7 +8,6 @@
     <string name="GameMenu_new_game_button">New Game</string>
     <string name="GameMenu_help_button">Help</string>
     <string name="GameMenu_about_button">About</string>
-<!--     <string name="GameMenu_selection">Please make a selection:</string> -->
     <string name="GameMenu_logoDescription">Logo goes here</string>
     <!-- AboutScreen activity -->
     <string name="AboutScreen_back_to_main">Back to menu</string>

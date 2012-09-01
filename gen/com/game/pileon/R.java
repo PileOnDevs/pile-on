@@ -63,8 +63,6 @@ public final class R {
          */
         public static final int GameMenu_app_name=0x7f050000;
         public static final int GameMenu_help_button=0x7f050004;
-        /**      <string name="GameMenu_selection">Please make a selection:</string> 
-         */
         public static final int GameMenu_logoDescription=0x7f050006;
         public static final int GameMenu_menu_settings=0x7f050001;
         public static final int GameMenu_new_game_button=0x7f050003;
