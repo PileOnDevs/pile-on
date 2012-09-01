@@ -1,6 +1,7 @@
 package com.game.pileon;
 
 import android.graphics.Color;
+import android.util.Log;
 
 /**
  * DefaultGameType
@@ -16,10 +17,10 @@ public class DefaultGameType implements GameType
 
 	private Deck Deck;
 
-	private final static int NumberOfColors = 4;
-	private final static int NumberOfCardsPerColor = 10;
+	private final static int NUMBEROFCOLORS = 4;
+	private final static int NUMBEROFCARDSPERCOLOR = 10;
 
-	private final static int CardColors[] =
+	private final static int CARDCOLORS[] =
 	{ Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW };
 
 	public enum CardColorTypes
@@ -36,17 +37,19 @@ public class DefaultGameType implements GameType
 	{
 		Deck = new Deck();
 
-		for (int colorNdx = 0; colorNdx < NumberOfColors; colorNdx++)
+		for (int colorNdx = 0; colorNdx < NUMBEROFCOLORS; colorNdx++)
 		{
-			for (int cardNdx = 0; cardNdx < NumberOfCardsPerColor; cardNdx++)
+			for (int cardNdx = 0; cardNdx < NUMBEROFCARDSPERCOLOR; cardNdx++)
 			{
 				DefaultGameCard cardToAdd = new DefaultGameCard(
-						CardColors[colorNdx], cardNdx + 1);
+						CARDCOLORS[colorNdx], cardNdx + 1);
 				Deck.AddCard(cardToAdd);
+				//Log.d("PO", cardToAdd.toString());
 			}
 		}
 
 		Deck.Shuffle();
+		//Log.d("PO", Deck.toString());
 	}
 
 }

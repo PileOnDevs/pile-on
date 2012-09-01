@@ -37,5 +37,9 @@ public class DefaultGameCard implements Card
 		// TODO Auto-generated method stub
 		return mBehavior;
 	}
+	public String toString()
+	{
+		return "Color:" + mColor + " Value:" + mValue;
+	}
 
 }

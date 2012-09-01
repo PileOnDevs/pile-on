@@ -36,5 +36,12 @@ public interface Card
 	 * @return int, Behavior of the card, Depending on the card this will change
 	 */
 	public int getBehavior();
+	
+	/**
+	 * Gets a string representation of the card for debugging
+	 * 
+	 * @return String, Color of the card and value
+	 */
+	public String toString();
 
 }

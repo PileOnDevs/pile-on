@@ -1,7 +1,10 @@
 package com.game.pileon;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
+
+import android.util.Log;
 
 /**
  * 
@@ -37,26 +40,33 @@ public class Deck
 		{
 			Random randomGenerator = new Random();
 
-			int howManyTimesToShuffle = randomGenerator.nextInt(1024) + 512; // at
-																				// least
-																				// 512
-																				// times,
-																				// up
-																				// to
-																				// 1536
-																				// times
+			int howManyTimesToShuffle = DeckOfCards.size(); 
 			int howManyCardsInDeck = DeckOfCards.size(); // save this now, it's
 															// not going to
 															// change
 
-			for (int shuffleCount = 0; shuffleCount < howManyTimesToShuffle; shuffleCount++)
+			for (int shuffleCount = 0; shuffleCount < howManyCardsInDeck; shuffleCount++)
 			{
-				int whichCardToMove = (randomGenerator
-						.nextInt(howManyCardsInDeck));
-				DeckOfCards.addFirst(DeckOfCards.remove(whichCardToMove));
+				int whichCardToMove = (randomGenerator.nextInt(howManyTimesToShuffle));
+				Card tempCard = DeckOfCards.remove(whichCardToMove);
+				DeckOfCards.addLast( tempCard );
+				Log.d("PO Deck", tempCard.toString());
+				howManyTimesToShuffle--;
 			}
 		}
 
+	}
+	public String toString()
+	{
+		Iterator<Card> ListIter = DeckOfCards.iterator();
+		String deckString = new String();
+		while ( ListIter.hasNext() )
+		{
+			Card individualCard = ListIter.next();
+			deckString = deckString + " " + individualCard.toString();
+			Log.d("PO Deck", individualCard.toString());
+		}
+		return deckString;
 	}
 
 }
