@@ -50,7 +50,7 @@ public class Deck
 				int whichCardToMove = (randomGenerator.nextInt(howManyTimesToShuffle));
 				Card tempCard = DeckOfCards.remove(whichCardToMove);
 				DeckOfCards.addLast( tempCard );
-				Log.d("PO Deck", tempCard.toString());
+				Log.d("PO Shuffle", tempCard.toString());
 				howManyTimesToShuffle--;
 			}
 		}
@@ -62,9 +62,8 @@ public class Deck
 		String deckString = new String();
 		while ( ListIter.hasNext() )
 		{
-			Card individualCard = ListIter.next();
-			deckString = deckString + " " + individualCard.toString();
-			Log.d("PO Deck", individualCard.toString());
+			deckString = deckString + " " + ListIter.next().toString();
+			
 		}
 		return deckString;
 	}

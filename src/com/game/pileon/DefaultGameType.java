@@ -44,7 +44,7 @@ public class DefaultGameType implements GameType
 				DefaultGameCard cardToAdd = new DefaultGameCard(
 						CARDCOLORS[colorNdx], cardNdx + 1);
 				Deck.AddCard(cardToAdd);
-				//Log.d("PO", cardToAdd.toString());
+				Log.d("PO CreateDeck", cardToAdd.toString());
 			}
 		}
 
