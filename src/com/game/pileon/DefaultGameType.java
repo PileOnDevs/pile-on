@@ -49,7 +49,6 @@ public class DefaultGameType implements GameType
 		}
 
 		Deck.Shuffle();
-		//Log.d("PO", Deck.toString());
 	}
 
 }
