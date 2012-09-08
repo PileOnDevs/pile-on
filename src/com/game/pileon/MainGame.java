@@ -70,11 +70,15 @@ public class MainGame extends Activity
 	private static class cardDragShadowBuilder extends View.DragShadowBuilder 
 	{
 		private static Drawable shadow;
+		private static ImageView draggedCard;
 
 		public cardDragShadowBuilder(View v) 
 		{
 			super(v);
 			shadow = new ColorDrawable(Color.LTGRAY);
+			draggedCard = (ImageView)v;
+			draggedCard.setImageResource(R.drawable.card_hand_drag);
+			draggedCard.invalidate();
 		}
 
 		@Override
@@ -91,7 +95,9 @@ public class MainGame extends Activity
 		@Override
 		public void onDrawShadow(Canvas canvas) 
 		{
-			shadow.draw(canvas);
+			//shadow.draw(canvas);
+			draggedCard.setImageResource(R.drawable.card_hand_drag);
+			draggedCard.invalidate();
 		}
 
 
@@ -123,6 +129,7 @@ public class MainGame extends Activity
 			if (dragAction == DragEvent.ACTION_DRAG_ENTERED)
 			{
 				Log.d("PO DRAG", "Entered drop box");
+				
 			} 
 			else if (dragAction == DragEvent.ACTION_DRAG_EXITED)
 			{
@@ -141,6 +148,10 @@ public class MainGame extends Activity
 				Log.d("PO DRAG", "Dropped");
 				ClipData.Item item = event.getClipData().getItemAt(0);
 
+			}
+			else
+			{
+				return false;
 			}
 			return true;
 		}
