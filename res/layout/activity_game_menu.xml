@@ -13,12 +13,12 @@
         
     <TextView
         android:id="@+id/textView1"
-        android:layout_below="@+id/horizontalLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/horizontalLogo"
         android:layout_centerHorizontal="true"
         android:padding="@dimen/padding_medium"
-        android:text="@string/GameMenu_welcome_text" />
+        android:text="@string/GameMenu_logoDescription" />
 
     <Button
         android:id="@+id/button1"

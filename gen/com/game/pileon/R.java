@@ -9,6 +9,26 @@ package com.game.pileon;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int layout_x=0x7f010000;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int layout_y=0x7f010001;
     }
     public static final class dimen {
         public static final int padding_large=0x7f040002;
@@ -30,19 +50,11 @@ public final class R {
         public static final int button1=0x7f080001;
         public static final int button2=0x7f080003;
         public static final int button3=0x7f080004;
-        public static final int cardsLeftBox=0x7f080005;
-        public static final int elapsedTimeBox=0x7f080006;
-        public static final int hand0=0x7f08000b;
-        public static final int hand1=0x7f08000c;
-        public static final int hand2=0x7f08000d;
-        public static final int hand3=0x7f08000e;
-        public static final int hand4=0x7f08000f;
+        public static final int drag_layer=0x7f080005;
+        public static final int hand0=0x7f080007;
         public static final int horizontalLogo=0x7f080002;
-        public static final int menu_settings=0x7f080010;
-        public static final int pile0=0x7f080008;
-        public static final int pile1=0x7f080009;
-        public static final int pile2=0x7f08000a;
-        public static final int pointsAccumulatedBox=0x7f080007;
+        public static final int menu_settings=0x7f080008;
+        public static final int pile0=0x7f080006;
         public static final int textView1=0x7f080000;
     }
     public static final class layout {
@@ -65,10 +77,10 @@ public final class R {
          */
         public static final int GameMenu_app_name=0x7f050000;
         public static final int GameMenu_help_button=0x7f050004;
+        public static final int GameMenu_label_text=0x7f050002;
         public static final int GameMenu_logoDescription=0x7f050006;
         public static final int GameMenu_menu_settings=0x7f050001;
         public static final int GameMenu_new_game_button=0x7f050003;
-        public static final int GameMenu_welcome_text=0x7f050002;
         public static final int GameScreen_back_to_main=0x7f05000c;
         /**  GameScreen activity 
          */
@@ -81,4 +93,53 @@ public final class R {
     public static final class style {
         public static final int AppTheme=0x7f060000;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a AbsoluteLayout_Layout.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #AbsoluteLayout_Layout_layout_x com.game.pileon:layout_x}</code></td><td></td></tr>
+           <tr><td><code>{@link #AbsoluteLayout_Layout_layout_y com.game.pileon:layout_y}</code></td><td></td></tr>
+           </table>
+           @see #AbsoluteLayout_Layout_layout_x
+           @see #AbsoluteLayout_Layout_layout_y
+         */
+        public static final int[] AbsoluteLayout_Layout = {
+            0x7f010000, 0x7f010001
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.game.pileon.R.attr#layout_x}
+          attribute's value can be found in the {@link #AbsoluteLayout_Layout} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:layout_x
+        */
+        public static final int AbsoluteLayout_Layout_layout_x = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.game.pileon.R.attr#layout_y}
+          attribute's value can be found in the {@link #AbsoluteLayout_Layout} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:layout_y
+        */
+        public static final int AbsoluteLayout_Layout_layout_y = 1;
+    };
 }

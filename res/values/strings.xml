@@ -4,7 +4,7 @@
     <!-- GameMenu activity -->
     <string name="GameMenu_app_name">Pile On</string>
     <string name="GameMenu_menu_settings">Settings</string>
-    <string name="GameMenu_welcome_text">Welcome to Pile On! You must construct additional pile ons</string>
+    <string name="GameMenu_label_text">Pile On</string>
     <string name="GameMenu_new_game_button">New Game</string>
     <string name="GameMenu_help_button">Help</string>
     <string name="GameMenu_about_button">About</string>

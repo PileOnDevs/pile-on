@@ -36,14 +36,15 @@ public class DefaultGameType implements GameType
 	public void CreateDeck()
 	{
 		Deck = new Deck();
-
+		int cardID = 0;
 		for (int colorNdx = 0; colorNdx < NUMBEROFCOLORS; colorNdx++)
 		{
 			for (int cardNdx = 0; cardNdx < NUMBEROFCARDSPERCOLOR; cardNdx++)
 			{
 				DefaultGameCard cardToAdd = new DefaultGameCard(
-						CARDCOLORS[colorNdx], cardNdx + 1);
+						CARDCOLORS[colorNdx], cardNdx + 1, cardID);
 				Deck.AddCard(cardToAdd);
+				cardID++;
 				Log.d("PO CreateDeck", cardToAdd.toString());
 			}
 		}

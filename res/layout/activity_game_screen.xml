@@ -1,128 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.game.pileon.DragLayer 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:com.game.pileon="http://schemas.android.com/apk/res/com.game.pileon"
+    android:id="@+id/drag_layer"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="horizontal" >
 
     <!--  Need to figure out how to correctly do this without hard coding -->
     
-    <!--  Info boxes at top -->
-    <ImageView       
-        android:contentDescription="@string/GameMenu_logoDescription"
-        android:id="@+id/cardsLeftBox"
-        android:src="@drawable/info_box"
-        android:paddingLeft="5dp"       
-        android:paddingTop="10dp"      
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>  
-        
-    <ImageView       
-        android:contentDescription="@string/GameMenu_logoDescription"
-        android:id="@+id/elapsedTimeBox"
-        android:src="@drawable/info_box"
-        android:paddingLeft="25dp"       
-        android:paddingTop="10dp"    
-        android:layout_toRightOf="@+id/cardsLeftBox"  
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/> 
-        
-    <ImageView       
-        android:contentDescription="@string/GameMenu_logoDescription"
-        android:id="@+id/pointsAccumulatedBox"
-        android:src="@drawable/info_box"
-        android:paddingLeft="25dp"       
-        android:paddingTop="10dp"      
-        android:layout_toRightOf="@+id/elapsedTimeBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/> 
-    
-    <!--  Pile boxes in center -->
-    <ImageView       
+     <!--  Pile boxes at bottom -->
+    <view class="com.game.pileon.PileView"       
         android:contentDescription="@string/GameMenu_logoDescription"
         android:id="@+id/pile0"
         android:src="@drawable/card_pile"
-        android:paddingLeft="40dp"  
-        android:paddingTop="10dp"      
-        android:layout_below="@+id/cardsLeftBox"
+        com.game.pileon:layout_x="120dp"  
+        com.game.pileon:layout_y="320dp"         
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     
-    <ImageView       
-        android:contentDescription="@string/GameMenu_logoDescription"
-        android:id="@+id/pile1"
-        android:src="@drawable/card_pile"
-        android:paddingLeft="20dp"   
-        android:paddingTop="10dp"  
-        android:layout_below="@+id/cardsLeftBox"
-        android:layout_toRightOf="@+id/pile0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    
-    <ImageView       
-        android:contentDescription="@string/GameMenu_logoDescription"
-        android:id="@+id/pile2"
-        android:src="@drawable/card_pile"
-        android:paddingLeft="20dp"   
-        android:paddingTop="10dp"  
-        android:layout_below="@+id/cardsLeftBox"
-        android:layout_toRightOf="@+id/pile1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
     
     <!--  Hand boxes at bottom -->
-    <ImageView       
+    <view class="com.game.pileon.CardView"       
         android:contentDescription="@string/GameMenu_logoDescription"
         android:id="@+id/hand0"
         android:src="@drawable/card_hand"
-        android:paddingLeft="10dp"   
-        android:paddingTop="10dp"  
-        android:layout_below="@+id/pile0"        
+        com.game.pileon:layout_x="120dp"  
+        com.game.pileon:layout_y="120dp"         
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     
-    <ImageView       
-        android:contentDescription="@string/GameMenu_logoDescription"
-        android:id="@+id/hand1"
-        android:src="@drawable/card_hand"
-        android:paddingLeft="10dp"   
-        android:paddingTop="10dp"  
-        android:layout_below="@+id/pile0"    
-        android:layout_toRightOf="@+id/hand0"    
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    
-    <ImageView       
-        android:contentDescription="@string/GameMenu_logoDescription"
-        android:id="@+id/hand2"
-        android:src="@drawable/card_hand"
-        android:paddingLeft="10dp"   
-        android:paddingTop="10dp"  
-        android:layout_below="@+id/pile0"    
-        android:layout_toRightOf="@+id/hand1"    
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    
-    <ImageView       
-        android:contentDescription="@string/GameMenu_logoDescription"
-        android:id="@+id/hand3"
-        android:src="@drawable/card_hand"
-        android:paddingLeft="10dp"   
-        android:paddingTop="10dp"  
-        android:layout_below="@+id/pile0"    
-        android:layout_toRightOf="@+id/hand2"    
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    
-    <ImageView       
-        android:contentDescription="@string/GameMenu_logoDescription"
-        android:id="@+id/hand4"
-        android:src="@drawable/card_hand"
-        android:paddingLeft="10dp"   
-        android:paddingTop="10dp"  
-        android:layout_below="@+id/pile0"    
-        android:layout_toRightOf="@+id/hand3"    
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+  
     
     <!--  Menu information at bottom -->
    
@@ -141,11 +49,10 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="@string/GameScreen_back_to_main" 
         android:onClick="backToMain"/>
     
 
-</RelativeLayout>
+</com.game.pileon.DragLayer>
