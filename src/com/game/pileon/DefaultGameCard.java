@@ -48,4 +48,14 @@ public class DefaultGameCard implements Card
 		return "Card ID: " + mCardID + " Color: " + mColor + " Value: " + mValue;
 	}
 
+	public boolean equalValueTo(Card cardToCompare)
+	{
+		return cardToCompare.getValue() == mValue;
+	}
+
+	public boolean equalColorTo(Card cardToCompare)
+	{
+		return cardToCompare.getColor() == mColor;
+	}
+
 }

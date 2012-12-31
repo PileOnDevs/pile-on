@@ -22,7 +22,8 @@ public class Pile
 		
 		
 	}
-	//Wrapper methods for the underlying stack
+	//Wrapper methods for the underlying stack, push and pop are private to private
+	//unauthorized changes to the pile without appropriate graphical updating and such
 	/**
 	 * Tests if this stack is empty
 	 * @return true if and only if this stack contains no items; false otherwise
@@ -43,7 +44,7 @@ public class Pile
 	 * Removes the object at the top of the stack and returns that object as the value of this function
 	 * @return The object at the top of this stack (the last item of the Vector object)
 	 */
-	public Card pop(){
+	private Card pop(){
 		return mPile.pop();
 	}
 	
@@ -51,10 +52,41 @@ public class Pile
 	 * Pushes an item onto the top of this stack
 	 * @return true if the item pushed is at the top of the stack now
 	 */
-	public boolean push(Card card){
+	private boolean push(Card card){
 		mPile.push(card);
 		return card.equals(mPile.peek());
 	}
 	
 	//Game specific methods
+	/**
+	 * Determines whether or not the card can be played to the pile based on color or value
+	 * @return true if the move is legal (either the colors match or the values match)
+	 */
+	public boolean isMoveLegal(Card cardPlayed){
+		if (cardPlayed == null){
+			return false;
+		}
+		else if (cardPlayed.equalValueTo(peek())){
+			return true;
+		}
+		else if (cardPlayed.equalColorTo(peek())){
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Computes the point gain by playing the card to the pile
+	 * @return points gained by drop
+	 */
+	public int handleDrop(Card cardPlayed){
+		int pointsGained = 0;
+		if (cardPlayed.equalValueTo(peek())){
+			pointsGained = 2*cardPlayed.getValue();
+		}
+		else if (cardPlayed.equalColorTo(peek())){
+			pointsGained = 2*cardPlayed.getValue();
+		}
+		return pointsGained;
+	}
 }

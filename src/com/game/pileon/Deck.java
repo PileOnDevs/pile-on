@@ -50,7 +50,7 @@ public class Deck
 				int whichCardToMove = (randomGenerator.nextInt(howManyTimesToShuffle));
 				Card tempCard = DeckOfCards.remove(whichCardToMove);
 				DeckOfCards.addLast( tempCard );
-				Log.d("PO Shuffle", tempCard.toString());
+				Log.i("PO Shuffle", tempCard.toString());
 				howManyTimesToShuffle--;
 			}
 		}

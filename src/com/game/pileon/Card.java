@@ -38,6 +38,20 @@ public interface Card
 	public int getBehavior();
 	
 	/**
+	 * Determines if the value of the cards are the same
+	 * 
+	 * @return true if cards have equal value
+	 */
+	public boolean equalValueTo(Card cardToCompare);
+	
+	/**
+	 * Determines if the color of the cards are the same
+	 * 
+	 * @return true if cards have the same color
+	 */
+	public boolean equalColorTo(Card cardToCompare);
+	
+	/**
 	 * Gets a string representation of the card for debugging
 	 * 
 	 * @return String, Color of the card and value

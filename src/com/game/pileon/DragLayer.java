@@ -105,7 +105,7 @@ implements DragSource
 	public void onDropCompleted (View target, boolean success)
 	{
 		//toast ("DragLayer2.onDropCompleted: " + target.getId () + " Check that the view moved.");
-		Log.d("PO Drop", "Drop completed");
+		Log.i("PO Drop", "Drop completed");
 	}
 
 	// More methods
