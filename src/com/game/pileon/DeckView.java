@@ -11,18 +11,19 @@ import android.widget.ImageView;
 
 /**
  * @author breeze4
+ * @since 2013-01-03
  *
  */
-public class CardView extends ImageView
+public class DeckView extends ImageView
 {
-	private Card mCard; //stores the underlying Card that this CardView represents
+	private Deck mDeck; //stores the underlying Deck that this DeckView represents
 	private Drawable mCardGraphic;
 	private Context mContext;
 
 	/**
 	 * @param context
 	 */
-	public CardView(Context context)
+	public DeckView(Context context)
 	{
 		this(context, null, 0);
 		// default constructor, not used
@@ -32,7 +33,7 @@ public class CardView extends ImageView
 	 * @param context
 	 * @param attrs
 	 */
-	public CardView(Context context, AttributeSet attrs)
+	public DeckView(Context context, AttributeSet attrs)
 	{
 		this(context, attrs, 0);
 		// default constructor, not used
@@ -43,11 +44,11 @@ public class CardView extends ImageView
 	 * @param attrs
 	 * @param defStyle
 	 */
-	public CardView(Context context, AttributeSet attrs, int defStyle)
+	public DeckView(Context context, AttributeSet attrs, int defStyle)
 	{
 		super(context, attrs, defStyle);
 		mContext = context;
 		mCardGraphic = mContext.getResources().getDrawable(R.drawable.card_hand);
-		mCardGraphic.setBounds(13, 13, mCardGraphic.getIntrinsicWidth()+13, mCardGraphic.getIntrinsicHeight()+13);
+		mCardGraphic.setBounds(0, 0, mCardGraphic.getIntrinsicWidth(), mCardGraphic.getIntrinsicHeight());
 	}
 }

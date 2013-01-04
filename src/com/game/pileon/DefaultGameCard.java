@@ -1,7 +1,5 @@
 package com.game.pileon;
 
-import android.graphics.Color;
-
 public class DefaultGameCard implements Card
 {
 
@@ -30,13 +28,11 @@ public class DefaultGameCard implements Card
 
 	public int getValue()
 	{
-		//
 		return mValue;
 	}
 
 	public int getBehavior()
 	{
-		// TODO Auto-generated method stub
 		return mBehavior;
 	}
 	public int getCardID()

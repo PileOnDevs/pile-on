@@ -22,7 +22,7 @@ public class Pile
 		
 		
 	}
-	//Wrapper methods for the underlying stack, push and pop are private to private
+	//Wrapper methods for the underlying stack, push and pop are private to prevent
 	//unauthorized changes to the pile without appropriate graphical updating and such
 	/**
 	 * Tests if this stack is empty

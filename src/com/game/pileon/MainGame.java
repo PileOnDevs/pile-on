@@ -99,6 +99,7 @@ implements View.OnTouchListener
 	    // I use the dragInfo to pass along the object being dragged.
 	    // I'm not sure how the Launcher designers do this.
 	    Object dragInfo = v;
+	    Log.i("PO Drag", "startDrag in MainGame runs");
 	    mDragController.startDrag (v, mDragLayer, dragInfo, DragController.DRAG_ACTION_MOVE);
 	    return true;
 	}

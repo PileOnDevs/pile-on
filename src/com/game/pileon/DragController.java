@@ -92,8 +92,6 @@ public class DragController {
 	/** Who can receive drop events */
 	private ArrayList<DropTarget> mDropTargets = new ArrayList<DropTarget>();
 
-	private DragListener mListener;
-
 	/** The window token used as the parent for the DragView. */
 	private IBinder mWindowToken;
 
@@ -103,26 +101,6 @@ public class DragController {
 
 	private InputMethodManager mInputMethodManager;
 
-	/**
-	 * Interface to receive notifications when a drag starts or stops
-	 */
-	interface DragListener {
-
-		/**
-		 * A drag has begun
-		 * 
-		 * @param source An object representing where the drag originated
-		 * @param info The data associated with the object that is being dragged
-		 * @param dragAction The drag action: either {@link DragController#DRAG_ACTION_MOVE}
-		 *        or {@link DragController#DRAG_ACTION_COPY}
-		 */
-		void onDragStart(DragSource source, Object info, int dragAction);
-
-		/**
-		 * The drag has eneded
-		 */
-		void onDragEnd();
-	}
 
 	/**
 	 * Used to create a new DragLayer from XML.
@@ -204,10 +182,6 @@ public class DragController {
 		}
 		mInputMethodManager.hideSoftInputFromWindow(mWindowToken, 0);
 
-		if (mListener != null) {
-			mListener.onDragStart(source, dragInfo, dragAction);
-		}
-
 		int registrationX = ((int)mMotionDownX) - screenX;
 		int registrationY = ((int)mMotionDownY) - screenY;
 
@@ -285,9 +259,6 @@ public class DragController {
 			if (mOriginator != null) {
 				mOriginator.setVisibility(View.VISIBLE);
 			}
-			if (mListener != null) {
-				mListener.onDragEnd();
-			}
 			if (mDragView != null) {
 				mDragView.remove();
 				mDragView = null;
@@ -300,7 +271,9 @@ public class DragController {
 	 */
 	 public boolean onInterceptTouchEvent(MotionEvent ev) {
 		final int action = ev.getAction();
-
+		
+		Log.i("PO Drag", "onInterceptTouchEvent in DragController runs");
+		
 		if (action == MotionEvent.ACTION_DOWN) {
 			recordScreenSize();
 		}
@@ -309,6 +282,7 @@ public class DragController {
 		final int screenY = clamp((int)ev.getRawY(), 0, mDisplayMetrics.heightPixels);
 
 		switch (action) {
+		
 		case MotionEvent.ACTION_MOVE:
 			break;
 
@@ -349,7 +323,8 @@ public class DragController {
 		 if (!mDragging) {
 			 return false;
 		 }
-
+		 Log.i("PO Drag", "onTouchEvent in DragController runs");
+		 
 		 final int action = ev.getAction();
 		 final int screenX = clamp((int)ev.getRawX(), 0, mDisplayMetrics.widthPixels);
 		 final int screenY = clamp((int)ev.getRawY(), 0, mDisplayMetrics.heightPixels);
@@ -387,36 +362,6 @@ public class DragController {
 			 }
 			 mLastDropTarget = dropTarget;
 
-			 /* The original Launcher activity supports a delete region and scrolling.
-               It is not needed in this example.
-
-            // Scroll, maybe, but not if we're in the delete region.
-            boolean inDeleteRegion = false;
-            if (mDeleteRegion != null) {
-                inDeleteRegion = mDeleteRegion.contains(screenX, screenY);
-            }
-            //Log.d(TAG, "inDeleteRegion=" + inDeleteRegion + " screenX=" + screenX
-            //        + " mScrollZone=" + mScrollZone);
-            if (!inDeleteRegion && screenX < mScrollZone) {
-                if (mScrollState == SCROLL_OUTSIDE_ZONE) {
-                    mScrollState = SCROLL_WAITING_IN_ZONE;
-                    mScrollRunnable.setDirection(SCROLL_LEFT);
-                    mHandler.postDelayed(mScrollRunnable, SCROLL_DELAY);
-                }
-            } else if (!inDeleteRegion && screenX > scrollView.getWidth() - mScrollZone) {
-                if (mScrollState == SCROLL_OUTSIDE_ZONE) {
-                    mScrollState = SCROLL_WAITING_IN_ZONE;
-                    mScrollRunnable.setDirection(SCROLL_RIGHT);
-                    mHandler.postDelayed(mScrollRunnable, SCROLL_DELAY);
-                }
-            } else {
-                if (mScrollState == SCROLL_WAITING_IN_ZONE) {
-                    mScrollState = SCROLL_OUTSIDE_ZONE;
-                    mScrollRunnable.setDirection(SCROLL_RIGHT);
-                    mHandler.removeCallbacks(mScrollRunnable);
-                }
-            }
-			  */
 			 break;
 		 case MotionEvent.ACTION_UP:
 			 if (mDragging) {
@@ -501,20 +446,6 @@ public class DragController {
 
 	 public void setWindowToken(IBinder token) {
 		 mWindowToken = token;
-	 }
-
-	 /**
-	  * Sets the drag listner which will be notified when a drag starts or ends.
-	  */
-	 public void setDragListener(DragListener l) {
-		 mListener = l;
-	 }
-
-	 /**
-	  * Remove a previously installed drag listener.
-	  */
-	 public void removeDragListener(DragListener l) {
-		 mListener = null;
 	 }
 
 	 /**

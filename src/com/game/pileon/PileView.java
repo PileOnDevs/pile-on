@@ -20,6 +20,7 @@ implements DropTarget
 {
 	private Context mContext;
 	private Drawable mCardGraphic;
+	private Pile mPile;
 	
 	/**
 	 * @param context
@@ -49,7 +50,7 @@ implements DropTarget
 	{
 		super(context, attrs, defStyle);
 		mContext = context;
-
+		
 		mCardGraphic = context.getResources().getDrawable(R.drawable.card_pile);
 		mCardGraphic.setBounds(0, 0, mCardGraphic.getIntrinsicWidth(), mCardGraphic.getIntrinsicHeight());
 	}
@@ -93,7 +94,6 @@ implements DropTarget
 	public void onDragOver(DragSource source, int x, int y, int xOffset,
 			int yOffset, DragView dragView, Object dragInfo)
 	{
-		// TODO Auto-generated method stub
 		//Log.i("PO Drag", "Drag enters pileview's airspace");
 	}
 
@@ -127,7 +127,6 @@ implements DropTarget
 			int xOffset, int yOffset, DragView dragView, Object dragInfo,
 			Rect recycle)
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 

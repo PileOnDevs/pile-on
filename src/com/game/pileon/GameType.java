@@ -10,7 +10,22 @@ package com.game.pileon;
  */
 public interface GameType
 {
-
-	public void CreateDeck();
+	/**
+	 * 
+	 */
+	public void createDeck();
+	
+	/**
+	 * 
+	 */
+	public void createPiles();
+	
+	/**
+	 * 
+	 */
+	public void setupGame(); 
+	
+	
+	
 
 }

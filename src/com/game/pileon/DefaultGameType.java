@@ -19,6 +19,16 @@ public class DefaultGameType implements GameType
 
 	private final static int NUMBEROFCOLORS = 4;
 	private final static int NUMBEROFCARDSPERCOLOR = 10;
+	
+	private Pile Pile0;
+	private Pile Pile1;
+	private Pile Pile2;
+	
+	private Hand Hand0;
+	private Hand Hand1;
+	private Hand Hand2;
+	private Hand Hand3;
+	private Hand Hand4;
 
 	private final static int CARDCOLORS[] =
 	{ Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW };
@@ -30,10 +40,11 @@ public class DefaultGameType implements GameType
 
 	public DefaultGameType()
 	{
-		CreateDeck();
+		createDeck();
+		setupGame();
 	}
 
-	public void CreateDeck()
+	public void createDeck()
 	{
 		Deck = new Deck();
 		int cardID = 0;
@@ -51,5 +62,34 @@ public class DefaultGameType implements GameType
 
 		Deck.Shuffle();
 	}
+	
+	public void createPiles()
+	{
+		Pile0 = new Pile(dealTopCard());
+		Pile1 = new Pile(dealTopCard());
+		Pile2 = new Pile(dealTopCard());
+	}
+	
+	public void createHands()
+	{
+		Hand0 = new Hand(dealTopCard());
+		Hand1 = new Hand(dealTopCard());
+		Hand2 = new Hand(dealTopCard());
+		Hand3 = new Hand(dealTopCard());
+		Hand4 = new Hand(dealTopCard());
+	}
+	
+	public void setupGame()
+	{
+		createPiles();
+		createHands();
+	}
+	
+	public Card dealTopCard()
+	{
+		return Deck.dealTopCard();
+	}
+	
+	
 
 }

@@ -28,6 +28,19 @@ public class Deck
 			DeckOfCards.add(cardToAdd);
 		}
 	}
+	
+	public Card dealTopCard()
+	{
+		if (DeckOfCards.size() > 0)
+		{
+			return DeckOfCards.remove();
+		}
+		else
+		{
+			return new DefaultGameCard(); //TODO add in a placeholder card type
+		}
+	}
+	
 
 	/**
 	 * Shuffle
@@ -48,7 +61,7 @@ public class Deck
 			for (int shuffleCount = 0; shuffleCount < howManyCardsInDeck; shuffleCount++)
 			{
 				int whichCardToMove = (randomGenerator.nextInt(howManyTimesToShuffle));
-				Card tempCard = DeckOfCards.remove(whichCardToMove);
+				DefaultGameCard tempCard = (DefaultGameCard)DeckOfCards.remove(whichCardToMove);
 				DeckOfCards.addLast( tempCard );
 				Log.i("PO Shuffle", tempCard.toString());
 				howManyTimesToShuffle--;
