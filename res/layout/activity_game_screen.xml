@@ -6,31 +6,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="horizontal" >
-
-    <!--  Need to figure out how to correctly do this without hard coding -->
     
-     <!--  Pile boxes at bottom -->
-    <view class="com.game.pileon.PileView"       
-        android:contentDescription="@string/GameMenu_logoDescription"
-        android:id="@+id/pile0"
-        android:src="@drawable/card_pile"
-        com.game.pileon:layout_x="120dp"  
-        com.game.pileon:layout_y="320dp"         
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    
-    
-    <!--  Hand boxes at bottom -->
-    <view class="com.game.pileon.CardView"       
-        android:contentDescription="@string/GameMenu_logoDescription"
-        android:id="@+id/hand0"
-        android:src="@drawable/card_hand"
-        com.game.pileon:layout_x="120dp"  
-        com.game.pileon:layout_y="120dp"         
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    
-  
     
     <!--  Menu information at bottom -->
    

@@ -16,7 +16,7 @@ import android.widget.ImageView;
  */
 public class HandView extends ImageView
 {
-	private Hand mHand; //stores the underlying Hand that this HandView represents
+	public Hand mHand; //stores the underlying Hand that this HandView represents
 	private Drawable mCardGraphic;
 	private Context mContext;
 
@@ -50,5 +50,10 @@ public class HandView extends ImageView
 		mContext = context;
 		mCardGraphic = mContext.getResources().getDrawable(R.drawable.card_hand);
 		mCardGraphic.setBounds(0, 0, mCardGraphic.getIntrinsicWidth(), mCardGraphic.getIntrinsicHeight());
+	}
+	
+	public void setHand(Hand hand)
+	{
+		mHand = hand;
 	}
 }

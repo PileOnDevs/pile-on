@@ -2,6 +2,8 @@ package com.game.pileon;
 
 import java.util.Stack;
 
+import android.util.Log;
+
 /**
  * Pile class
  * 
@@ -64,12 +66,17 @@ public class Pile
 	 */
 	public boolean isMoveLegal(Card cardPlayed){
 		if (cardPlayed == null){
+			Log.i("PO Drag", "card being dropped is null");
 			return false;
 		}
 		else if (cardPlayed.equalValueTo(peek())){
+			Log.i("PO Drag", "card being dropped has same value");
+
 			return true;
 		}
 		else if (cardPlayed.equalColorTo(peek())){
+			Log.i("PO Drag", "card being dropped has same color");
+
 			return true;
 		}
 		return false;
@@ -88,5 +95,10 @@ public class Pile
 			pointsGained = 2*cardPlayed.getValue();
 		}
 		return pointsGained;
+	}
+	
+	public String toString()
+	{
+		return mPile.peek().toString();
 	}
 }

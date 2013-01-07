@@ -11,10 +11,11 @@ package com.game.pileon;
 
 public class Hand
 {
-	private Card mCard;
+	public Card mCard;
 	private Deck mDeck;
 	
-	public Hand(Card card){
+	public Hand(Card card)
+	{
 		mCard = card;
 		
 	}
@@ -24,7 +25,8 @@ public class Hand
 	 * Tests if this stack is empty
 	 * @return true if and only if this stack contains no items; false otherwise
 	 */
-	public boolean isEmpty(){
+	public boolean isEmpty()
+	{
 		return !(mCard == null);
 	}
 	
@@ -32,7 +34,8 @@ public class Hand
 	 * Sends the Card this Hand is holding to the game for play and asks for another
 	 * @return the Card this hand is holding
 	 */
-	public Card playCard(){
+	public Card playCard()
+	{
 		Card newCard = getCardFromDeck();
 		//TODO add in check to make sure the card isn't a placeholder, if so, display it but disable Hand
 		Card oldCard = mCard;
@@ -40,8 +43,19 @@ public class Hand
 		return oldCard;
 	}
 	
-	public Card getCardFromDeck(){
+	public Card getCardFromDeck()
+	{
 		return mDeck.dealTopCard();
+	}
+	
+	public String toString()
+	{
+		return mCard.toString();
+	}
+	
+	public void setHand(Card card)
+	{
+		mCard = card;
 	}
 	
 }

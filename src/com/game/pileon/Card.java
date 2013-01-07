@@ -29,6 +29,14 @@ public interface Card
 	 * 
 	 */
 	public int getValue();
+	
+	/**
+	 * Gets the ID of the card
+	 * 
+	 * @return int, ID of the card
+	 * 
+	 */
+	public int getCardID();
 
 	/**
 	 * Gets the behavior of the card

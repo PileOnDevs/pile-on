@@ -115,8 +115,13 @@ implements DropTarget
 	public boolean acceptDrop(DragSource source, int x, int y, int xOffset,
 			int yOffset, DragView dragView, Object dragInfo)
 	{
-		
-		Log.i("PO Drag", "Drop accepted");
+		HandView handView = (HandView)dragInfo;
+		Hand hand = handView.mHand;
+		DefaultGameCard cardToBeDropped = (DefaultGameCard)hand.mCard;
+		Log.i("PO Drag", "card being dropped " + cardToBeDropped.toString());
+		Log.i("PO Drag", "card being dropped onto " + mPile.peek().toString());
+		Boolean checkIt = mPile.isMoveLegal(cardToBeDropped);
+		Log.i("PO Drag", "is move legal? " + checkIt.toString());
 		return true;
 	}
 
@@ -128,6 +133,11 @@ implements DropTarget
 			Rect recycle)
 	{
 		return null;
+	}
+	
+	public void setPile(Pile pile)
+	{
+		mPile = pile;
 	}
 
 
