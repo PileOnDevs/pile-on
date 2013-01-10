@@ -17,9 +17,9 @@ public interface Card
 	/**
 	 * Gets the color of the card
 	 * 
-	 * @return int, The color of the card
+	 * @return String, The color of the card
 	 */
-	public int getColor();
+	public String getColor();
 
 	/**
 	 * Gets the value of the card
@@ -33,10 +33,10 @@ public interface Card
 	/**
 	 * Gets the ID of the card
 	 * 
-	 * @return int, ID of the card
+	 * @return String, ID of the card
 	 * 
 	 */
-	public int getCardID();
+	public String getCardID();
 
 	/**
 	 * Gets the behavior of the card

@@ -3,24 +3,24 @@ package com.game.pileon;
 public class DefaultGameCard implements Card
 {
 
-	private int mColor;
+	private String mColor; 
 	private int mValue;
 	private int mBehavior;
-	private int mCardID;
+	private String mCardID;
 
 	public DefaultGameCard()
 	{
-		this(0,0,0);
+		this("",0,"");
 	}
 
-	public DefaultGameCard(int colorToSet, int valueToSet, int cardID)
+	public DefaultGameCard(String colorToSet, int valueToSet, String cardID)
 	{
 		mColor = colorToSet;
 		mValue = valueToSet;
 		mCardID = cardID;
 	}
 
-	public int getColor()
+	public String getColor()
 	{
 
 		return mColor;
@@ -35,7 +35,7 @@ public class DefaultGameCard implements Card
 	{
 		return mBehavior;
 	}
-	public int getCardID()
+	public String getCardID()
 	{
 		return mCardID;
 	}

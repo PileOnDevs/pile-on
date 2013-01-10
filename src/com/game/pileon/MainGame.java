@@ -59,13 +59,9 @@ implements View.OnTouchListener
 	public void setupViews()
 	{
 		//setup PileViews - three each
-		PileView pileView0 = new PileView(this);		
-	    pileView0.setPile(mGameEngine.Pile0);   
+		PileView pileView0 = new PileView(this, mGameEngine.Pile0);		
 	    //dynamic loading of pile image resource
-	    int pileImageResource = getDrawable(mContext, "card_pile");
-	    pileView0.setImageResource(pileImageResource);
-	    Log.i("PO CreateDeck", "pileView0 LayoutParams width: " + pileView0.getDrawable().getIntrinsicWidth() +
-	    		" height: "+ pileView0.getDrawable().getIntrinsicHeight());
+	    
 	    DragLayer.LayoutParams pileView0params = new DragLayer.LayoutParams(pileView0.getDrawable().getIntrinsicWidth(), 
 	    		pileView0.getDrawable().getIntrinsicHeight(), 120, 320);
 	    mDragLayer.addView(pileView0, pileView0params);
@@ -73,7 +69,7 @@ implements View.OnTouchListener
 
 	    //setup HandViews - five each
 	    HandView handView0 = new HandView(this);
-		handView0.setImageResource(R.drawable.card_hand);
+		handView0.setImageResource(R.drawable.green1);
 		handView0.setOnTouchListener(this);
 	    Log.i("PO CreateDeck", "handView0 LayoutParams width: " + handView0.getDrawable().getIntrinsicWidth() +
 	    		" height: "+ handView0.getDrawable().getIntrinsicHeight());	    

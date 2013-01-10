@@ -3,6 +3,7 @@
  */
 package com.game.pileon;
 
+import junit.framework.Assert;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -12,7 +13,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 /**
- * @author Aniara
+ * @author breeze4
  *
  */
 public class PileView extends ImageView
@@ -25,9 +26,9 @@ implements DropTarget
 	/**
 	 * @param context
 	 */
-	public PileView(Context context)
+	public PileView(Context context, Pile pile)
 	{
-		this(context, null, 0);
+		this(context, null, 0, pile);
 		// default constructor, not used
 	}
 
@@ -35,9 +36,9 @@ implements DropTarget
 	 * @param context
 	 * @param attrs
 	 */
-	public PileView(Context context, AttributeSet attrs)
+	public PileView(Context context, AttributeSet attrs, Pile pile)
 	{
-		this(context, attrs, 0);
+		this(context, attrs, 0, pile);
 		// default constructor, not used
 	}
 
@@ -46,15 +47,27 @@ implements DropTarget
 	 * @param attrs
 	 * @param defStyle
 	 */
-	public PileView(Context context, AttributeSet attrs, int defStyle)
+	public PileView(Context context, AttributeSet attrs, int defStyle, Pile pile)
 	{
 		super(context, attrs, defStyle);
 		mContext = context;
-		
-		mCardGraphic = context.getResources().getDrawable(R.drawable.card_pile);
-		mCardGraphic.setBounds(0, 0, mCardGraphic.getIntrinsicWidth(), mCardGraphic.getIntrinsicHeight());
-	}
+		setPile(pile);
+	    int pileImageResource = getDrawable(mContext, mPile.peek().getCardID());
+	    setImageResource(pileImageResource);
+		mCardGraphic = context.getResources().getDrawable(pileImageResource);
 
+	    Log.i("PO CreateDeck", "pile LayoutParams width: " + getDrawable().getIntrinsicWidth() +
+	    		" height: "+ getDrawable().getIntrinsicHeight());
+//		mCardGraphic.setBounds(0, 0, mCardGraphic.getIntrinsicWidth(), mCardGraphic.getIntrinsicHeight());
+	}
+	
+	public int getDrawable(Context context, String name)
+	{
+		Assert.assertNotNull(context);
+		Assert.assertNotNull(name);
+		
+		return context.getResources().getIdentifier(name, "drawable", context.getPackageName());
+	}
 	
 	@Override
 	public void onDraw(Canvas canvas)

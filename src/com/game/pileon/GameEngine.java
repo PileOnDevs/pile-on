@@ -30,13 +30,8 @@ public class GameEngine
 	public Hand Hand3;
 	public Hand Hand4;
 
-	private final static int CARDCOLORS[] =
-	{ Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW };
-
-	public enum CardColorTypes
-	{
-		Red, Green, Blue, Yellow
-	}
+	private final static String CARDCOLORS[] =
+	{ "red", "green", "blue", "yellow" };
 
 	public GameEngine()
 	{
@@ -44,34 +39,18 @@ public class GameEngine
 		setupGame();
 	}
 
-//	public void createDeck()
-//	{
-//		Deck = new Deck();
-//		int cardID = 0;
-//		for (int cardNdx = 0; cardNdx < NUMBEROFCARDSPERCOLOR*NUMBEROFCOLORS; cardNdx++)
-//			{
-//				DefaultGameCard cardToAdd = new DefaultGameCard(
-//						CARDCOLORS[0], 1, cardID);
-//				Deck.AddCard(cardToAdd);
-//				cardID++;
-//				Log.i("PO CreateDeck", cardToAdd.toString());
-//			}
-//
-//		Deck.Shuffle();
-//	}
-//	
 	public void createDeck()
 	{
 		Deck = new Deck();
-		int cardID = 0;
+		String cardID = "";
 		for (int colorNdx = 0; colorNdx < NUMBEROFCOLORS; colorNdx++)
 		{
 			for (int cardNdx = 0; cardNdx < NUMBEROFCARDSPERCOLOR; cardNdx++)
 			{
+				cardID = CARDCOLORS[colorNdx] + Integer.toString(cardNdx);
 				DefaultGameCard cardToAdd = new DefaultGameCard(
 						CARDCOLORS[colorNdx], cardNdx + 1, cardID);
 				Deck.AddCard(cardToAdd);
-				cardID++;
 				Log.i("PO CreateDeck", cardToAdd.toString());
 			}
 		}
