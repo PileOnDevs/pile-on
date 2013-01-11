@@ -60,8 +60,7 @@ implements View.OnTouchListener
 	{
 		//setup PileViews - three each
 		PileView pileView0 = new PileView(this, mGameEngine.Pile0);		
-	    //dynamic loading of pile image resource
-	    
+	    //sizing the PileView
 	    DragLayer.LayoutParams pileView0params = new DragLayer.LayoutParams(pileView0.getDrawable().getIntrinsicWidth(), 
 	    		pileView0.getDrawable().getIntrinsicHeight(), 120, 320);
 	    mDragLayer.addView(pileView0, pileView0params);

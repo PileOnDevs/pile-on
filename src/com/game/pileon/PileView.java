@@ -55,10 +55,9 @@ implements DropTarget
 	    int pileImageResource = getDrawable(mContext, mPile.peek().getCardID());
 	    setImageResource(pileImageResource);
 		mCardGraphic = context.getResources().getDrawable(pileImageResource);
-
+		
 	    Log.i("PO CreateDeck", "pile LayoutParams width: " + getDrawable().getIntrinsicWidth() +
 	    		" height: "+ getDrawable().getIntrinsicHeight());
-//		mCardGraphic.setBounds(0, 0, mCardGraphic.getIntrinsicWidth(), mCardGraphic.getIntrinsicHeight());
 	}
 	
 	public int getDrawable(Context context, String name)
