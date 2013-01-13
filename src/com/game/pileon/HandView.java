@@ -4,9 +4,11 @@
 package com.game.pileon;
 
 
+import junit.framework.Assert;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
 
 /**
@@ -23,9 +25,9 @@ public class HandView extends ImageView
 	/**
 	 * @param context
 	 */
-	public HandView(Context context)
+	public HandView(Context context, Hand hand)
 	{
-		this(context, null, 0);
+		this(context, null, 0, hand);
 		// default constructor, not used
 	}
 
@@ -33,9 +35,9 @@ public class HandView extends ImageView
 	 * @param context
 	 * @param attrs
 	 */
-	public HandView(Context context, AttributeSet attrs)
+	public HandView(Context context, AttributeSet attrs, Hand hand)
 	{
-		this(context, attrs, 0);
+		this(context, attrs, 0, hand);
 		// default constructor, not used
 	}
 
@@ -44,12 +46,25 @@ public class HandView extends ImageView
 	 * @param attrs
 	 * @param defStyle
 	 */
-	public HandView(Context context, AttributeSet attrs, int defStyle)
+	public HandView(Context context, AttributeSet attrs, int defStyle, Hand hand)
 	{
 		super(context, attrs, defStyle);
 		mContext = context;
-		mCardGraphic = mContext.getResources().getDrawable(R.drawable.card_hand);
-		mCardGraphic.setBounds(0, 0, mCardGraphic.getIntrinsicWidth(), mCardGraphic.getIntrinsicHeight());
+		setHand(hand);
+	    int handImageResource = getDrawable(mContext, mHand.mCard.getCardID());
+	    setImageResource(handImageResource);
+		mCardGraphic = context.getResources().getDrawable(handImageResource);
+		
+	    Log.i("PO CreateDeck", "hand LayoutParams width: " + getDrawable().getIntrinsicWidth() +
+	    		" height: "+ getDrawable().getIntrinsicHeight());
+	}
+
+	public int getDrawable(Context context, String name)
+	{
+		Assert.assertNotNull(context);
+		Assert.assertNotNull(name);
+		
+		return context.getResources().getIdentifier(name, "drawable", context.getPackageName());
 	}
 	
 	public void setHand(Hand hand)

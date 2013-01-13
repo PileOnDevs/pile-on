@@ -47,7 +47,7 @@ public class GameEngine
 		{
 			for (int cardNdx = 0; cardNdx < NUMBEROFCARDSPERCOLOR; cardNdx++)
 			{
-				cardID = CARDCOLORS[colorNdx] + Integer.toString(cardNdx);
+				cardID = CARDCOLORS[colorNdx] + Integer.toString(cardNdx+1);
 				DefaultGameCard cardToAdd = new DefaultGameCard(
 						CARDCOLORS[colorNdx], cardNdx + 1, cardID);
 				Deck.AddCard(cardToAdd);

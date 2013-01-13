@@ -67,8 +67,7 @@ implements View.OnTouchListener
 	    mDragController.addDropTarget(pileView0);
 
 	    //setup HandViews - five each
-	    HandView handView0 = new HandView(this);
-		handView0.setImageResource(R.drawable.green1);
+	    HandView handView0 = new HandView(this, mGameEngine.Hand0);
 		handView0.setOnTouchListener(this);
 	    Log.i("PO CreateDeck", "handView0 LayoutParams width: " + handView0.getDrawable().getIntrinsicWidth() +
 	    		" height: "+ handView0.getDrawable().getIntrinsicHeight());	    
