@@ -20,13 +20,11 @@
 package com.game.pileon;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 /**
  * A ViewGroup that coordinates dragging across its dscendants.
@@ -105,7 +103,7 @@ implements DragSource
 	public void onDropCompleted (View target, boolean success)
 	{
 		//toast ("DragLayer2.onDropCompleted: " + target.getId () + " Check that the view moved.");
-		Log.i("PO Drop", "Drop completed");
+		Log.i("PO Drop", "DragLayer: Drop operation completed");
 	}
 
 	// More methods

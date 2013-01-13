@@ -1,5 +1,7 @@
 package com.game.pileon;
 
+import android.util.Log;
+
 /**
  * Hand class
  * 
@@ -40,8 +42,10 @@ public class Hand
 		//TODO add in check to make sure the card isn't a placeholder, if so, display it but disable Hand
 		Card oldCard = mCard;
 		mCard = newCard;
-		return oldCard;
+		Log.i("PO Hand", "oldCard: " + oldCard.toString() + " newCard: " + newCard.toString());
+		return oldCard; //TODO this returns the old card, but not used right now
 	}
+	
 	
 	public Card getCardFromDeck()
 	{
@@ -56,6 +60,10 @@ public class Hand
 	public void setHand(Card card)
 	{
 		mCard = card;
+	}
+	
+	public void setDeck(Deck deck){
+		mDeck = deck;
 	}
 	
 }

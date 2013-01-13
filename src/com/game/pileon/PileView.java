@@ -51,13 +51,23 @@ implements DropTarget
 	{
 		super(context, attrs, defStyle);
 		mContext = context;
+		
 		setPile(pile);
-	    int pileImageResource = getDrawable(mContext, mPile.peek().getCardID());
-	    setImageResource(pileImageResource);
-		mCardGraphic = context.getResources().getDrawable(pileImageResource);
+	    updateGraphic();
 		
 	    Log.i("PO CreateDeck", "pile LayoutParams width: " + getDrawable().getIntrinsicWidth() +
 	    		" height: "+ getDrawable().getIntrinsicHeight());
+	}
+	
+	public void updateGraphic(){
+		updateGraphic(mPile.peek().getCardID());
+	}
+	
+	public void updateGraphic(String cardID){
+		int pileImageResource = getDrawable(mContext, cardID);
+	    setImageResource(pileImageResource);
+		mCardGraphic = mContext.getResources().getDrawable(pileImageResource);
+		invalidate();
 	}
 	
 	public int getDrawable(Context context, String name)
@@ -68,6 +78,20 @@ implements DropTarget
 		return context.getResources().getIdentifier(name, "drawable", context.getPackageName());
 	}
 	
+	public Card getCardToBeDropped(Object dragObject){
+		HandView handView = (HandView)dragObject;
+		Hand hand = handView.mHand;
+		DefaultGameCard cardToBeDropped = (DefaultGameCard)hand.mCard;
+		return cardToBeDropped;
+	}
+	
+	public void tellHandToPlayCard(Object dragObject){
+		HandView handView = (HandView)dragObject;
+		Hand hand = handView.mHand;
+		hand.playCard(); //TODO this returns a card, not used right now
+		handView.updateGraphic();
+	}
+
 	@Override
 	public void onDraw(Canvas canvas)
 	{
@@ -84,8 +108,16 @@ implements DropTarget
 	public void onDrop(DragSource source, int x, int y, int xOffset,
 			int yOffset, DragView dragView, Object dragInfo)
 	{
+		Assert.assertEquals(true, acceptDrop(source, x, y, xOffset, yOffset, dragView, dragInfo));
 		
-		Log.i("PO Drag", "invalidate graphic and redraw");
+		Card cardToBeDropped = getCardToBeDropped(dragInfo);
+		boolean dropSuccess = mPile.handleDrop(cardToBeDropped);
+		
+		if (dropSuccess){
+			updateGraphic(mPile.peek().getCardID());
+			Log.i("PO Drag", "invalidate graphic and redraw");
+			tellHandToPlayCard(dragInfo);
+		}
 	}
 
 	/* (non-Javadoc)
@@ -97,6 +129,7 @@ implements DropTarget
 		mCardGraphic = mContext.getResources().getDrawable(R.drawable.card_pile_drag_over);
 		mCardGraphic.setBounds(0, 0, mCardGraphic.getIntrinsicWidth(), mCardGraphic.getIntrinsicHeight());
 		invalidate();
+		//TODO add in call to updateGraphic() with the cardID for the "can be dropped onto" graphical change
 		Log.i("PO Drag", "Drag enters pileview's airspace");
 	}
 
@@ -115,9 +148,7 @@ implements DropTarget
 	public void onDragExit(DragSource source, int x, int y, int xOffset,
 			int yOffset, DragView dragView, Object dragInfo)
 	{
-		mCardGraphic = mContext.getResources().getDrawable(R.drawable.card_pile);
-		mCardGraphic.setBounds(0, 0, mCardGraphic.getIntrinsicWidth(), mCardGraphic.getIntrinsicHeight());
-		invalidate();
+		updateGraphic();
 		Log.i("PO Drag", "Drag left");
 	}
 
@@ -132,7 +163,7 @@ implements DropTarget
 		Log.i("PO Drag", "card being dropped onto " + mPile.peek().toString());
 		Boolean checkIt = mPile.isMoveLegal(cardToBeDropped);
 		Log.i("PO Drag", "is move legal? " + checkIt.toString());
-		return true;
+		return checkIt;
 	}
 
 	/* (non-Javadoc)
@@ -143,13 +174,6 @@ implements DropTarget
 			Rect recycle)
 	{
 		return null;
-	}
-	
-	public Card getCardToBeDropped(Object dragInfo){
-		HandView handView = (HandView)dragInfo;
-		Hand hand = handView.mHand;
-		DefaultGameCard cardToBeDropped = (DefaultGameCard)hand.mCard;
-		return cardToBeDropped;
 	}
 	
 	public void setPile(Pile pile)

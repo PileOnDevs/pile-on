@@ -21,14 +21,10 @@ package com.game.pileon;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
 import android.widget.RemoteViews.RemoteView;
 //import com.game.pileon.R;
 

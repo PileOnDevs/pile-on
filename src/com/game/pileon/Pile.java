@@ -83,10 +83,25 @@ public class Pile
 	}
 	
 	/**
+	 * Takes in a card, updates the pile and computes the points gained
+	 * @return points gained by drop
+	 */
+	public boolean handleDrop(Card cardPlayed){
+		boolean dropSuccess = isMoveLegal(cardPlayed);
+		
+		if(dropSuccess){
+			int pointsGained = computePointsGained(cardPlayed);
+			push(cardPlayed);
+		}
+
+		return dropSuccess;
+	}
+	
+	/**
 	 * Computes the point gain by playing the card to the pile
 	 * @return points gained by drop
 	 */
-	public int handleDrop(Card cardPlayed){
+	public int computePointsGained(Card cardPlayed){
 		int pointsGained = 0;
 		if (cardPlayed.equalValueTo(peek())){
 			pointsGained = 2*cardPlayed.getValue();

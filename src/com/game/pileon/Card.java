@@ -1,6 +1,5 @@
 package com.game.pileon;
 
-import android.graphics.Color;
 
 /**
  * Card Interface

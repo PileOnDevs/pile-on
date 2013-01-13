@@ -50,14 +50,25 @@ public class HandView extends ImageView
 	{
 		super(context, attrs, defStyle);
 		mContext = context;
+		
 		setHand(hand);
-	    int handImageResource = getDrawable(mContext, mHand.mCard.getCardID());
-	    setImageResource(handImageResource);
-		mCardGraphic = context.getResources().getDrawable(handImageResource);
+		updateGraphic();
 		
 	    Log.i("PO CreateDeck", "hand LayoutParams width: " + getDrawable().getIntrinsicWidth() +
 	    		" height: "+ getDrawable().getIntrinsicHeight());
 	}
+	
+	public void updateGraphic(){
+		updateGraphic(mHand.mCard.getCardID());
+	}
+	
+	public void updateGraphic(String cardID){
+		int handImageResource = getDrawable(mContext, cardID);
+	    setImageResource(handImageResource);
+		mCardGraphic = mContext.getResources().getDrawable(handImageResource);
+		invalidate();
+	}
+	
 
 	public int getDrawable(Context context, String name)
 	{

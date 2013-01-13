@@ -1,6 +1,5 @@
 package com.game.pileon;
 
-import android.graphics.Color;
 import android.util.Log;
 
 /**
@@ -71,14 +70,19 @@ public class GameEngine
 	public void createHands()
 	{
 		Hand0 = new Hand(dealTopCard());
+		Hand0.setDeck(Deck);
 		Log.i("PO CreateDeck", "Hand0 gets: " + Hand0.toString());
 		Hand1 = new Hand(dealTopCard());
+		Hand1.setDeck(Deck);
 		Log.i("PO CreateDeck", "Hand1 gets: " + Hand1.toString());
 		Hand2 = new Hand(dealTopCard());
+		Hand2.setDeck(Deck);
 		Log.i("PO CreateDeck", "Hand2 gets: " + Hand2.toString());
 		Hand3 = new Hand(dealTopCard());
+		Hand3.setDeck(Deck);
 		Log.i("PO CreateDeck", "Hand3 gets: " + Hand3.toString());
 		Hand4 = new Hand(dealTopCard());
+		Hand4.setDeck(Deck);
 		Log.i("PO CreateDeck", "Hand4 gets: " + Hand4.toString());
 	}
 	
