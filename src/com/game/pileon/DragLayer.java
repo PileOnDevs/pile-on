@@ -84,7 +84,6 @@ implements DragSource
 	  */
 
 	public boolean allowDrag () {
-		// In this simple demo, any view that you touch can be dragged.
 		return true;
 	}
 
@@ -102,24 +101,9 @@ implements DragSource
 
 	public void onDropCompleted (View target, boolean success)
 	{
-		//toast ("DragLayer2.onDropCompleted: " + target.getId () + " Check that the view moved.");
+		
 		Log.i("PO Drop", "DragLayer: Drop operation completed");
 	}
-
-	// More methods
-
-	/**
-	 * Show a string on the screen via Toast.
-	 * 
-	 * @param msg String
-	 * @return void
-	 */
-
-//	public void log (String msg)
-//	{
-//		if (!DragActivity.Debugging) return;
-//		Toast.makeText (getContext (), msg, Toast.LENGTH_SHORT).show ();
-//	} // end toast
 
 
 } // end class

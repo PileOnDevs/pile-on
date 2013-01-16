@@ -214,7 +214,6 @@ public class MyAbsoluteLayout extends ViewGroup {
 		 */
 		public LayoutParams(Context c, AttributeSet attrs) {
 			super(c, attrs);
-			//FIX THIS eventually. Without this, I don't think you can put x and y in layout xml files.
 			TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.AbsoluteLayout_Layout);
 			x = a.getDimensionPixelOffset(R.styleable.AbsoluteLayout_Layout_layout_x, 0);
 			y = a.getDimensionPixelOffset(R.styleable.AbsoluteLayout_Layout_layout_y, 0);

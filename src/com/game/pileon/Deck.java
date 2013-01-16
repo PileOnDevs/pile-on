@@ -28,7 +28,7 @@ public class Deck
 			DeckOfCards.add(cardToAdd);
 		}
 	}
-	
+
 	public Card dealTopCard()
 	{
 		if (DeckOfCards.size() > 0)
@@ -40,7 +40,12 @@ public class Deck
 			return new DefaultGameCard(); //TODO add in a placeholder card type
 		}
 	}
-	
+
+	public boolean isEmpty()
+	{
+		return DeckOfCards.isEmpty();
+	}
+
 
 	/**
 	 * Shuffle
@@ -55,8 +60,8 @@ public class Deck
 
 			int howManyTimesToShuffle = DeckOfCards.size(); 
 			int howManyCardsInDeck = DeckOfCards.size(); // save this now, it's
-															// not going to
-															// change
+			// not going to
+			// change
 
 			for (int shuffleCount = 0; shuffleCount < howManyCardsInDeck; shuffleCount++)
 			{
@@ -76,7 +81,7 @@ public class Deck
 		while ( ListIter.hasNext() )
 		{
 			deckString = deckString + " " + ListIter.next().toString();
-			
+
 		}
 		return deckString;
 	}

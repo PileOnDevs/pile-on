@@ -22,6 +22,7 @@ implements DropTarget
 	private Context mContext;
 	private Drawable mCardGraphic;
 	private Pile mPile;
+	private GameEngine mGameEngine;
 	
 	/**
 	 * @param context
@@ -59,11 +60,13 @@ implements DropTarget
 	    		" height: "+ getDrawable().getIntrinsicHeight());
 	}
 	
-	public void updateGraphic(){
+	public void updateGraphic()
+	{
 		updateGraphic(mPile.peek().getCardID());
 	}
 	
-	public void updateGraphic(String cardID){
+	public void updateGraphic(String cardID)
+	{
 		int pileImageResource = getDrawable(mContext, cardID);
 	    setImageResource(pileImageResource);
 		mCardGraphic = mContext.getResources().getDrawable(pileImageResource);
@@ -78,19 +81,24 @@ implements DropTarget
 		return context.getResources().getIdentifier(name, "drawable", context.getPackageName());
 	}
 	
-	public Card getCardToBeDropped(Object dragObject){
+	public Card getCardToBeDropped(Object dragObject)
+	{
 		HandView handView = (HandView)dragObject;
 		Hand hand = handView.mHand;
 		DefaultGameCard cardToBeDropped = (DefaultGameCard)hand.mCard;
 		return cardToBeDropped;
 	}
 	
-	public void tellHandToPlayCard(Object dragObject){
+	public void tellHandToPlayCard(Object dragObject)
+	{
 		HandView handView = (HandView)dragObject;
 		Hand hand = handView.mHand;
-		hand.playCard(); //TODO this returns a card, not used right now
-		handView.updateGraphic();
+		if( hand.playCard() != null)
+		{
+			handView.updateGraphic();
+		}
 	}
+		
 
 	@Override
 	public void onDraw(Canvas canvas)
@@ -99,7 +107,6 @@ implements DropTarget
 		canvas.save();
 		mCardGraphic.draw(canvas);
 		canvas.restore();
-
 	}
 	
 	/* (non-Javadoc)
@@ -113,10 +120,15 @@ implements DropTarget
 		Card cardToBeDropped = getCardToBeDropped(dragInfo);
 		boolean dropSuccess = mPile.handleDrop(cardToBeDropped);
 		
-		if (dropSuccess){
+		if (dropSuccess && !mGameEngine.isGameOver() ){
 			updateGraphic(mPile.peek().getCardID());
 			Log.i("PO Drag", "invalidate graphic and redraw");
 			tellHandToPlayCard(dragInfo);
+		}
+		else
+		{
+			updateGraphic(mPile.peek().getCardID());
+			Log.i("PO Game", "this game is OVER (or the drop failed somehow)");
 		}
 	}
 
@@ -179,6 +191,11 @@ implements DropTarget
 	public void setPile(Pile pile)
 	{
 		mPile = pile;
+	}
+	
+	public void setGameEngine(GameEngine gameEngine)
+	{
+		mGameEngine = gameEngine;
 	}
 
 

@@ -29,7 +29,7 @@ public class Hand
 	 */
 	public boolean isEmpty()
 	{
-		return !(mCard == null);
+		return (mCard == null);
 	}
 	
 	/**

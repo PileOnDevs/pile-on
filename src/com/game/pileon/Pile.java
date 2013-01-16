@@ -17,7 +17,8 @@ public class Pile
 {
 	private Stack<Card> mPile;
 	
-	public Pile(Card card){
+	public Pile(Card card)
+	{
 		mPile = new Stack<Card>();
 		
 		mPile.push(card);
@@ -30,7 +31,8 @@ public class Pile
 	 * Tests if this stack is empty
 	 * @return true if and only if this stack contains no items; false otherwise
 	 */
-	public boolean isEmpty(){
+	public boolean isEmpty()
+	{
 		return !(mPile.size() != 0);
 	}
 	
@@ -38,7 +40,8 @@ public class Pile
 	 * Looks at the object at the top of the stack without removing it from the stack
 	 * @return the object at the top of the stack (the last item of the Vector object)
 	 */
-	public Card peek(){
+	public Card peek()
+	{
 		return mPile.peek();
 	}
 	
@@ -46,7 +49,8 @@ public class Pile
 	 * Removes the object at the top of the stack and returns that object as the value of this function
 	 * @return The object at the top of this stack (the last item of the Vector object)
 	 */
-	private Card pop(){
+	private Card pop()
+	{
 		return mPile.pop();
 	}
 	
@@ -54,7 +58,8 @@ public class Pile
 	 * Pushes an item onto the top of this stack
 	 * @return true if the item pushed is at the top of the stack now
 	 */
-	private boolean push(Card card){
+	private boolean push(Card card)
+	{
 		mPile.push(card);
 		return card.equals(mPile.peek());
 	}
@@ -64,17 +69,20 @@ public class Pile
 	 * Determines whether or not the card can be played to the pile based on color or value
 	 * @return true if the move is legal (either the colors match or the values match)
 	 */
-	public boolean isMoveLegal(Card cardPlayed){
+	public boolean isMoveLegal(Card cardPlayed)
+	{
 		if (cardPlayed == null){
 			Log.i("PO Drag", "card being dropped is null");
 			return false;
 		}
-		else if (cardPlayed.equalValueTo(peek())){
+		else if (cardPlayed.equalValueTo(peek()))
+		{
 			Log.i("PO Drag", "card being dropped has same value");
 
 			return true;
 		}
-		else if (cardPlayed.equalColorTo(peek())){
+		else if (cardPlayed.equalColorTo(peek()))
+		{
 			Log.i("PO Drag", "card being dropped has same color");
 
 			return true;
@@ -86,10 +94,12 @@ public class Pile
 	 * Takes in a card, updates the pile and computes the points gained
 	 * @return points gained by drop
 	 */
-	public boolean handleDrop(Card cardPlayed){
+	public boolean handleDrop(Card cardPlayed)
+	{
 		boolean dropSuccess = isMoveLegal(cardPlayed);
 		
-		if(dropSuccess){
+		if(dropSuccess)
+		{
 			int pointsGained = computePointsGained(cardPlayed);
 			push(cardPlayed);
 		}
@@ -101,15 +111,23 @@ public class Pile
 	 * Computes the point gain by playing the card to the pile
 	 * @return points gained by drop
 	 */
-	public int computePointsGained(Card cardPlayed){
+	public int computePointsGained(Card cardPlayed)
+	{
 		int pointsGained = 0;
-		if (cardPlayed.equalValueTo(peek())){
+		if (cardPlayed.equalValueTo(peek()))
+		{
 			pointsGained = 2*cardPlayed.getValue();
 		}
-		else if (cardPlayed.equalColorTo(peek())){
+		else if (cardPlayed.equalColorTo(peek()))
+		{
 			pointsGained = 2*cardPlayed.getValue();
 		}
 		return pointsGained;
+	}
+	
+	public int cardCount()
+	{
+		return mPile.size();
 	}
 	
 	public String toString()

@@ -18,24 +18,27 @@ public class GameEngine
 
 	private final static int NUMBEROFCOLORS = 4;
 	private final static int NUMBEROFCARDSPERCOLOR = 10;
-	
+
 	public Pile Pile0;
 	public Pile Pile1;
 	public Pile Pile2;
-	
+
 	public Hand Hand0;
 	public Hand Hand1;
 	public Hand Hand2;
 	public Hand Hand3;
 	public Hand Hand4;
 
+	public boolean isGameOver;
+
 	private final static String CARDCOLORS[] =
-	{ "red", "green", "blue", "yellow" };
+		{ "red", "green", "blue", "yellow" };
 
 	public GameEngine()
 	{
 		createDeck();
 		setupGame();
+		isGameOver = false;
 	}
 
 	public void createDeck()
@@ -56,7 +59,7 @@ public class GameEngine
 
 		Deck.Shuffle();
 	}
-	
+
 	public void createPiles()
 	{
 		Pile0 = new Pile(dealTopCard());
@@ -66,7 +69,7 @@ public class GameEngine
 		Pile2 = new Pile(dealTopCard());
 		Log.i("PO CreateDeck", "Pile2 gets: " + Pile2.toString());
 	}
-	
+
 	public void createHands()
 	{
 		Hand0 = new Hand(dealTopCard());
@@ -85,18 +88,72 @@ public class GameEngine
 		Hand4.setDeck(Deck);
 		Log.i("PO CreateDeck", "Hand4 gets: " + Hand4.toString());
 	}
-	
+
 	public void setupGame()
 	{
 		createPiles();
 		createHands();
 	}
-	
+
 	public Card dealTopCard()
 	{
 		return Deck.dealTopCard();
 	}
-	
-	
+
+	public boolean isGameOver()
+	{
+		isGameOver = areHandsEmpty() || !legalMovesAvailable();
+		Log.i("PO GameEngine", "is game over?: " + Boolean.toString(isGameOver));
+		return isGameOver;
+	}
+
+	public boolean areHandsEmpty()
+	{
+		boolean areHandsEmpty = false;
+		boolean tempHand0 = Hand0.isEmpty();
+		boolean tempHand1 = Hand1.isEmpty();
+		boolean tempHand2 = Hand2.isEmpty();
+		boolean tempHand3 = Hand3.isEmpty();
+		boolean tempHand4 = Hand4.isEmpty();
+		
+		if( tempHand0 && tempHand1 && tempHand2 && tempHand3 && tempHand4)
+//		if( Hand0.isEmpty() && Hand1.isEmpty() &&
+//				Hand2.isEmpty() && Hand3.isEmpty() &&
+//				Hand4.isEmpty() )
+		{
+			Log.i("PO GameEngine", "is this hand empty?: " + Boolean.toString(tempHand0));
+			Log.i("PO GameEngine", "is this hand empty?: " + Boolean.toString(tempHand1));
+			Log.i("PO GameEngine", "is this hand empty?: " + Boolean.toString(tempHand2));
+			Log.i("PO GameEngine", "is this hand empty?: " + Boolean.toString(tempHand3));
+			Log.i("PO GameEngine", "is this hand empty?: " + Boolean.toString(tempHand4));
+
+			areHandsEmpty = true;
+		}
+		Log.i("PO GameEngine", "are hands empty?: " + Boolean.toString(areHandsEmpty));
+		return areHandsEmpty;
+	}
+
+	public boolean legalMovesAvailable()
+	{
+		//TODO refactor this to a cleaner format and code that can be re-used for a game solving class
+		boolean legalMovesAvailable = false;
+		if( Pile0.isMoveLegal(Hand0.mCard) || Pile0.isMoveLegal(Hand1.mCard) || Pile0.isMoveLegal(Hand2.mCard) ||
+				Pile0.isMoveLegal(Hand3.mCard) || Pile0.isMoveLegal(Hand4.mCard))
+		{
+			legalMovesAvailable = true;
+		}
+		else if( Pile1.isMoveLegal(Hand0.mCard) || Pile1.isMoveLegal(Hand1.mCard) || Pile1.isMoveLegal(Hand2.mCard) ||
+				Pile1.isMoveLegal(Hand3.mCard) || Pile1.isMoveLegal(Hand4.mCard))
+		{
+			legalMovesAvailable = true;
+		}
+		else if( Pile2.isMoveLegal(Hand0.mCard) || Pile2.isMoveLegal(Hand1.mCard) || Pile2.isMoveLegal(Hand2.mCard) ||
+				Pile2.isMoveLegal(Hand3.mCard) || Pile2.isMoveLegal(Hand4.mCard))
+		{
+			legalMovesAvailable = true;
+		}
+		Log.i("PO GameEngine", "legal moves available?: " + Boolean.toString(legalMovesAvailable));
+		return legalMovesAvailable;
+	}
 
 }
