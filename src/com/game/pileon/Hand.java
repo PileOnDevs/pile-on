@@ -16,10 +16,10 @@ public class Hand
 	public Card mCard;
 	private Deck mDeck;
 	
+	
 	public Hand(Card card)
 	{
 		mCard = card;
-		
 	}
 	//Wrapper methods for the underlying stack, push and pop are private to prevent
 	//unauthorized changes to the pile without appropriate graphical updating and such

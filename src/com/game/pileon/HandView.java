@@ -82,4 +82,13 @@ public class HandView extends ImageView
 	{
 		mHand = hand;
 	}
+	
+	public boolean isPlaceholder()
+	{
+		if(mHand.mCard.isPlaceholder())
+		{
+			return true;
+		}
+		return false;
+	}
 }

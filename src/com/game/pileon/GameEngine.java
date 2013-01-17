@@ -16,7 +16,7 @@ public class GameEngine
 
 	private Deck Deck;
 
-	private final static int NUMBEROFCOLORS = 4;
+	private final static int NUMBEROFCOLORS = 1; //should be 4, set to 1 for testing
 	private final static int NUMBEROFCARDSPERCOLOR = 10;
 
 	public Pile Pile0;
@@ -38,6 +38,7 @@ public class GameEngine
 	{
 		createDeck();
 		setupGame();
+		addPlaceholderCardsToDeck();
 		isGameOver = false;
 	}
 
@@ -58,6 +59,22 @@ public class GameEngine
 		}
 
 		Deck.Shuffle();
+	}
+	
+	public void addPlaceholderCardsToDeck()
+	{
+		for (int cardNdx = 0; cardNdx < 5; cardNdx++)
+		{
+			Deck.addToEnd(createPlaceholderCard());
+		}
+
+	}
+	
+	public Card createPlaceholderCard()
+	{
+		DefaultGameCard placeholder = new DefaultGameCard();
+		Log.i("PO CreateDeck", "adding placeholder card: " + placeholder.toString());
+		return placeholder;
 	}
 
 	public void createPiles()

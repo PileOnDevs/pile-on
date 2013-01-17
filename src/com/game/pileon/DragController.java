@@ -126,6 +126,9 @@ public class DragController {
 		// Start dragging, but only if the source has something to drag.
 		boolean doDrag = source.allowDrag ();
 		if (!doDrag) return;
+		
+		HandView handView = (HandView) dragInfo;
+		if(handView.isPlaceholder()) return;
 
 		mOriginator = v;
 

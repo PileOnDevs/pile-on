@@ -64,5 +64,7 @@ public interface Card
 	 * @return String, Color of the card and value
 	 */
 	public String toString();
+	
+	public boolean isPlaceholder();
 
 }

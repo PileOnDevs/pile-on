@@ -10,7 +10,7 @@ public class DefaultGameCard implements Card
 
 	public DefaultGameCard()
 	{
-		this("",0,"");
+		this("",0,"card_pile");
 	}
 
 	public DefaultGameCard(String colorToSet, int valueToSet, String cardID)
@@ -52,6 +52,11 @@ public class DefaultGameCard implements Card
 	public boolean equalColorTo(Card cardToCompare)
 	{
 		return cardToCompare.getColor() == mColor;
+	}
+	
+	public boolean isPlaceholder()
+	{
+		return mCardID == "card_pile";
 	}
 
 }

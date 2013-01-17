@@ -74,6 +74,12 @@ public class Deck
 		}
 
 	}
+	
+	public void addToEnd(Card card)
+	{
+		DeckOfCards.addLast(card);
+	}
+	
 	public String toString()
 	{
 		Iterator<Card> ListIter = DeckOfCards.iterator();
