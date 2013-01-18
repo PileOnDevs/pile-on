@@ -274,7 +274,7 @@ public class DragController {
 	 public boolean onInterceptTouchEvent(MotionEvent ev) {
 		final int action = ev.getAction();
 		
-		Log.i("PO Drag", "onInterceptTouchEvent in DragController runs");
+		//Log.i("PO Drag", "onInterceptTouchEvent in DragController runs");
 		
 		if (action == MotionEvent.ACTION_DOWN) {
 			recordScreenSize();
@@ -325,7 +325,7 @@ public class DragController {
 		 if (!mDragging) {
 			 return false;
 		 }
-		 Log.i("PO Drag", "onTouchEvent in DragController runs");
+		 //Log.i("PO Drag", "onTouchEvent in DragController runs");
 		 
 		 final int action = ev.getAction();
 		 final int screenX = clamp((int)ev.getRawX(), 0, mDisplayMetrics.widthPixels);

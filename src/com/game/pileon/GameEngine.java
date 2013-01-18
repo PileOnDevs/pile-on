@@ -16,7 +16,7 @@ public class GameEngine
 
 	private Deck Deck;
 
-	private final static int NUMBEROFCOLORS = 1; //should be 4, set to 1 for testing
+	private final static int NUMBEROFCOLORS = 4;
 	private final static int NUMBEROFCARDSPERCOLOR = 10;
 
 	public Pile Pile0;
@@ -119,7 +119,7 @@ public class GameEngine
 
 	public boolean isGameOver()
 	{
-		isGameOver = areHandsEmpty() || !legalMovesAvailable();
+		isGameOver = areHandsEmpty();
 		Log.i("PO GameEngine", "is game over?: " + Boolean.toString(isGameOver));
 		return isGameOver;
 	}
@@ -150,27 +150,5 @@ public class GameEngine
 		return areHandsEmpty;
 	}
 
-	public boolean legalMovesAvailable()
-	{
-		//TODO refactor this to a cleaner format and code that can be re-used for a game solving class
-		boolean legalMovesAvailable = false;
-		if( Pile0.isMoveLegal(Hand0.mCard) || Pile0.isMoveLegal(Hand1.mCard) || Pile0.isMoveLegal(Hand2.mCard) ||
-				Pile0.isMoveLegal(Hand3.mCard) || Pile0.isMoveLegal(Hand4.mCard))
-		{
-			legalMovesAvailable = true;
-		}
-		else if( Pile1.isMoveLegal(Hand0.mCard) || Pile1.isMoveLegal(Hand1.mCard) || Pile1.isMoveLegal(Hand2.mCard) ||
-				Pile1.isMoveLegal(Hand3.mCard) || Pile1.isMoveLegal(Hand4.mCard))
-		{
-			legalMovesAvailable = true;
-		}
-		else if( Pile2.isMoveLegal(Hand0.mCard) || Pile2.isMoveLegal(Hand1.mCard) || Pile2.isMoveLegal(Hand2.mCard) ||
-				Pile2.isMoveLegal(Hand3.mCard) || Pile2.isMoveLegal(Hand4.mCard))
-		{
-			legalMovesAvailable = true;
-		}
-		Log.i("PO GameEngine", "legal moves available?: " + Boolean.toString(legalMovesAvailable));
-		return legalMovesAvailable;
-	}
 
 }
