@@ -19,6 +19,7 @@ implements View.OnTouchListener
 	private GameEngine mGameEngine;
 	private DragController mDragController;   // Object that sends out drag-drop events while a view is being moved.
 	private DragLayer mDragLayer;             // The ViewGroup that supports drag-drop.
+	private PointTracker mPointTracker;
 
 
 	@Override
@@ -32,6 +33,8 @@ implements View.OnTouchListener
 		
 		mDragLayer = (DragLayer) findViewById(R.id.drag_layer);
 	    mDragLayer.setDragController(mDragController);
+	    
+	    mPointTracker = new PointTracker();
 	    
 	    setupViews();
 
