@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 @TargetApi(11)
 public class MainGame extends Activity
@@ -20,6 +21,7 @@ implements View.OnTouchListener
 	private DragController mDragController;   // Object that sends out drag-drop events while a view is being moved.
 	private DragLayer mDragLayer;             // The ViewGroup that supports drag-drop.
 	private PointTracker mPointTracker;
+	private TextView mPointView;
 
 
 	@Override
@@ -34,10 +36,11 @@ implements View.OnTouchListener
 		mDragLayer = (DragLayer) findViewById(R.id.drag_layer);
 	    mDragLayer.setDragController(mDragController);
 	    
-	    mPointTracker = new PointTracker();
-	    
 	    setupViews();
-
+	    
+	    //must be run after setupViews has initialized the text view for the point tracker
+	    mPointTracker = new PointTracker(mPointView); 
+	    mGameEngine.setPointTracker(mPointTracker);
 	}
 	/**
 	 * One-time setup of initial PileViews and HandViews. After this is done, the GameEngine will update
@@ -102,6 +105,14 @@ implements View.OnTouchListener
 	    		handView4.getDrawable().getIntrinsicHeight(), 540, 120);
 	    mDragLayer.addView(handView4, handView4params);
 	    handView4.setHand(mGameEngine.Hand4);
+	    
+	    //setup the point tracker view
+	    mPointView = new TextView(this);
+	    int pointViewWidth = 200;
+	    int pointViewHeight = 60;
+	    mPointView.setText("test text please ignore");
+	    DragLayer.LayoutParams mPointViewParams = new DragLayer.LayoutParams(pointViewWidth, pointViewHeight, 300, 500 );
+	    mDragLayer.addView(mPointView, mPointViewParams);
 	}
 	
 	public void backToMain(View view)
@@ -120,6 +131,10 @@ implements View.OnTouchListener
 	    }
 	    
 	    return true;
+	}
+	
+	public void updatePoints(Card cardPlayed, Card pileCard){
+		mPointTracker.processMove(cardPlayed, pileCard);
 	}
 	
 	/**

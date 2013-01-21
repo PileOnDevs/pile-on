@@ -33,6 +33,8 @@ public class GameEngine
 
 	private final static String CARDCOLORS[] =
 		{ "red", "green", "blue", "yellow" };
+	
+	private PointTracker mPointTracker;
 
 	public GameEngine()
 	{
@@ -85,6 +87,7 @@ public class GameEngine
 		Log.i("PO CreateDeck", "Pile1 gets: " + Pile1.toString());
 		Pile2 = new Pile(dealTopCard());
 		Log.i("PO CreateDeck", "Pile2 gets: " + Pile2.toString());
+
 	}
 
 	public void createHands()
@@ -148,6 +151,14 @@ public class GameEngine
 		}
 		Log.i("PO GameEngine", "are hands empty?: " + Boolean.toString(areHandsEmpty));
 		return areHandsEmpty;
+	}
+	
+	public void setPointTracker(PointTracker pointTracker)
+	{
+		mPointTracker = pointTracker;
+		Pile0.setPointTracker(mPointTracker);
+		Pile1.setPointTracker(mPointTracker);
+		Pile2.setPointTracker(mPointTracker);
 	}
 
 

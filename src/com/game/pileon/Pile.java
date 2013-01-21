@@ -16,6 +16,7 @@ import android.util.Log;
 public class Pile
 {
 	private Stack<Card> mPile;
+	private PointTracker mPointTracker;
 	
 	public Pile(Card card)
 	{
@@ -100,7 +101,7 @@ public class Pile
 		
 		if(dropSuccess)
 		{
-			int pointsGained = computePointsGained(cardPlayed);
+			mPointTracker.processMove(cardPlayed, peek());
 			push(cardPlayed);
 		}
 
@@ -133,5 +134,10 @@ public class Pile
 	public String toString()
 	{
 		return mPile.peek().toString();
+	}
+	
+	public void setPointTracker(PointTracker pointTracker)
+	{
+		mPointTracker = pointTracker;
 	}
 }
