@@ -108,24 +108,6 @@ public class Pile
 		return dropSuccess;
 	}
 	
-	/**
-	 * Computes the point gain by playing the card to the pile
-	 * @return points gained by drop
-	 */
-	public int computePointsGained(Card cardPlayed)
-	{
-		int pointsGained = 0;
-		if (cardPlayed.equalValueTo(peek()))
-		{
-			pointsGained = 2*cardPlayed.getValue();
-		}
-		else if (cardPlayed.equalColorTo(peek()))
-		{
-			pointsGained = 2*cardPlayed.getValue();
-		}
-		return pointsGained;
-	}
-	
 	public int cardCount()
 	{
 		return mPile.size();

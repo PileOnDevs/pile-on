@@ -1,6 +1,15 @@
 package com.game.pileon;
 
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.Reader;
+
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
+
 import junit.framework.Assert;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -41,6 +50,10 @@ implements View.OnTouchListener
 	    //must be run after setupViews has initialized the text view for the point tracker
 	    mPointTracker = new PointTracker(mPointView); 
 	    mGameEngine.setPointTracker(mPointTracker);
+	    
+	    //test
+	    writeTestData();
+	    readTestData();
 	}
 	/**
 	 * One-time setup of initial PileViews and HandViews. After this is done, the GameEngine will update
@@ -135,6 +148,54 @@ implements View.OnTouchListener
 	
 	public void updatePoints(Card cardPlayed, Card pileCard){
 		mPointTracker.processMove(cardPlayed, pileCard);
+	}
+	
+	public void writeTestData(){
+		Serializer serializer = new Persister();
+		Example example = new Example("Test message", 123);
+//		File result = new File("/data/com.game.pileon/assets/example.xml");
+		
+		try
+		{
+			FileOutputStream result = openFileOutput("example.xml", Context.MODE_PRIVATE);
+			try
+			{
+				serializer.write(example, result);
+			} catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e1)
+		{
+			e1.printStackTrace();
+		}
+	}
+	
+	public void readTestData(){
+		Serializer serializer = new Persister();
+		//File source = new File("/data/com.game.pileon/assets/example.xml");
+		
+		TextView testTextView = new TextView(this);
+	    int testTextViewWidth = 200;
+	    int testTextViewHeight = 60;
+	    DragLayer.LayoutParams testTextViewParams = new DragLayer.LayoutParams(testTextViewWidth, testTextViewHeight, 300, 600 );
+	    mDragLayer.addView(testTextView, testTextViewParams);
+	    
+		try
+		{
+			FileInputStream source = openFileInput("example.xml");
+			try
+			{
+				Example example = serializer.read(Example.class, source);
+			    testTextView.setText(example.toString());
+			} catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e1)
+		{
+			e1.printStackTrace();
+		}	
 	}
 	
 	/**
