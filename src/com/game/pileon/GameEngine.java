@@ -1,5 +1,8 @@
 package com.game.pileon;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import android.util.Log;
 
 /**
@@ -8,15 +11,15 @@ import android.util.Log;
  * This is the default game. 4 colors (R G B Y) and ten cards of each (1 through
  * 10)
  * 
- * @author nscross
+ * @author nscross, breeze4
  * 
  */
 public class GameEngine
 {
 
-	private Deck Deck;
+	public Deck Deck;
 
-	private final static int NUMBEROFCOLORS = 4;
+	private final static int NUMBEROFCOLORS = 1;
 	private final static int NUMBEROFCARDSPERCOLOR = 10;
 
 	public Pile Pile0;
@@ -28,7 +31,7 @@ public class GameEngine
 	public Hand Hand2;
 	public Hand Hand3;
 	public Hand Hand4;
-
+	
 	public boolean isGameOver;
 
 	private final static String CARDCOLORS[] =
@@ -43,8 +46,32 @@ public class GameEngine
 		addPlaceholderCardsToDeck();
 		isGameOver = false;
 	}
+	
+	public GameEngine(SavedGame savedGameState)
+	{
+		Deck = savedGameState.saveDeck;
+		Pile0 = savedGameState.savePiles.get(0);
+		Pile1 = savedGameState.savePiles.get(1);
+		Pile2 = savedGameState.savePiles.get(2);
+		
+		Hand0 = savedGameState.saveHands.get(0);
+		Hand1 = savedGameState.saveHands.get(1);
+		Hand2 = savedGameState.saveHands.get(2);
+		Hand3 = savedGameState.saveHands.get(3);
+		Hand4 = savedGameState.saveHands.get(4);
+		
+		Hand0.setDeck(Deck);
+		Hand1.setDeck(Deck);
+		Hand2.setDeck(Deck);
+		Hand3.setDeck(Deck);
+		Hand4.setDeck(Deck);
+		
+		setPointTracker(savedGameState.savePointTracker);
+		
+		isGameOver = false;
+	}
 
-	public void createDeck()
+	public Deck createDeck()
 	{
 		Deck = new Deck();
 		String cardID = "";
@@ -61,6 +88,7 @@ public class GameEngine
 		}
 
 		Deck.Shuffle();
+		return Deck;
 	}
 	
 	public void addPlaceholderCardsToDeck()
@@ -130,23 +158,11 @@ public class GameEngine
 	public boolean areHandsEmpty()
 	{
 		boolean areHandsEmpty = false;
-		boolean tempHand0 = Hand0.isEmpty();
-		boolean tempHand1 = Hand1.isEmpty();
-		boolean tempHand2 = Hand2.isEmpty();
-		boolean tempHand3 = Hand3.isEmpty();
-		boolean tempHand4 = Hand4.isEmpty();
 		
-		if( tempHand0 && tempHand1 && tempHand2 && tempHand3 && tempHand4)
-//		if( Hand0.isEmpty() && Hand1.isEmpty() &&
-//				Hand2.isEmpty() && Hand3.isEmpty() &&
-//				Hand4.isEmpty() )
+		if( Hand0.isEmpty() && Hand1.isEmpty() &&
+			Hand2.isEmpty() && Hand3.isEmpty() &&
+			Hand4.isEmpty() )
 		{
-			Log.i("PO GameEngine", "is this hand empty?: " + Boolean.toString(tempHand0));
-			Log.i("PO GameEngine", "is this hand empty?: " + Boolean.toString(tempHand1));
-			Log.i("PO GameEngine", "is this hand empty?: " + Boolean.toString(tempHand2));
-			Log.i("PO GameEngine", "is this hand empty?: " + Boolean.toString(tempHand3));
-			Log.i("PO GameEngine", "is this hand empty?: " + Boolean.toString(tempHand4));
-
 			areHandsEmpty = true;
 		}
 		Log.i("PO GameEngine", "are hands empty?: " + Boolean.toString(areHandsEmpty));
@@ -160,6 +176,25 @@ public class GameEngine
 		Pile1.setPointTracker(mPointTracker);
 		Pile2.setPointTracker(mPointTracker);
 	}
-
-
+	
+	public ArrayList<Pile> getPileList()
+	{
+		ArrayList<Pile> pileList = new ArrayList<Pile>();
+		pileList.add(0, Pile0);
+		pileList.add(1, Pile1);
+		pileList.add(2, Pile2);
+		return pileList;
+	}
+	
+	public ArrayList<Hand> getHandList()
+	{
+		ArrayList<Hand> handList = new ArrayList<Hand>();
+		handList.add(0, Hand0);
+		handList.add(1, Hand1);
+		handList.add(2, Hand2);
+		handList.add(3, Hand3);
+		handList.add(4, Hand4);
+		return handList;
+	}
+	
 }

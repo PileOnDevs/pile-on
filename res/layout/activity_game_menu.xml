@@ -4,13 +4,13 @@
     android:layout_height="fill_parent"
     android:orientation="horizontal" >
 
-   <ImageView       
-        android:contentDescription="@string/GameMenu_logoDescription"
+    <ImageView
         android:id="@+id/horizontalLogo"
-        android:src="@drawable/logo_design_1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-        
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/GameMenu_logoDescription"
+        android:src="@drawable/logo_design_1" />
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -28,32 +28,37 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="@string/GameMenu_new_game_button"
-        android:onClick="launchGame" />
-	
+        android:onClick="launchGame"
+        android:text="@string/GameMenu_new_game_button" />
 
-
+    <Button
+        android:id="@+id/button4"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_below="@+id/button1"
+        android:onClick="continueGame"
+        android:text="@string/GameMenu_continue_game_button" />
 
     <Button
         android:id="@+id/button2"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-        android:text="@string/GameMenu_help_button"
-        android:onClick="help" />
+        android:layout_alignLeft="@+id/button4"
+        android:layout_below="@+id/button4"
+        android:onClick="help"
+        android:text="@string/GameMenu_help_button" />
+
     <Button
         android:id="@+id/button3"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="140dp"
-        android:text="@string/GameMenu_about_button"
-        android:onClick="about" />
+        android:layout_alignLeft="@+id/button2"
+        android:layout_below="@+id/button2"
+        android:onClick="about"
+        android:text="@string/GameMenu_about_button" />
 
-     
 </RelativeLayout>

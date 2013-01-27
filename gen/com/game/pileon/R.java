@@ -88,12 +88,13 @@ containing a value of this type.
     }
     public static final class id {
         public static final int button1=0x7f080001;
-        public static final int button2=0x7f080003;
-        public static final int button3=0x7f080004;
-        public static final int drag_layer=0x7f080005;
-        public static final int hand0=0x7f080006;
+        public static final int button2=0x7f080004;
+        public static final int button3=0x7f080005;
+        public static final int button4=0x7f080003;
+        public static final int drag_layer=0x7f080006;
+        public static final int hand0=0x7f080007;
         public static final int horizontalLogo=0x7f080002;
-        public static final int menu_settings=0x7f080007;
+        public static final int menu_settings=0x7f080008;
         public static final int textView1=0x7f080000;
     }
     public static final class layout {
@@ -106,28 +107,29 @@ containing a value of this type.
         public static final int activity_game_menu=0x7f070000;
     }
     public static final class string {
-        public static final int AboutScreen_about_game=0x7f050008;
+        public static final int AboutScreen_about_game=0x7f050009;
         /**  AboutScreen activity 
          */
-        public static final int AboutScreen_back_to_main=0x7f050007;
-        public static final int GameMenu_about_button=0x7f050005;
+        public static final int AboutScreen_back_to_main=0x7f050008;
+        public static final int GameMenu_about_button=0x7f050006;
         /**  string naming convention: "activityname_stringlabel" 
  GameMenu activity 
          */
         public static final int GameMenu_app_name=0x7f050000;
-        public static final int GameMenu_help_button=0x7f050004;
+        public static final int GameMenu_continue_game_button=0x7f050004;
+        public static final int GameMenu_help_button=0x7f050005;
         public static final int GameMenu_label_text=0x7f050002;
-        public static final int GameMenu_logoDescription=0x7f050006;
+        public static final int GameMenu_logoDescription=0x7f050007;
         public static final int GameMenu_menu_settings=0x7f050001;
         public static final int GameMenu_new_game_button=0x7f050003;
-        public static final int GameScreen_back_to_main=0x7f05000c;
+        public static final int GameScreen_back_to_main=0x7f05000d;
         /**  GameScreen activity 
          */
-        public static final int GameScreen_filler=0x7f05000b;
+        public static final int GameScreen_filler=0x7f05000c;
         /**  HelpScreen activity 
          */
-        public static final int HelpScreen_back_to_main=0x7f050009;
-        public static final int HelpScreen_game_rules=0x7f05000a;
+        public static final int HelpScreen_back_to_main=0x7f05000a;
+        public static final int HelpScreen_game_rules=0x7f05000b;
     }
     public static final class style {
         public static final int AppTheme=0x7f060000;

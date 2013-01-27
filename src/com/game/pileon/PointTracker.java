@@ -3,20 +3,25 @@
  */
 package com.game.pileon;
 
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+
 import android.widget.TextView;
 
 /**
  * @author breeze4
  *
  */
+@Root(name="PointTracker")
 public class PointTracker
 {
+	@Attribute(name="points")
 	private int points;
 	private TextView pointDisplay;
 	
-	public PointTracker(TextView pointView){
-		points = 0;
-		pointDisplay = pointView;
+	public PointTracker(@Attribute(name="points")int startingPoints){
+		points = startingPoints;
 	}
 	
 	public String toString(){
@@ -25,6 +30,11 @@ public class PointTracker
 	
 	public void updateDisplay(){
 		pointDisplay.setText("points: " + toString());
+	}
+	
+	public void setPointView(TextView pointView){
+		pointDisplay = pointView;
+		updateDisplay();
 	}
 	
 	public void processMove(Card cardPlayed, Card pileCard){

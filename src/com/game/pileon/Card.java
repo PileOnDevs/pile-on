@@ -1,5 +1,7 @@
 package com.game.pileon;
 
+import org.simpleframework.xml.Root;
+
 
 /**
  * Card Interface
@@ -10,6 +12,7 @@ package com.game.pileon;
  * @author nscross
  * @since 2012-08-22
  */
+
 public interface Card
 {
 

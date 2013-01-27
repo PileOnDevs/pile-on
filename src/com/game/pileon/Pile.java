@@ -2,6 +2,9 @@ package com.game.pileon;
 
 import java.util.Stack;
 
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+
 import android.util.Log;
 
 /**
@@ -12,10 +15,12 @@ import android.util.Log;
  * @author breeze4
  * @since 2012-12-30
  */
-
+@Root(name="Pile")
 public class Pile
 {
+	@ElementList(name="PileStack")
 	private Stack<Card> mPile;
+	
 	private PointTracker mPointTracker;
 	
 	public Pile(Card card)
@@ -23,9 +28,13 @@ public class Pile
 		mPile = new Stack<Card>();
 		
 		mPile.push(card);
-		
-		
 	}
+	
+	public Pile(@ElementList(name="PileStack")Stack<Card> PileStack)
+	{
+		mPile = PileStack;
+	}
+	
 	//Wrapper methods for the underlying stack, push and pop are private to prevent
 	//unauthorized changes to the pile without appropriate graphical updating and such
 	/**
@@ -79,15 +88,14 @@ public class Pile
 		else if (cardPlayed.equalValueTo(peek()))
 		{
 			Log.i("PO Drag", "card being dropped has same value");
-
 			return true;
 		}
 		else if (cardPlayed.equalColorTo(peek()))
 		{
 			Log.i("PO Drag", "card being dropped has same color");
-
 			return true;
 		}
+		Log.i("PO Drag", "move is not legal " + cardPlayed.toString());
 		return false;
 	}
 	

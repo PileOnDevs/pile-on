@@ -1,5 +1,8 @@
 package com.game.pileon;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+
 import android.util.Log;
 
 /**
@@ -11,13 +14,15 @@ import android.util.Log;
  * @since 2013-01-03
  */
 
+@Root(name="Hand")
 public class Hand
 {
+	@Element(name="HandCard")
 	public Card mCard;
 	private Deck mDeck;
 	
 	
-	public Hand(Card card)
+	public Hand(@Element(name="HandCard")Card card)
 	{
 		mCard = card;
 	}

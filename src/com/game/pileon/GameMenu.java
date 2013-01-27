@@ -40,6 +40,13 @@ public class GameMenu extends Activity
 		Intent intent = new Intent(this, MainGame.class);
 		startActivity(intent);
 	}
+	
+	public void continueGame(View view)
+	{
+		Intent intent = new Intent(this, MainGame.class);
+		intent.putExtra("com.game.pileon.GameInProgress", true);
+		startActivity(intent);
+	}
 
 	protected void onDestroy()
 	{

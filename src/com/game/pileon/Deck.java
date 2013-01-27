@@ -4,6 +4,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+
 import android.util.Log;
 
 /**
@@ -11,9 +14,11 @@ import android.util.Log;
  * @author nscross, breeze4
  * 
  */
+@Root
 public class Deck
 {
-
+	
+	@ElementList
 	private LinkedList<Card> DeckOfCards;
 
 	public Deck()
