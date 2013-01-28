@@ -38,12 +38,14 @@ public class GameMenu extends Activity
 	public void about(View view)
 	{
 		Intent intent = new Intent(this, AboutScreen.class);
+		intent.putExtra("com.game.pileon.GameInProgress", gameInProgress);		
 		startActivity(intent);
 	}
 
 	public void help(View view)
 	{
 		Intent intent = new Intent(this, HelpScreen.class);
+		intent.putExtra("com.game.pileon.GameInProgress", gameInProgress);
 		startActivity(intent);
 	}
 
