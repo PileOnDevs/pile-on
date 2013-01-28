@@ -39,7 +39,8 @@
         android:layout_alignLeft="@+id/button1"
         android:layout_below="@+id/button1"
         android:onClick="continueGame"
-        android:text="@string/GameMenu_continue_game_button" />
+        android:text="@string/GameMenu_continue_game_button"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/button2"

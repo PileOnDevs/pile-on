@@ -26,7 +26,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RemoteViews.RemoteView;
-//import com.game.pileon.R;
 
 /**
  * A layout that lets you specify exact locations (x/y coordinates) of its

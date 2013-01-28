@@ -64,26 +64,18 @@ implements View.OnTouchListener
 			//recreate game
 			//writing and reading
 			Log.i("PO Save", "continuing game");
-			
 			readSaveData();
+			
+			if(savedGameState != null){
+				mGameEngine = new GameEngine(savedGameState);
+				setupViews();
+				mPointTracker = savedGameState.savePointTracker;
+				mPointTracker.setPointView(mPointView);
+			}
+			
 			Log.i("PO Save", "finished read");
 		}
 		
-	}
-	@Override
-	public void onSaveInstanceState(Bundle savedInstanceState)
-	{
-		//run FIRST
-		super.onSaveInstanceState(savedInstanceState);
-		Log.i("PO Save", "onSaveInstanceState");
-
-	}
-	
-	@Override
-	public void onRestoreInstanceState(Bundle savedInstanceState)
-	{
-		super.onRestoreInstanceState(savedInstanceState);
-		Log.i("PO Save", "onRestoreInstanceState");
 	}
 	
 	@Override
@@ -101,16 +93,9 @@ implements View.OnTouchListener
 		Log.i("PO Save", "onPause");
 	}
 
-	
 	@Override
 	public void onResume()
 	{
-		if(savedGameState != null){
-			mGameEngine = new GameEngine(savedGameState);
-			setupViews();
-			mPointTracker = savedGameState.savePointTracker;
-			mPointTracker.setPointView(mPointView);
-		}
 		super.onResume();
 		Log.i("PO Save", "onResume");
 	}
@@ -121,6 +106,7 @@ implements View.OnTouchListener
 		//TODO insert code to save the state of the game
 		Log.i("PO Save", "backToMain");
 		Intent intent = new Intent(MainGame.this, GameMenu.class);
+		intent.putExtra("com.game.pileon.GameInProgress", true);
 		startActivity(intent);
 	}
 
@@ -160,12 +146,6 @@ implements View.OnTouchListener
 
 	public void readSaveData(){
 		Serializer serializer = new Persister();
-
-//		TextView testTextView = new TextView(this);
-//		int testTextViewWidth = 400;
-//		int testTextViewHeight = 400;
-//		DragLayer.LayoutParams testTextViewParams = new DragLayer.LayoutParams(testTextViewWidth, testTextViewHeight, 300, 200 );
-//		mDragLayer.addView(testTextView, testTextViewParams);
 		
 		try
 		{
@@ -173,8 +153,6 @@ implements View.OnTouchListener
 			try
 			{
 				savedGameState = serializer.read(SavedGame.class, source);
-//				testTextView.setText(retrievedGameState.toString());
-//				Log.i("PO Save", retrievedGameState.toString());
 			} catch (Exception e)
 			{
 				e.printStackTrace();
@@ -205,6 +183,22 @@ implements View.OnTouchListener
 	protected void onDestroy()
 	{
 		super.onDestroy();
+	}
+	
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState)
+	{
+		//run FIRST
+		super.onSaveInstanceState(savedInstanceState);
+		Log.i("PO Save", "onSaveInstanceState");
+
+	}
+	
+	@Override
+	public void onRestoreInstanceState(Bundle savedInstanceState)
+	{
+		super.onRestoreInstanceState(savedInstanceState);
+		Log.i("PO Save", "onRestoreInstanceState");
 	}
 	
 	/**

@@ -19,7 +19,7 @@ public class GameEngine
 
 	public Deck Deck;
 
-	private final static int NUMBEROFCOLORS = 1;
+	private final static int NUMBEROFCOLORS = 4;
 	private final static int NUMBEROFCARDSPERCOLOR = 10;
 
 	public Pile Pile0;

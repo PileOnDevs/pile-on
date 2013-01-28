@@ -5,15 +5,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 
 public class GameMenu extends Activity
 {
-
+	private boolean gameInProgress;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_menu);
+		
+		Button continueButton = (Button) findViewById(R.id.button4);
+		
+		Intent intent = getIntent();
+		gameInProgress = intent.getBooleanExtra("com.game.pileon.GameInProgress", false);
+		
+		if(gameInProgress){
+			continueButton.setVisibility(View.VISIBLE);
+		}
+		
 	}
 
 	@Override
