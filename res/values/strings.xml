@@ -1,5 +1,5 @@
 <resources>
-	
+
     <!-- string naming convention: "activityname_stringlabel" -->
     <!-- GameMenu activity -->
     <string name="GameMenu_app_name">Pile On</string>
@@ -19,6 +19,12 @@
     <!-- GameScreen activity -->
     <string name="GameScreen_filler">Filler</string>
     <string name="GameScreen_back_to_main">Back to menu</string>
-    
+    <!-- numbers -->
+    <integer name="num_columns">5</integer>
+    <integer name="num_active_cells">10</integer>
+    <!-- GameScreen placeholders -->
+    <string name="deckrow">DeckRow</string>
+    <string name="pilerow">PileRow</string>
+    <string name="handrow">HandRow</string>
 
 </resources>

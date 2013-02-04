@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.Reader;
+import java.util.ArrayList;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -19,13 +20,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.GridView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 @TargetApi(11)
 public class MainGame extends Activity
 implements View.OnTouchListener
 {
-
+	private static int NUM_PILES = 3;
+	private static int NUM_HANDS = 5;
 	private GameEngine mGameEngine;
 	private DragController mDragController;   // Object that sends out drag-drop events while a view is being moved.
 	private DragLayer mDragLayer;             // The ViewGroup that supports drag-drop.
@@ -33,6 +39,10 @@ implements View.OnTouchListener
 	private TextView mPointView;
 	private boolean gameInProgress;
 	private SavedGame savedGameState;
+	private ArrayList<PileView> mPileViews;
+	private ArrayList<HandView> mHandViews;
+	private float mScaleFactor;
+	private boolean scalingComplete = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -48,17 +58,17 @@ implements View.OnTouchListener
 
 		mDragLayer = (DragLayer) findViewById(R.id.drag_layer);
 		mDragLayer.setDragController(mDragController);
-		
 
 		if(gameInProgress == false){
 			mGameEngine = new GameEngine();
-
 			setupViews();
 
 			//must be run after setupViews has initialized the text view for the point tracker
 			mPointTracker = new PointTracker(0); 
 			mPointTracker.setPointView(mPointView);
 			mGameEngine.setPointTracker(mPointTracker);
+			
+			//setupGridView();
 		}
 		else{
 			//recreate game
@@ -71,12 +81,17 @@ implements View.OnTouchListener
 				setupViews();
 				mPointTracker = savedGameState.savePointTracker;
 				mPointTracker.setPointView(mPointView);
+				//setupGridView();
 			}
-			
 			Log.i("PO Save", "finished read");
 		}
-		
 	}
+	
+//	public void setupGridView(){
+//		GridView gridView = (GridView) findViewById(R.id.image_grid_view);
+//		gridView.setAdapter(new GridViewAdapter(this, mPileViews, mHandViews));
+//		mDragLayer.setGridView(gridView);
+//	}
 	
 	@Override
 	public void onPause()
@@ -207,71 +222,151 @@ implements View.OnTouchListener
 	 */
 	public void setupViews()
 	{
+		
+		
 		//setup PileViews - three total
-		PileView pileView0 = new PileView(this, mGameEngine.Pile0);
-		pileView0.setGameEngine(mGameEngine);
-		DragLayer.LayoutParams pileView0params = new DragLayer.LayoutParams(pileView0.getDrawable().getIntrinsicWidth(), 
-				pileView0.getDrawable().getIntrinsicHeight(), 120, 320);
-		mDragLayer.addView(pileView0, pileView0params);
-		mDragController.addDropTarget(pileView0);
-
-		PileView pileView1 = new PileView(this, mGameEngine.Pile1);
-		pileView1.setGameEngine(mGameEngine);
-		DragLayer.LayoutParams pileView1params = new DragLayer.LayoutParams(pileView1.getDrawable().getIntrinsicWidth(), 
-				pileView1.getDrawable().getIntrinsicHeight(), 280, 320);
-		mDragLayer.addView(pileView1, pileView1params);
-		mDragController.addDropTarget(pileView1);
-
-		PileView pileView2 = new PileView(this, mGameEngine.Pile2);
-		pileView2.setGameEngine(mGameEngine);
-		DragLayer.LayoutParams pileView2params = new DragLayer.LayoutParams(pileView2.getDrawable().getIntrinsicWidth(), 
-				pileView2.getDrawable().getIntrinsicHeight(), 420, 320);
-		mDragLayer.addView(pileView2, pileView2params);
-		mDragController.addDropTarget(pileView2);
-
+		mPileViews = new ArrayList<PileView>();
+		ArrayList<Pile> pileList = mGameEngine.getPileList();
+		TableRow pileRow = (TableRow)findViewById(R.id.PileRow);
+		
+		for(int pileCount = 0; pileCount < NUM_PILES; pileCount++){
+			PileView pileView = new PileView(this, pileList.get(pileCount));
+			pileView.setGameEngine(mGameEngine);
+			mDragController.addDropTarget(pileView);
+			mPileViews.add(pileView);
+			pileRow.addView(pileView, pileCount);
+		}
+		
 		//setup HandViews - five total
-		HandView handView0 = new HandView(this, mGameEngine.Hand0);
-		handView0.setOnTouchListener(this);
-		DragLayer.LayoutParams handView0params = new DragLayer.LayoutParams(handView0.getDrawable().getIntrinsicWidth(), 
-				handView0.getDrawable().getIntrinsicHeight(), 60, 120);
-		mDragLayer.addView(handView0, handView0params);
-		handView0.setHand(mGameEngine.Hand0);
-
-		HandView handView1 = new HandView(this, mGameEngine.Hand1);
-		handView1.setOnTouchListener(this);
-		DragLayer.LayoutParams handView1params = new DragLayer.LayoutParams(handView1.getDrawable().getIntrinsicWidth(), 
-				handView1.getDrawable().getIntrinsicHeight(), 180, 120);
-		mDragLayer.addView(handView1, handView1params);
-		handView1.setHand(mGameEngine.Hand1);
-
-		HandView handView2 = new HandView(this, mGameEngine.Hand2);
-		handView2.setOnTouchListener(this);
-		DragLayer.LayoutParams handView2params = new DragLayer.LayoutParams(handView2.getDrawable().getIntrinsicWidth(), 
-				handView2.getDrawable().getIntrinsicHeight(), 300, 120);
-		mDragLayer.addView(handView2, handView2params);
-		handView2.setHand(mGameEngine.Hand2);
-
-		HandView handView3 = new HandView(this, mGameEngine.Hand3);
-		handView3.setOnTouchListener(this);
-		DragLayer.LayoutParams handView3params = new DragLayer.LayoutParams(handView3.getDrawable().getIntrinsicWidth(), 
-				handView3.getDrawable().getIntrinsicHeight(), 420, 120);
-		mDragLayer.addView(handView3, handView3params);
-		handView3.setHand(mGameEngine.Hand3);
-
-		HandView handView4 = new HandView(this, mGameEngine.Hand4);
-		handView4.setOnTouchListener(this);
-		DragLayer.LayoutParams handView4params = new DragLayer.LayoutParams(handView4.getDrawable().getIntrinsicWidth(), 
-				handView4.getDrawable().getIntrinsicHeight(), 540, 120);
-		mDragLayer.addView(handView4, handView4params);
-		handView4.setHand(mGameEngine.Hand4);
+		mHandViews = new ArrayList<HandView>();
+		ArrayList<Hand> handList = mGameEngine.getHandList();
+		TableRow handRow = (TableRow)findViewById(R.id.HandRow);
+		
+		for(int handCount = 0; handCount < NUM_HANDS; handCount++){
+			HandView handView = new HandView(this, handList.get(handCount));
+			handView.setOnTouchListener(this);
+			mHandViews.add(handView);
+			handRow.addView(handView, handCount);
+		}
 
 		//setup the point tracker view
 		mPointView = new TextView(this);
 		int pointViewWidth = 200;
 		int pointViewHeight = 60;
-		DragLayer.LayoutParams mPointViewParams = new DragLayer.LayoutParams(pointViewWidth, pointViewHeight, 300, 500 );
-		mDragLayer.addView(mPointView, mPointViewParams);
+		DragLayer.LayoutParams mPointViewParams = new DragLayer.LayoutParams(pointViewWidth, pointViewHeight);
+		//mDragLayer.addView(mPointView, mPointViewParams);
+		
+		
 	}
+	
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		if (!scalingComplete) // only do this once
+		{
+			mScaleFactor = getScaleFactor(findViewById(R.id.game_layout), findViewById(R.id.drag_layer));
+	        scalingComplete = true;
+		}
+		super.onWindowFocusChanged(hasFocus);
+	}
+	
+	private float getScaleFactor(View rootView, View container)
+	{
+	 	// Compute the scaling ratio. Note that there are all kinds of games you could
+		// play here - you could, for example, allow the aspect ratio to be distorted
+		// by a certain percentage, or you could scale to fill the *larger* dimension
+		// of the container view (useful if, for example, the container view can scroll).
+		Log.i("POScale", "container width is: " + container.getWidth());
+		Log.i("POScale", "rootview width is: " + rootView.getWidth());
+		Log.i("POScale", "container width is: " + container.getHeight());
+		Log.i("POScale", "rootview width is: " + rootView.getHeight());
+	 	float xScale = (float)container.getWidth() / rootView.getWidth();
+	 	float yScale = (float)container.getHeight() / rootView.getHeight();
+	 	float scale = Math.min(xScale, yScale);
+	 	
+	 	Log.i("POScale", "scale factor is: " + Float.toString(scale));
+	 	
+	 	// Scale our contents
+	 	return scale;
+	}
+	
+	private void scaleContents(View rootView, View container)
+	{
+	 	// Compute the scaling ratio. Note that there are all kinds of games you could
+		// play here - you could, for example, allow the aspect ratio to be distorted
+		// by a certain percentage, or you could scale to fill the *larger* dimension
+		// of the container view (useful if, for example, the container view can scroll).
+	 	float xScale = (float)container.getWidth() / rootView.getWidth();
+	 	float yScale = (float)container.getHeight() / rootView.getHeight();
+	 	float scale = Math.min(xScale, yScale);
+	 	
+	 	// Scale our contents
+	 	scaleViewAndChildren(rootView, scale);
+	}
+	
+	/** Scale the given view, its contents, and all of its children by the given factor.
+	 * @param root	The root view of the UI subtree to be scaled
+	 * @param scale	The scaling factor
+	 */
+	public void scaleViewAndChildren(View root, float scale)
+	{
+	 	// Retrieve the view's layout information
+	 	ViewGroup.LayoutParams layoutParams = root.getLayoutParams();
+	
+	 	// Scale the view itself
+	 	if (layoutParams.width != ViewGroup.LayoutParams.MATCH_PARENT && 
+	 		layoutParams.width != ViewGroup.LayoutParams.WRAP_CONTENT)
+	 	{
+	 		layoutParams.width *= scale;
+	 	}
+	 	if (layoutParams.height != ViewGroup.LayoutParams.MATCH_PARENT && 
+	 		layoutParams.height != ViewGroup.LayoutParams.WRAP_CONTENT)
+	 	{
+	 		layoutParams.height *= scale;
+	 	}
+	 	
+	 	// If this view has margins, scale those too
+	 	if (layoutParams instanceof ViewGroup.MarginLayoutParams)
+	 	{
+	 		ViewGroup.MarginLayoutParams marginParams = (ViewGroup.MarginLayoutParams)layoutParams;
+	 		marginParams.leftMargin *= scale;
+	 		marginParams.rightMargin *= scale;
+	 		marginParams.topMargin *= scale;
+	 		marginParams.bottomMargin *= scale;
+	 	}
+	 	
+	 	// Set the layout information back into the view
+	 	root.setLayoutParams(layoutParams);
+	
+	 	// Scale the view's padding
+	 	root.setPadding(
+	 			(int)(root.getPaddingLeft() * scale), 
+	 			(int)(root.getPaddingTop() * scale), 
+	 			(int)(root.getPaddingRight() * scale), 
+	 			(int)(root.getPaddingBottom() * scale));
+	 	
+	 	// If the root view is a TextView, scale the size of its text. Note that this is not quite precise -
+	 	// it appears that text can't be exactly scaled to any desired size, presumably due to limitations
+	 	// of the font system. You may have to make your fonts a little bit smaller than you otherwise might
+	 	// in order to make sure that the text will always fit at any scaling factor.
+	 	if (root instanceof TextView)
+	 	{
+	 		TextView textView = (TextView)root; 
+	 		Log.d("Calculator", "Scaling text size from " + textView.getTextSize() + " to " + textView.getTextSize() * scale);
+	 		textView.setTextSize(textView.getTextSize() * scale);
+	 		InputMethodManager imm = (InputMethodManager)getSystemService(
+	 			      Context.INPUT_METHOD_SERVICE);
+	 			imm.hideSoftInputFromWindow(textView.getWindowToken(), 0);
+	 	}
+	 	
+	 	// If the root view is a ViewGroup, scale all of its children recursively
+	 	if (root instanceof ViewGroup)
+	 	{
+	 		Log.i("PO Scale", "root is instanceof ViewGroup");
+	 		ViewGroup groupView = (ViewGroup)root;
+	 		for (int cnt = 0; cnt < groupView.getChildCount(); ++cnt)
+	 			scaleViewAndChildren(groupView.getChildAt(cnt), scale);
+	 	}
+	}  
 
 
 

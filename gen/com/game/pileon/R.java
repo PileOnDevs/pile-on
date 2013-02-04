@@ -30,10 +30,13 @@ containing a value of this type.
          */
         public static final int layout_y=0x7f010001;
     }
+    public static final class color {
+        public static final int grid_background=0x7f040000;
+    }
     public static final class dimen {
-        public static final int padding_large=0x7f040002;
-        public static final int padding_medium=0x7f040001;
-        public static final int padding_small=0x7f040000;
+        public static final int padding_large=0x7f050002;
+        public static final int padding_medium=0x7f050001;
+        public static final int padding_small=0x7f050000;
     }
     public static final class drawable {
         public static final int blue1=0x7f020000;
@@ -87,15 +90,25 @@ containing a value of this type.
         public static final int yellow9=0x7f020030;
     }
     public static final class id {
-        public static final int button1=0x7f080001;
-        public static final int button2=0x7f080004;
-        public static final int button3=0x7f080005;
-        public static final int button4=0x7f080003;
-        public static final int drag_layer=0x7f080006;
-        public static final int hand0=0x7f080007;
-        public static final int horizontalLogo=0x7f080002;
-        public static final int menu_settings=0x7f080008;
-        public static final int textView1=0x7f080000;
+        public static final int DeckRow=0x7f0a0008;
+        public static final int HandRow=0x7f0a000a;
+        public static final int PileRow=0x7f0a0009;
+        public static final int below_game=0x7f0a000b;
+        public static final int button1=0x7f0a0001;
+        public static final int button2=0x7f0a0004;
+        public static final int button3=0x7f0a0005;
+        public static final int button4=0x7f0a0003;
+        public static final int drag_layer=0x7f0a0006;
+        public static final int game_layout=0x7f0a0007;
+        public static final int horizontalLogo=0x7f0a0002;
+        public static final int menu_settings=0x7f0a000c;
+        public static final int textView1=0x7f0a0000;
+    }
+    public static final class integer {
+        public static final int num_active_cells=0x7f070001;
+        /**  numbers 
+         */
+        public static final int num_columns=0x7f070000;
     }
     public static final class layout {
         public static final int activity_about_screen=0x7f030000;
@@ -104,35 +117,40 @@ containing a value of this type.
         public static final int activity_help_screen=0x7f030003;
     }
     public static final class menu {
-        public static final int activity_game_menu=0x7f070000;
+        public static final int activity_game_menu=0x7f090000;
     }
     public static final class string {
-        public static final int AboutScreen_about_game=0x7f050009;
+        public static final int AboutScreen_about_game=0x7f060009;
         /**  AboutScreen activity 
          */
-        public static final int AboutScreen_back_to_main=0x7f050008;
-        public static final int GameMenu_about_button=0x7f050006;
+        public static final int AboutScreen_back_to_main=0x7f060008;
+        public static final int GameMenu_about_button=0x7f060006;
         /**  string naming convention: "activityname_stringlabel" 
  GameMenu activity 
          */
-        public static final int GameMenu_app_name=0x7f050000;
-        public static final int GameMenu_continue_game_button=0x7f050004;
-        public static final int GameMenu_help_button=0x7f050005;
-        public static final int GameMenu_label_text=0x7f050002;
-        public static final int GameMenu_logoDescription=0x7f050007;
-        public static final int GameMenu_menu_settings=0x7f050001;
-        public static final int GameMenu_new_game_button=0x7f050003;
-        public static final int GameScreen_back_to_main=0x7f05000d;
+        public static final int GameMenu_app_name=0x7f060000;
+        public static final int GameMenu_continue_game_button=0x7f060004;
+        public static final int GameMenu_help_button=0x7f060005;
+        public static final int GameMenu_label_text=0x7f060002;
+        public static final int GameMenu_logoDescription=0x7f060007;
+        public static final int GameMenu_menu_settings=0x7f060001;
+        public static final int GameMenu_new_game_button=0x7f060003;
+        public static final int GameScreen_back_to_main=0x7f06000d;
         /**  GameScreen activity 
          */
-        public static final int GameScreen_filler=0x7f05000c;
+        public static final int GameScreen_filler=0x7f06000c;
         /**  HelpScreen activity 
          */
-        public static final int HelpScreen_back_to_main=0x7f05000a;
-        public static final int HelpScreen_game_rules=0x7f05000b;
+        public static final int HelpScreen_back_to_main=0x7f06000a;
+        public static final int HelpScreen_game_rules=0x7f06000b;
+        /**  GameScreen placeholders 
+         */
+        public static final int deckrow=0x7f06000e;
+        public static final int handrow=0x7f060010;
+        public static final int pilerow=0x7f06000f;
     }
     public static final class style {
-        public static final int AppTheme=0x7f060000;
+        public static final int AppTheme=0x7f080000;
     }
     public static final class styleable {
         /** Attributes that can be used with a AbsoluteLayout_Layout.

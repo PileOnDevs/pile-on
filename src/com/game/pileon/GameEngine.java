@@ -39,6 +39,9 @@ public class GameEngine
 	
 	private PointTracker mPointTracker;
 
+	public ArrayList<Pile> Piles;
+	public ArrayList<Hand> Hands;
+
 	public GameEngine()
 	{
 		createDeck();
@@ -110,12 +113,12 @@ public class GameEngine
 	public void createPiles()
 	{
 		Pile0 = new Pile(dealTopCard());
+		
 		Log.i("PO CreateDeck", "Pile0 gets: " + Pile0.toString());
 		Pile1 = new Pile(dealTopCard());
 		Log.i("PO CreateDeck", "Pile1 gets: " + Pile1.toString());
 		Pile2 = new Pile(dealTopCard());
 		Log.i("PO CreateDeck", "Pile2 gets: " + Pile2.toString());
-
 	}
 
 	public void createHands()

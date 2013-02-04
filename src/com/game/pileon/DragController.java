@@ -150,7 +150,7 @@ public class DragController {
 		b.recycle();
 
 		if (dragAction == DRAG_ACTION_MOVE) {
-			v.setVisibility(View.GONE); //think it hides the old view after the drag is finished, **TO CONFIRM**
+			v.setVisibility(View.INVISIBLE); //think it hides the old view after the drag is finished, **TO CONFIRM**
 		}
 	}
 

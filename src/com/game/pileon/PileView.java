@@ -10,6 +10,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.widget.GridView;
 import android.widget.ImageView;
 
 /**
@@ -23,6 +24,7 @@ implements DropTarget
 	private Drawable mCardGraphic;
 	private Pile mPile;
 	private GameEngine mGameEngine;
+
 	
 	/**
 	 * @param context
@@ -161,7 +163,7 @@ implements DropTarget
 			int yOffset, DragView dragView, Object dragInfo)
 	{
 		updateGraphic();
-		Log.i("PO Drag", "Drag left");
+		Log.i("PO Drag", "Drag exited");
 	}
 
 	/* (non-Javadoc)
@@ -196,6 +198,10 @@ implements DropTarget
 	public void setGameEngine(GameEngine gameEngine)
 	{
 		mGameEngine = gameEngine;
+	}
+	
+	public String toString(){
+		return mPile.toString();
 	}
 
 

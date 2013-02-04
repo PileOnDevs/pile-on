@@ -9,6 +9,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.widget.GridView;
 import android.widget.ImageView;
 
 /**
@@ -21,6 +22,7 @@ public class HandView extends ImageView
 	public Hand mHand; //stores the underlying Hand that this HandView represents
 	private Drawable mCardGraphic;
 	private Context mContext;
+	
 
 	/**
 	 * @param context
@@ -90,5 +92,9 @@ public class HandView extends ImageView
 			return true;
 		}
 		return false;
+	}
+	
+	public String toString(){
+		return mHand.toString();
 	}
 }

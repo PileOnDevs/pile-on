@@ -25,19 +25,23 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.GridView;
+import android.widget.TableLayout;
 
 /**
  * A ViewGroup that coordinates dragging across its dscendants.
  *
  * <p> This class used DragLayer in the Android Launcher activity as a model.
  * It is a bit different in several respects:
- * (1) It extends MyAbsoluteLayout rather than FrameLayout; (2) it implements DragSource and DropTarget methods
+ * (1) It extends FrameLayout; (2) it implements DragSource and DropTarget methods
  * that were done in a separate Workspace class in the Launcher.
  */
-public class DragLayer extends MyAbsoluteLayout 
+public class DragLayer extends TableLayout 
 implements DragSource
 {
 	DragController mDragController;
+	GridView mGridView;
 
 	/**
 	 * Used to create a new DragLayer from XML.
@@ -72,6 +76,7 @@ implements DragSource
 	public boolean dispatchUnhandledMove(View focused, int direction) {
 		return mDragController.dispatchUnhandledMove(focused, direction);
 	}
+	
 
 	/**
 	 */

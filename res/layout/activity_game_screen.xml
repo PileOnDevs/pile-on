@@ -1,34 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.game.pileon.DragLayer 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.game.pileon.DragLayer xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:com.game.pileon="http://schemas.android.com/apk/res/com.game.pileon"
     android:id="@+id/drag_layer"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="horizontal" >
-    
-    
-    <!--  Menu information at bottom -->
-   
-    <TextView
-        android:id="@+id/textView1"
-        android:paddingTop="10dp"
-        android:layout_below="@+id/hand0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:padding="@dimen/padding_medium"
-        android:text="@string/GameScreen_filler" />
 
-    <Button
-        android:id="@+id/button1"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="@string/GameScreen_back_to_main" 
-        android:onClick="backToMain"/>
-    
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|top"
+        android:orientation="vertical"
+        android:weightSum="1.0" >
+        
+        <Button
+                android:id="@+id/button1"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:onClick="backToMain"
+                android:text="@string/GameScreen_back_to_main" />
+
+        <TableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/game_layout"
+            android:layout_width="535px"
+            android:layout_height="wrap_content"
+            android:background="@color/grid_background"
+            android:gravity="center"
+            android:horizontalSpacing="2dip"
+            android:numColumns="@integer/num_columns"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="2dip" >
+
+            <TableRow
+                android:id="@+id/DeckRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp"
+                android:tag="DeckRow" >
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/PileRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp"
+                android:tag="PileRow"
+                android:gravity="center" >
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/HandRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp"
+                android:tag="HandRow"
+                android:gravity="center" >
+            </TableRow>
+        </TableLayout>
+
+        <LinearLayout
+            android:id="@+id/below_game"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="0.2"
+            android:orientation="horizontal"
+            android:weightSum="1.0" >
+
+            
+        </LinearLayout>
+    </LinearLayout>
 
 </com.game.pileon.DragLayer>
