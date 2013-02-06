@@ -22,7 +22,7 @@ public class HandView extends ImageView
 	public Hand mHand; //stores the underlying Hand that this HandView represents
 	private Drawable mCardGraphic;
 	private Context mContext;
-	
+
 
 	/**
 	 * @param context
@@ -52,39 +52,49 @@ public class HandView extends ImageView
 	{
 		super(context, attrs, defStyle);
 		mContext = context;
-		
+
 		setHand(hand);
 		updateGraphic();
-		
-	    Log.i("PO CreateDeck", "hand LayoutParams width: " + getDrawable().getIntrinsicWidth() +
-	    		" height: "+ getDrawable().getIntrinsicHeight());
+
+		Log.i("PO CreateDeck", "hand LayoutParams width: " + getDrawable().getIntrinsicWidth() +
+				" height: "+ getDrawable().getIntrinsicHeight());
 	}
-	
+
+//	public void createHandViewFromXML(Context context, Hand hand){
+//		mContext = context;
+//
+//		setHand(hand);
+//		updateGraphic();
+//
+//		Log.i("PO CreateDeck", "hand LayoutParams width: " + getDrawable().getIntrinsicWidth() +
+//				" height: "+ getDrawable().getIntrinsicHeight());
+//	}
+
 	public void updateGraphic(){
 		updateGraphic(mHand.mCard.getCardID());
 	}
-	
+
 	public void updateGraphic(String cardID){
 		int handImageResource = getDrawable(mContext, cardID);
-	    setImageResource(handImageResource);
+		setImageResource(handImageResource);
 		mCardGraphic = mContext.getResources().getDrawable(handImageResource);
 		invalidate();
 	}
-	
+
 
 	public int getDrawable(Context context, String name)
 	{
 		Assert.assertNotNull(context);
 		Assert.assertNotNull(name);
-		
+
 		return context.getResources().getIdentifier(name, "drawable", context.getPackageName());
 	}
-	
+
 	public void setHand(Hand hand)
 	{
 		mHand = hand;
 	}
-	
+
 	public boolean isPlaceholder()
 	{
 		if(mHand.mCard.isPlaceholder())
@@ -93,7 +103,7 @@ public class HandView extends ImageView
 		}
 		return false;
 	}
-	
+
 	public String toString(){
 		return mHand.toString();
 	}

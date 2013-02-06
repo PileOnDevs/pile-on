@@ -94,7 +94,7 @@ public class DragView extends View
             // for debugging
             Paint p = new Paint();
             p.setStyle(Paint.Style.FILL);
-            p.setColor(0x88dd0011);
+            p.setColor(0x00ffffff); //set this to transparent, otherwise it displays a border around the dragged view
             canvas.drawRect(0, 0, getWidth(), getHeight(), p);
         }
         float scale = mAnimationScale;
@@ -129,7 +129,7 @@ public class DragView extends View
         WindowManager.LayoutParams lp;
         int pixelFormat;
 
-        pixelFormat = PixelFormat.TRANSLUCENT;
+        pixelFormat = PixelFormat.TRANSPARENT;
 
         lp = new WindowManager.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,

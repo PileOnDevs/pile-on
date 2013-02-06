@@ -140,9 +140,15 @@ implements DropTarget
 	public void onDragEnter(DragSource source, int x, int y, int xOffset,
 			int yOffset, DragView dragView, Object dragInfo)
 	{
-		mCardGraphic = mContext.getResources().getDrawable(R.drawable.card_pile_drag_over);
-		mCardGraphic.setBounds(0, 0, mCardGraphic.getIntrinsicWidth(), mCardGraphic.getIntrinsicHeight());
-		invalidate();
+		Card cardToBeDropped = getCardToBeDropped(dragInfo);
+		Boolean checkIt = mPile.isMoveLegal(cardToBeDropped);
+		Log.i("PO Drag", "onDragEnter is move legal? " + checkIt.toString());
+		
+		if(checkIt){
+			mCardGraphic = mContext.getResources().getDrawable(R.drawable.card_pile_drag_over);
+			mCardGraphic.setBounds(0, 0, mCardGraphic.getIntrinsicWidth(), mCardGraphic.getIntrinsicHeight());
+			invalidate();
+		}
 		//TODO add in call to updateGraphic() with the cardID for the "can be dropped onto" graphical change
 		Log.i("PO Drag", "Drag enters pileview's airspace");
 	}
