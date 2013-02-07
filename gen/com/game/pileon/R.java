@@ -9,26 +9,6 @@ package com.game.pileon;
 
 public final class R {
     public static final class attr {
-        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int layout_x=0x7f010000;
-        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int layout_y=0x7f010001;
     }
     public static final class color {
         public static final int grid_background=0x7f040000;
@@ -49,48 +29,53 @@ containing a value of this type.
         public static final int blue7=0x7f020007;
         public static final int blue8=0x7f020008;
         public static final int blue9=0x7f020009;
-        public static final int card_hand=0x7f02000a;
-        public static final int card_hand_drag=0x7f02000b;
-        public static final int card_pile=0x7f02000c;
-        public static final int card_pile_drag_over=0x7f02000d;
-        public static final int green1=0x7f02000e;
-        public static final int green10=0x7f02000f;
-        public static final int green2=0x7f020010;
-        public static final int green3=0x7f020011;
-        public static final int green4=0x7f020012;
-        public static final int green5=0x7f020013;
-        public static final int green6=0x7f020014;
-        public static final int green7=0x7f020015;
-        public static final int green8=0x7f020016;
-        public static final int green9=0x7f020017;
-        public static final int ic_action_search=0x7f020018;
-        public static final int ic_launcher=0x7f020019;
-        public static final int ic_logo_design_2=0x7f02001a;
-        public static final int info_box=0x7f02001b;
-        public static final int logo_design_1=0x7f02001c;
-        public static final int red1=0x7f02001d;
-        public static final int red10=0x7f02001e;
-        public static final int red2=0x7f02001f;
-        public static final int red3=0x7f020020;
-        public static final int red4=0x7f020021;
-        public static final int red5=0x7f020022;
-        public static final int red6=0x7f020023;
-        public static final int red7=0x7f020024;
-        public static final int red8=0x7f020025;
-        public static final int red9=0x7f020026;
-        public static final int yellow1=0x7f020027;
-        public static final int yellow10=0x7f020028;
-        public static final int yellow2=0x7f020029;
-        public static final int yellow3=0x7f02002a;
-        public static final int yellow4=0x7f02002b;
-        public static final int yellow5=0x7f02002c;
-        public static final int yellow6=0x7f02002d;
-        public static final int yellow7=0x7f02002e;
-        public static final int yellow8=0x7f02002f;
-        public static final int yellow9=0x7f020030;
+        public static final int green1=0x7f02000a;
+        public static final int green10=0x7f02000b;
+        public static final int green2=0x7f02000c;
+        public static final int green3=0x7f02000d;
+        public static final int green4=0x7f02000e;
+        public static final int green5=0x7f02000f;
+        public static final int green6=0x7f020010;
+        public static final int green7=0x7f020011;
+        public static final int green8=0x7f020012;
+        public static final int green9=0x7f020013;
+        public static final int grey1=0x7f020014;
+        public static final int grey10=0x7f020015;
+        public static final int grey2=0x7f020016;
+        public static final int grey3=0x7f020017;
+        public static final int grey4=0x7f020018;
+        public static final int grey5=0x7f020019;
+        public static final int grey6=0x7f02001a;
+        public static final int grey7=0x7f02001b;
+        public static final int grey8=0x7f02001c;
+        public static final int grey9=0x7f02001d;
+        public static final int ic_action_search=0x7f02001e;
+        public static final int ic_launcher=0x7f02001f;
+        public static final int ic_logo_design_2=0x7f020020;
+        public static final int info_box=0x7f020021;
+        public static final int logo_design_1=0x7f020022;
+        public static final int red1=0x7f020023;
+        public static final int red10=0x7f020024;
+        public static final int red2=0x7f020025;
+        public static final int red3=0x7f020026;
+        public static final int red4=0x7f020027;
+        public static final int red5=0x7f020028;
+        public static final int red6=0x7f020029;
+        public static final int red7=0x7f02002a;
+        public static final int red8=0x7f02002b;
+        public static final int red9=0x7f02002c;
+        public static final int yellow1=0x7f02002d;
+        public static final int yellow10=0x7f02002e;
+        public static final int yellow2=0x7f02002f;
+        public static final int yellow3=0x7f020030;
+        public static final int yellow4=0x7f020031;
+        public static final int yellow5=0x7f020032;
+        public static final int yellow6=0x7f020033;
+        public static final int yellow7=0x7f020034;
+        public static final int yellow8=0x7f020035;
+        public static final int yellow9=0x7f020036;
     }
     public static final class id {
-        public static final int DeckRow=0x7f0a0009;
         public static final int HandRow=0x7f0a000b;
         public static final int PileRow=0x7f0a000a;
         public static final int below_game=0x7f0a000c;
@@ -100,9 +85,10 @@ containing a value of this type.
         public static final int button4=0x7f0a0003;
         public static final int drag_layer=0x7f0a0006;
         public static final int game_linear_layout=0x7f0a0007;
-        public static final int game_table_layout=0x7f0a0008;
+        public static final int game_table_layout=0x7f0a0009;
         public static final int horizontalLogo=0x7f0a0002;
         public static final int menu_settings=0x7f0a000d;
+        public static final int pointTracker=0x7f0a0008;
         public static final int textView1=0x7f0a0000;
     }
     public static final class integer {
@@ -153,53 +139,4 @@ containing a value of this type.
     public static final class style {
         public static final int AppTheme=0x7f080000;
     }
-    public static final class styleable {
-        /** Attributes that can be used with a AbsoluteLayout_Layout.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #AbsoluteLayout_Layout_layout_x com.game.pileon:layout_x}</code></td><td></td></tr>
-           <tr><td><code>{@link #AbsoluteLayout_Layout_layout_y com.game.pileon:layout_y}</code></td><td></td></tr>
-           </table>
-           @see #AbsoluteLayout_Layout_layout_x
-           @see #AbsoluteLayout_Layout_layout_y
-         */
-        public static final int[] AbsoluteLayout_Layout = {
-            0x7f010000, 0x7f010001
-        };
-        /**
-          <p>This symbol is the offset where the {@link com.game.pileon.R.attr#layout_x}
-          attribute's value can be found in the {@link #AbsoluteLayout_Layout} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name android:layout_x
-        */
-        public static final int AbsoluteLayout_Layout_layout_x = 0;
-        /**
-          <p>This symbol is the offset where the {@link com.game.pileon.R.attr#layout_y}
-          attribute's value can be found in the {@link #AbsoluteLayout_Layout} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name android:layout_y
-        */
-        public static final int AbsoluteLayout_Layout_layout_y = 1;
-    };
 }

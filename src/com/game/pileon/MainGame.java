@@ -68,8 +68,6 @@ implements View.OnTouchListener
 			mPointTracker = new PointTracker(0); 
 			mPointTracker.setPointView(mPointView);
 			mGameEngine.setPointTracker(mPointTracker);
-
-			//setupGridView();
 		}
 		else{
 			//recreate game
@@ -82,7 +80,6 @@ implements View.OnTouchListener
 				setupViews();
 				mPointTracker = savedGameState.savePointTracker;
 				mPointTracker.setPointView(mPointView);
-				//setupGridView();
 			}
 			Log.i("PO Save", "finished read");
 		}
@@ -248,10 +245,12 @@ implements View.OnTouchListener
 		}
 
 		//setup the point tracker view
-		mPointView = new TextView(this);
-		int pointViewWidth = 200;
-		int pointViewHeight = 60;
-		DragLayer.LayoutParams mPointViewParams = new DragLayer.LayoutParams(pointViewWidth, pointViewHeight);
+		//mPointView = new TextView(this);
+		mPointView = (TextView) findViewById(R.id.pointTracker);
+		//		int pointViewWidth = 200;
+		//		int pointViewHeight = 60;
+		//DragLayer.LayoutParams mPointViewParams = new DragLayer.LayoutParams(pointViewWidth, pointViewHeight);
+
 		//mDragLayer.addView(mPointView, mPointViewParams);
 
 
@@ -292,6 +291,10 @@ implements View.OnTouchListener
 			scale = xScale;
 		}
 
+		if( Float.compare(scale, (float)1.75) > 0){
+			scale = (float) 1.75;
+		}
+
 		Log.i("POScale", "scale factor is: " + Float.toString(scale));
 
 		// Scale our contents
@@ -321,8 +324,8 @@ implements View.OnTouchListener
 			Log.i("POScale", "scaling view: " + root.toString() + " old height: " + layoutParams.height + " new height: " + layoutParams.height*scale);
 			layoutParams.height *= scale;
 		}
-		
-		
+
+
 		if( root instanceof HandView){
 			HandView HandRoot = (HandView) root;
 			Log.i("POScale", "scaling a Hand view: " + HandRoot.toString());
@@ -332,7 +335,16 @@ implements View.OnTouchListener
 			root.setLayoutParams(handLayoutParams);
 			return;
 		}
-		
+		if( root instanceof PileView){
+			PileView pileRoot = (PileView) root;
+			Log.i("POScale", "scaling a Pile view: " + pileRoot.toString());
+			int width = (int) (pileRoot.getDrawable().getIntrinsicWidth() * scale);
+			int height = (int) (pileRoot.getDrawable().getIntrinsicHeight() * scale);
+			TableRow.LayoutParams pileLayoutParams = new TableRow.LayoutParams(width, height, 1.0f);
+			root.setLayoutParams(pileLayoutParams);
+			return;
+		}
+
 
 		// If this view has margins, scale those too
 		if (layoutParams instanceof ViewGroup.MarginLayoutParams)

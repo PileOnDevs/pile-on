@@ -75,6 +75,14 @@ implements DropTarget
 		invalidate();
 	}
 	
+	public void updateDropGraphic()
+	{
+		int pileImageResource = getDrawable(mContext, "grey" + mPile.peek().getValue());
+	    setImageResource(pileImageResource);
+		mCardGraphic = mContext.getResources().getDrawable(pileImageResource);
+		invalidate();
+	}
+	
 	public int getDrawable(Context context, String name)
 	{
 		Assert.assertNotNull(context);
@@ -145,9 +153,7 @@ implements DropTarget
 		Log.i("PO Drag", "onDragEnter is move legal? " + checkIt.toString());
 		
 		if(checkIt){
-			mCardGraphic = mContext.getResources().getDrawable(R.drawable.card_pile_drag_over);
-			mCardGraphic.setBounds(0, 0, mCardGraphic.getIntrinsicWidth(), mCardGraphic.getIntrinsicHeight());
-			invalidate();
+			updateDropGraphic();
 		}
 		//TODO add in call to updateGraphic() with the cardID for the "can be dropped onto" graphical change
 		Log.i("PO Drag", "Drag enters pileview's airspace");
