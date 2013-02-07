@@ -4,7 +4,6 @@
 package com.game.pileon;
 
 import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 import android.widget.TextView;

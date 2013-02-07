@@ -4,8 +4,6 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import android.util.Log;
-
 @Root(name="root")
 public class DefaultGameCard implements Card
 {

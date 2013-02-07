@@ -1,7 +1,6 @@
 package com.game.pileon;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import android.util.Log;
 

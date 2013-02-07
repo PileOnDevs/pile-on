@@ -1,17 +1,14 @@
 package com.game.pileon;
 
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.Reader;
 import java.util.ArrayList;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
-import junit.framework.Assert;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
@@ -22,8 +19,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.TextView;
 
