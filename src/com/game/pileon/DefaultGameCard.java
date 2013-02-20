@@ -18,7 +18,7 @@ public class DefaultGameCard implements Card
 
 	public DefaultGameCard()
 	{
-		this("",0,"card_pile");
+		this("",0,"blank");
 	}
 
 	public DefaultGameCard( @Element(name="mColor")String colorToSet, @Attribute(name="mValue")int valueToSet, @Element(name="mCardID")String cardID)
@@ -65,7 +65,7 @@ public class DefaultGameCard implements Card
 	
 	public boolean isPlaceholder()
 	{
-		return mCardID.equals("card_pile");
+		return mCardID.equals("blank");
 	}
 
 }
