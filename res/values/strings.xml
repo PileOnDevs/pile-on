@@ -10,6 +10,9 @@
     <string name="GameMenu_help_button">Help</string>
     <string name="GameMenu_about_button">About</string>
     <string name="GameMenu_logoDescription">Logo goes here</string>
+    <string name="introTextBody">Welcome to Pile On! The goal of the game is simple: move one of the five cards from your hand to one of the three piles that matches either the value or color. You can earn combo points by playing cards of the same color and by playing all your cards before the time runs out. Good luck!</string>
+    <string name="ok">Okay</string>
+    <string name="dontshow">Don\'t show this again</string>
     <!-- AboutScreen activity -->
     <string name="AboutScreen_back_to_main">Back to menu</string>
     <string name="AboutScreen_about_game">This is a shitty app created by Matt Bailey and saved from complete chaos by the participation of Nicholas Cross</string>

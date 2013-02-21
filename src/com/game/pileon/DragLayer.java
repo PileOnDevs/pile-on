@@ -29,83 +29,84 @@ import android.widget.TableLayout;
 
 /**
  * A ViewGroup that coordinates dragging across its descendants.
- *
- * <p> This class used DragLayer in the Android Launcher activity as a model.
- * It is a bit different in several respects:
- * (1) It extends TableLayout; (2) it implements DragSource methods
- * that were done in a separate Workspace class in the Launcher.
+ * 
+ * <p>
+ * This class used DragLayer in the Android Launcher activity as a model. It is
+ * a bit different in several respects: (1) It extends TableLayout; (2) it
+ * implements DragSource methods that were done in a separate Workspace class in
+ * the Launcher.
  */
-public class DragLayer extends TableLayout 
-implements DragSource
-{
-	DragController mDragController;
-
-	/**
-	 * Used to create a new DragLayer from XML.
-	 *
-	 * @param context The application's context.
-	 * @param attrs The attribtues set containing the Workspace's customization values.
+public class DragLayer extends TableLayout implements DragSource {
+    DragController mDragController;
+    
+    /**
+     * Used to create a new DragLayer from XML.
+     * 
+     * @param context
+     *            The application's context.
+     * @param attrs
+     *            The attribtues set containing the Workspace's customization
+     *            values.
+     */
+    public DragLayer(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+    
+    public void setDragController(DragController controller) {
+        mDragController = controller;
+    }
+    
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        return mDragController.dispatchKeyEvent(event)
+                || super.dispatchKeyEvent(event);
+    }
+    
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return mDragController.onInterceptTouchEvent(ev);
+    }
+    
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        return mDragController.onTouchEvent(ev);
+    }
+    
+    @Override
+    public boolean dispatchUnhandledMove(View focused, int direction) {
+        return mDragController.dispatchUnhandledMove(focused, direction);
+    }
+    
+    /**
 	 */
-	public DragLayer (Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
-
-	public void setDragController(DragController controller) {
-		mDragController = controller;
-	}
-
-	@Override
-	public boolean dispatchKeyEvent(KeyEvent event) {
-		return mDragController.dispatchKeyEvent(event) || super.dispatchKeyEvent(event);
-	}
-
-	@Override
-	public boolean onInterceptTouchEvent(MotionEvent ev) {
-		return mDragController.onInterceptTouchEvent(ev);
-	}
-
-	@Override
-	public boolean onTouchEvent(MotionEvent ev) {
-		return mDragController.onTouchEvent(ev);
-	}
-
-	@Override
-	public boolean dispatchUnhandledMove(View focused, int direction) {
-		return mDragController.dispatchUnhandledMove(focused, direction);
-	}
-	
-
-	/**
-	 */
-	 // DragSource interface methods
-
-	 /**
-	  * This method is called to determine if the DragSource has something to drag.
-	  * 
-	  * @return True if there is something to drag
-	  */
-
-	public boolean allowDrag () {
-		return true;
-	}
-
-	/**
-	 * setDragController
-	 *
-	 */
-
-	/* setDragController is already defined. See above. */
-
-	/**
-	 * onDropCompleted
-	 *
-	 */
-
-	public void onDropCompleted (View target, boolean success)
-	{
-		
-		Log.i("PO Drop", "DragLayer: Drop operation completed");
-	}
-
-
+    // DragSource interface methods
+    
+    /**
+     * This method is called to determine if the DragSource has something to
+     * drag.
+     * 
+     * @return True if there is something to drag
+     */
+    
+    public boolean allowDrag() {
+        return true;
+    }
+    
+    /**
+     * setDragController
+     * 
+     */
+    
+    /* setDragController is already defined. See above. */
+    
+    /**
+     * onDropCompleted
+     * 
+     */
+    
+    public void onDropCompleted(View target, boolean success) {
+        
+        Log.i("PO Drop", "DragLayer: Drop operation completed");
+    }
+    
 } // end class
