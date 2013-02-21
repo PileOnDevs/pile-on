@@ -19,6 +19,7 @@ public class Hand {
     @Element(name = "HandCard")
     public Card mCard;
     private Deck mDeck;
+    private GameEngine mGameEngine;
     
     public Hand(@Element(name = "HandCard") Card card) {
         mCard = card;
@@ -44,19 +45,17 @@ public class Hand {
      * @return the Card this hand is holding
      */
     public Card playCard() {
-        Card newCard = getCardFromDeck();
-        // TODO add in check to make sure the card isn't a placeholder, if so,
-        // display it but disable Hand
         Card oldCard = mCard;
-        mCard = newCard;
-        Log.i("PO Hand", "oldCard: " + oldCard.toString() + " newCard: "
-                + newCard.toString());
+        getCardFromDeck();
+//        //Log.i("PO Hand", "oldCard: " + oldCard.toString() + " newCard: "
+//                + newCard.toString());
         return oldCard; // TODO this returns the old card, but not used right
                         // now
     }
     
     public Card getCardFromDeck() {
-        return mDeck.dealTopCard();
+        mCard = mGameEngine.dealTopCard();
+        return mCard;
     }
     
     @Override
@@ -70,6 +69,10 @@ public class Hand {
     
     public void setDeck(Deck deck) {
         mDeck = deck;
+    }
+
+    public void setGameEngine(GameEngine gameEngine) {
+        mGameEngine = gameEngine;
     }
     
 }

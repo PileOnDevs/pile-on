@@ -19,18 +19,10 @@ public class GameEngine {
     
     private final static int NUMBEROFCOLORS = 4;
     private final static int NUMBEROFCARDSPERCOLOR = 10;
+    private final static int NUMBEROFPILES = 3;
+    private final static int NUMBEROFHANDS = 5;
     
-    public Pile Pile0;
-    public Pile Pile1;
-    public Pile Pile2;
-    
-    public Hand Hand0;
-    public Hand Hand1;
-    public Hand Hand2;
-    public Hand Hand3;
-    public Hand Hand4;
-    
-    public boolean isGameOver;
+    public boolean isGameOver = false;
     
     private final static String CARDCOLORS[] = { "red", "green", "blue",
             "yellow" };
@@ -49,21 +41,16 @@ public class GameEngine {
     
     public GameEngine(SavedGame savedGameState) {
         Deck = savedGameState.saveDeck;
-        Pile0 = savedGameState.savePiles.get(0);
-        Pile1 = savedGameState.savePiles.get(1);
-        Pile2 = savedGameState.savePiles.get(2);
         
-        Hand0 = savedGameState.saveHands.get(0);
-        Hand1 = savedGameState.saveHands.get(1);
-        Hand2 = savedGameState.saveHands.get(2);
-        Hand3 = savedGameState.saveHands.get(3);
-        Hand4 = savedGameState.saveHands.get(4);
+        for(int pileNdx = 0; pileNdx < NUMBEROFPILES; pileNdx++) {
+            Piles.add(pileNdx, savedGameState.savePiles.get(pileNdx));
+        }
         
-        Hand0.setDeck(Deck);
-        Hand1.setDeck(Deck);
-        Hand2.setDeck(Deck);
-        Hand3.setDeck(Deck);
-        Hand4.setDeck(Deck);
+        for (int handNdx = 0; handNdx < NUMBEROFHANDS; handNdx++) {
+            Hands.add(handNdx, savedGameState.saveHands.get(handNdx));
+            Hands.get(handNdx).setDeck(Deck);
+            Hands.get(handNdx).setGameEngine(this);
+        }
         
         setPointTracker(savedGameState.savePointTracker);
         
@@ -88,7 +75,7 @@ public class GameEngine {
     }
     
     public void addPlaceholderCardsToDeck() {
-        for (int cardNdx = 0; cardNdx < 5; cardNdx++) {
+        for (int cardNdx = 0; cardNdx < NUMBEROFHANDS; cardNdx++) {
             Deck.addToEnd(createPlaceholderCard());
         }
         
@@ -102,31 +89,21 @@ public class GameEngine {
     }
     
     public void createPiles() {
-        Pile0 = new Pile(dealTopCard());
+        Piles = new ArrayList<Pile>();
         
-        Log.i("PO CreateDeck", "Pile0 gets: " + Pile0.toString());
-        Pile1 = new Pile(dealTopCard());
-        Log.i("PO CreateDeck", "Pile1 gets: " + Pile1.toString());
-        Pile2 = new Pile(dealTopCard());
-        Log.i("PO CreateDeck", "Pile2 gets: " + Pile2.toString());
+        for(int pileNdx = 0; pileNdx < NUMBEROFPILES; pileNdx++) {
+            Piles.add(pileNdx, new Pile(Deck.dealTopCard()));
+        }      
     }
     
     public void createHands() {
-        Hand0 = new Hand(dealTopCard());
-        Hand0.setDeck(Deck);
-        Log.i("PO CreateDeck", "Hand0 gets: " + Hand0.toString());
-        Hand1 = new Hand(dealTopCard());
-        Hand1.setDeck(Deck);
-        Log.i("PO CreateDeck", "Hand1 gets: " + Hand1.toString());
-        Hand2 = new Hand(dealTopCard());
-        Hand2.setDeck(Deck);
-        Log.i("PO CreateDeck", "Hand2 gets: " + Hand2.toString());
-        Hand3 = new Hand(dealTopCard());
-        Hand3.setDeck(Deck);
-        Log.i("PO CreateDeck", "Hand3 gets: " + Hand3.toString());
-        Hand4 = new Hand(dealTopCard());
-        Hand4.setDeck(Deck);
-        Log.i("PO CreateDeck", "Hand4 gets: " + Hand4.toString());
+        Hands = new ArrayList<Hand>();
+        
+        for (int handNdx = 0; handNdx < NUMBEROFHANDS; handNdx++) {
+            Hands.add(new Hand(Deck.dealTopCard()));
+            Hands.get(handNdx).setDeck(Deck);
+            Hands.get(handNdx).setGameEngine(this);
+        }
     }
     
     public void setupGame() {
@@ -135,50 +112,61 @@ public class GameEngine {
     }
     
     public Card dealTopCard() {
-        return Deck.dealTopCard();
-    }
-    
-    public boolean isGameOver() {
-        isGameOver = areHandsEmpty();
-        Log.i("PO GameEngine", "is game over?: " + Boolean.toString(isGameOver));
-        return isGameOver;
-    }
-    
-    public boolean areHandsEmpty() {
-        boolean areHandsEmpty = false;
+        Card topCard = Deck.dealTopCard();
         
-        if (Hand0.isEmpty() && Hand1.isEmpty() && Hand2.isEmpty()
-                && Hand3.isEmpty() && Hand4.isEmpty()) {
-            areHandsEmpty = true;
+        //Log.i("PO Game Over", "size of Deck:" + Deck.toString());
+        if (isGameOver()){ // || !anyMovesLeft()
+            Log.i("PO Game Over", "last top card has been dealt or no moves are left");
+            
         }
-        Log.i("PO GameEngine",
-                "are hands empty?: " + Boolean.toString(areHandsEmpty));
-        return areHandsEmpty;
+        
+        return topCard;
+    }
+    
+    private boolean moveAvailable() {
+        if (Piles == null || Hands == null || Piles.size() == 0 || Hands.size() == 0)
+            return true;
+        
+        boolean moveAvailable = false;
+
+        for (int i = 0; i < NUMBEROFPILES; i++){
+            for (int j = 0; j < NUMBEROFHANDS; j++){
+                if (Piles.get(i).isMoveLegal(Hands.get(j).mCard)){
+                    Log.i("PO Game Over", "comparing pile: " + Piles.get(i) + " to hand: " + Hands.get(j));
+                    moveAvailable = true;
+                }
+                    
+                    
+            }
+        }
+        Log.i("PO Game Over", "any moves left?: " + Boolean.toString(moveAvailable));
+        return moveAvailable;
+    }
+
+    public boolean isGameOver() {        
+        if (Deck.isEmpty())
+            isGameOver = true;
+        else if (moveAvailable())
+            isGameOver = false;
+        
+        Log.i("PO Game Over", "is game over?: " + Boolean.toString(isGameOver));
+        return isGameOver;
     }
     
     public void setPointTracker(PointTracker pointTracker) {
         mPointTracker = pointTracker;
-        Pile0.setPointTracker(mPointTracker);
-        Pile1.setPointTracker(mPointTracker);
-        Pile2.setPointTracker(mPointTracker);
+        
+        for(int pileNdx = 0; pileNdx < NUMBEROFPILES; pileNdx++) {
+            Piles.get(pileNdx).setPointTracker(mPointTracker);
+        }
     }
     
     public ArrayList<Pile> getPileList() {
-        ArrayList<Pile> pileList = new ArrayList<Pile>();
-        pileList.add(0, Pile0);
-        pileList.add(1, Pile1);
-        pileList.add(2, Pile2);
-        return pileList;
+        return Piles;
     }
     
     public ArrayList<Hand> getHandList() {
-        ArrayList<Hand> handList = new ArrayList<Hand>();
-        handList.add(0, Hand0);
-        handList.add(1, Hand1);
-        handList.add(2, Hand2);
-        handList.add(3, Hand3);
-        handList.add(4, Hand4);
-        return handList;
+        return Hands;
     }
     
 }
