@@ -238,17 +238,8 @@ implements View.OnTouchListener
 
 			handRow.addView(handView, handCount);
 		}
-
-		//setup the point tracker view
-		//mPointView = new TextView(this);
+		
 		mPointView = (TextView) findViewById(R.id.pointTracker);
-		//		int pointViewWidth = 200;
-		//		int pointViewHeight = 60;
-		//DragLayer.LayoutParams mPointViewParams = new DragLayer.LayoutParams(pointViewWidth, pointViewHeight);
-
-		//mDragLayer.addView(mPointView, mPointViewParams);
-
-
 	}
 
 

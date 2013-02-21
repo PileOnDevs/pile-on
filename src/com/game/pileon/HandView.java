@@ -59,16 +59,6 @@ public class HandView extends ImageView
 				" height: "+ getDrawable().getIntrinsicHeight());
 	}
 
-//	public void createHandViewFromXML(Context context, Hand hand){
-//		mContext = context;
-//
-//		setHand(hand);
-//		updateGraphic();
-//
-//		Log.i("PO CreateDeck", "hand LayoutParams width: " + getDrawable().getIntrinsicWidth() +
-//				" height: "+ getDrawable().getIntrinsicHeight());
-//	}
-
 	public void updateGraphic(){
 		updateGraphic(mHand.mCard.getCardID());
 	}
@@ -96,11 +86,7 @@ public class HandView extends ImageView
 
 	public boolean isPlaceholder()
 	{
-		if(mHand.mCard.isPlaceholder())
-		{
-			return true;
-		}
-		return false;
+		return mHand.mCard.isPlaceholder();
 	}
 
 	public String toString(){
