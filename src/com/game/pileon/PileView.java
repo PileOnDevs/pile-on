@@ -124,6 +124,7 @@ public class PileView extends ImageView implements DropTarget {
             updateGraphic(mPile.peek().getCardID());
             Log.i("PO Drag", "invalidate graphic and redraw");
             tellHandToPlayCard(dragInfo);
+            mGameEngine.isGameOver();
         } else {
             updateGraphic(mPile.peek().getCardID());
             Log.i("PO Game", "this game is OVER (or the drop failed somehow)");

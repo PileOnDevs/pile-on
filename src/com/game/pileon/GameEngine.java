@@ -115,10 +115,10 @@ public class GameEngine {
         Card topCard = Deck.dealTopCard();
         
         //Log.i("PO Game Over", "size of Deck:" + Deck.toString());
-        if (isGameOver()){ // || !anyMovesLeft()
-            Log.i("PO Game Over", "last top card has been dealt or no moves are left");
-            
-        }
+//        if (isGameOver()){ // || !anyMovesLeft()
+//            Log.i("PO Game Over", "last top card has been dealt or no moves are left");
+//            
+//        }
         
         return topCard;
     }
@@ -144,10 +144,10 @@ public class GameEngine {
     }
 
     public boolean isGameOver() {        
-        if (Deck.isEmpty())
+        if (Deck.isEmpty() || !moveAvailable())
             isGameOver = true;
-        else if (moveAvailable())
-            isGameOver = false;
+//        else if (moveAvailable())
+//            isGameOver = false;
         
         Log.i("PO Game Over", "is game over?: " + Boolean.toString(isGameOver));
         return isGameOver;

@@ -260,7 +260,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
         Boolean introScreenShown = mPrefs.getBoolean(introScreenShownPref,
                 false);
         
-        if (true) { // should be !introScreenShown
+        if (!introScreenShown) { // should be !introScreenShown
             Log.i("PO Dialog", "enters dialog stuff: " + introScreenShown);
             final View introText = View.inflate(this, R.layout.introtext, null);
             
