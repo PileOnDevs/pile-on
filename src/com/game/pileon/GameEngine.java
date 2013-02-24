@@ -2,7 +2,11 @@ package com.game.pileon;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.util.Log;
+import android.view.Gravity;
+import android.widget.Toast;
 
 /**
  * GameEngine
@@ -42,7 +46,7 @@ public class GameEngine {
     public GameEngine(SavedGame savedGameState) {
         Deck = savedGameState.saveDeck;
         
-        for(int pileNdx = 0; pileNdx < NUMBEROFPILES; pileNdx++) {
+        for (int pileNdx = 0; pileNdx < NUMBEROFPILES; pileNdx++) {
             Piles.add(pileNdx, savedGameState.savePiles.get(pileNdx));
         }
         
@@ -91,9 +95,9 @@ public class GameEngine {
     public void createPiles() {
         Piles = new ArrayList<Pile>();
         
-        for(int pileNdx = 0; pileNdx < NUMBEROFPILES; pileNdx++) {
+        for (int pileNdx = 0; pileNdx < NUMBEROFPILES; pileNdx++) {
             Piles.add(pileNdx, new Pile(Deck.dealTopCard()));
-        }      
+        }
     }
     
     public void createHands() {
@@ -114,49 +118,53 @@ public class GameEngine {
     public Card dealTopCard() {
         Card topCard = Deck.dealTopCard();
         
-        //Log.i("PO Game Over", "size of Deck:" + Deck.toString());
-//        if (isGameOver()){ // || !anyMovesLeft()
-//            Log.i("PO Game Over", "last top card has been dealt or no moves are left");
-//            
-//        }
-        
         return topCard;
     }
     
     private boolean moveAvailable() {
-        if (Piles == null || Hands == null || Piles.size() == 0 || Hands.size() == 0)
+        if ((Piles == null) || (Hands == null) || (Piles.size() == 0)
+                || (Hands.size() == 0)) {
             return true;
+        }
         
         boolean moveAvailable = false;
-
-        for (int i = 0; i < NUMBEROFPILES; i++){
-            for (int j = 0; j < NUMBEROFHANDS; j++){
-                if (Piles.get(i).isMoveLegal(Hands.get(j).mCard)){
-                    Log.i("PO Game Over", "comparing pile: " + Piles.get(i) + " to hand: " + Hands.get(j));
+        
+        for (int i = 0; i < NUMBEROFPILES; i++) {
+            for (int j = 0; j < NUMBEROFHANDS; j++) {
+                if (Piles.get(i).isMoveLegal(Hands.get(j).mCard)) {
+                    Log.i("PO Game Over", "comparing pile: " + Piles.get(i)
+                            + " to hand: " + Hands.get(j));
                     moveAvailable = true;
                 }
-                    
-                    
+                
             }
         }
-        Log.i("PO Game Over", "any moves left?: " + Boolean.toString(moveAvailable));
+        Log.i("PO Game Over",
+                "any moves left?: " + Boolean.toString(moveAvailable));
         return moveAvailable;
     }
-
-    public boolean isGameOver() {        
-        if (Deck.isEmpty() || !moveAvailable())
+    
+    @SuppressLint("ShowToast")
+    public boolean isGameOver() {
+        if (Deck.isEmpty() || !moveAvailable()) {
             isGameOver = true;
-//        else if (moveAvailable())
-//            isGameOver = false;
+            
+            CharSequence text = "No more moves available";
+            
+            MainGame.mToast = Toast.makeText(MainGame.getAppContext(), text, Toast.LENGTH_SHORT);
+            MainGame.mToast.setGravity(Gravity.CENTER, 0, 0);
+            makeLongToast();
+        }
         
         Log.i("PO Game Over", "is game over?: " + Boolean.toString(isGameOver));
+        
         return isGameOver;
     }
     
     public void setPointTracker(PointTracker pointTracker) {
         mPointTracker = pointTracker;
         
-        for(int pileNdx = 0; pileNdx < NUMBEROFPILES; pileNdx++) {
+        for (int pileNdx = 0; pileNdx < NUMBEROFPILES; pileNdx++) {
             Piles.get(pileNdx).setPointTracker(mPointTracker);
         }
     }
@@ -167,6 +175,25 @@ public class GameEngine {
     
     public ArrayList<Hand> getHandList() {
         return Hands;
+    }
+    
+    private void makeLongToast() {
+        Thread t = new Thread(){
+            public void run() {
+                int count = 0;
+                try {
+                    while( MainGame.showToast && count < 5){
+                        MainGame.mToast.show();
+                        sleep(1850);
+                        count++;
+                    }
+                    
+                } catch (Exception e){
+                    Log.e("LongToast", "", e);
+                }
+            }
+        };
+        t.start();
     }
     
 }

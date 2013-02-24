@@ -120,7 +120,7 @@ public class PileView extends ImageView implements DropTarget {
         Card cardToBeDropped = getCardToBeDropped(dragInfo);
         boolean dropSuccess = mPile.handleDrop(cardToBeDropped);
         
-        if (dropSuccess ) {
+        if (dropSuccess) {
             updateGraphic(mPile.peek().getCardID());
             Log.i("PO Drag", "invalidate graphic and redraw");
             tellHandToPlayCard(dragInfo);

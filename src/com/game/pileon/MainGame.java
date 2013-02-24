@@ -25,6 +25,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 @TargetApi(11)
 public class MainGame extends Activity implements View.OnTouchListener {
@@ -46,12 +47,18 @@ public class MainGame extends Activity implements View.OnTouchListener {
     private boolean displayIntroDialog = false;
     SharedPreferences mPrefs;
     final String introScreenShownPref = "introScreenShown";
+    private static Context mContext;
+    static Toast mToast;
+    static boolean showToast = true;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Log.i("PO Save", "onCreate");
         super.onCreate(savedInstanceState);
+        MainGame.mContext = getApplicationContext();
         setContentView(R.layout.activity_game_screen);
+        
+        mToast = new Toast(mContext);
         
         Intent intent = getIntent();
         gameInProgress = intent.getBooleanExtra(
@@ -110,6 +117,8 @@ public class MainGame extends Activity implements View.OnTouchListener {
         Log.i("PO Save", "backToMain");
         Intent intent = new Intent(MainGame.this, GameMenu.class);
         intent.putExtra("com.game.pileon.GameInProgress", true);
+        mToast.cancel();
+        showToast = false;
         startActivity(intent);
     }
     
@@ -245,14 +254,19 @@ public class MainGame extends Activity implements View.OnTouchListener {
         }
         super.onWindowFocusChanged(hasFocus);
         
-        // due to some strange behavior of the AlertDialog, this code is necessary
+        // due to some strange behavior of the AlertDialog, this code is
+        // necessary
         // to prevent the intro screen from being shown twice, even after the
         // box is checked
-        if (!displayIntroDialog){
+        if (!displayIntroDialog) {
             displayIntroScreen();
             displayIntroDialog = true;
         }
         
+    }
+    
+    public static Context getAppContext() {
+        return MainGame.mContext;
     }
     
     private void displayIntroScreen() {
@@ -278,15 +292,14 @@ public class MainGame extends Activity implements View.OnTouchListener {
                                     if (dontShowAgain.isChecked()) {
                                         SharedPreferences.Editor editor = mPrefs
                                                 .edit();
-                                        editor.putBoolean(
-                                                introScreenShownPref, true);
+                                        editor.putBoolean(introScreenShownPref,
+                                                true);
                                         editor.commit();
                                         Log.i("PO Dialog", "saved preference");
                                     }
                                 }
                             }).show();
-            introScreenShown = mPrefs.getBoolean(introScreenShownPref,
-                    false);
+            introScreenShown = mPrefs.getBoolean(introScreenShownPref, false);
             Log.i("PO Dialog", "exiting dialog stuff: " + introScreenShown);
             
         }

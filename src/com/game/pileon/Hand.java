@@ -3,8 +3,6 @@ package com.game.pileon;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import android.util.Log;
-
 /**
  * Hand class
  * 
@@ -47,8 +45,8 @@ public class Hand {
     public Card playCard() {
         Card oldCard = mCard;
         getCardFromDeck();
-//        //Log.i("PO Hand", "oldCard: " + oldCard.toString() + " newCard: "
-//                + newCard.toString());
+        // //Log.i("PO Hand", "oldCard: " + oldCard.toString() + " newCard: "
+        // + newCard.toString());
         return oldCard; // TODO this returns the old card, but not used right
                         // now
     }
@@ -70,7 +68,7 @@ public class Hand {
     public void setDeck(Deck deck) {
         mDeck = deck;
     }
-
+    
     public void setGameEngine(GameEngine gameEngine) {
         mGameEngine = gameEngine;
     }
