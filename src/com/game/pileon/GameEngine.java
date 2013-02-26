@@ -1,14 +1,10 @@
 package com.game.pileon;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.util.Log;
 import android.view.Gravity;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -34,7 +30,7 @@ public class GameEngine {
     public boolean isGameOver = false;
     
     private final static String CARDCOLORS[] = { "red", "green", "blue",
-    "yellow" };
+            "yellow" };
     
     private PointTracker mPointTracker;
     
@@ -157,7 +153,8 @@ public class GameEngine {
             
             CharSequence text = "No more moves available";
             
-            MainGame.mToast = Toast.makeText(MainGame.getAppContext(), text, Toast.LENGTH_SHORT);
+            MainGame.mToast = Toast.makeText(MainGame.getAppContext(), text,
+                    Toast.LENGTH_SHORT);
             MainGame.mToast.setGravity(Gravity.CENTER, 0, 0);
             makeLongToast();
         }
@@ -184,17 +181,18 @@ public class GameEngine {
     }
     
     private void makeLongToast() {
-        Thread t = new Thread(){
+        Thread t = new Thread() {
+            @Override
             public void run() {
                 int count = 0;
                 try {
-                    while( MainGame.showToast && count < 5){
+                    while (MainGame.showToast && (count < 5)) {
                         MainGame.mToast.show();
                         sleep(1850);
                         count++;
                     }
                     
-                } catch (Exception e){
+                } catch (Exception e) {
                     Log.e("LongToast", "", e);
                 }
             }

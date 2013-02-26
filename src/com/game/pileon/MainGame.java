@@ -79,10 +79,11 @@ public class MainGame extends Activity implements View.OnTouchListener {
             
             // must be run after setupViews has initialized the text view for
             // the point tracker
-            mPointTracker = new PointTracker(0, GameEngine.STARTINGTIMEBONUS, GameEngine.STARTINGBONUSMULTIPLIER);
+            mPointTracker = new PointTracker(0, GameEngine.STARTINGTIMEBONUS,
+                    GameEngine.STARTINGBONUSMULTIPLIER);
             mPointTracker.setPointView(mPointView, mTimeView);
             mGameEngine.setPointTracker(mPointTracker);
-
+            
             intiateTimer();
             
         } else {
@@ -98,7 +99,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
                 mPointTracker.setPointView(mPointView, mTimeView);
             }
             Log.i("PO Save", "finished read");
-
+            
             intiateTimer();
         }
     }
@@ -279,13 +280,13 @@ public class MainGame extends Activity implements View.OnTouchListener {
         return MainGame.mContext;
     }
     
-    public void intiateTimer(){
+    public void intiateTimer() {
         Log.i("PO Timer", "intiating timer");
         myTimer = new Timer();
-        myTimer.schedule(new TimerTask() {          
+        myTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if(mPointTracker.timeBonus <= 1){
+                if (mPointTracker.timeBonus <= 1) {
                     myTimer.cancel();
                 }
                 TimerMethod();
@@ -295,23 +296,22 @@ public class MainGame extends Activity implements View.OnTouchListener {
         }, 0, 20);
     }
     
-    private void TimerMethod()
-    {
-        //This method is called directly by the timer
-        //and runs in the same thread as the timer.
+    private void TimerMethod() {
+        // This method is called directly by the timer
+        // and runs in the same thread as the timer.
         
-        //We call the method that will work with the UI
-        //through the runOnUiThread method.
+        // We call the method that will work with the UI
+        // through the runOnUiThread method.
         this.runOnUiThread(Timer_Tick);
     }
-    
     
     private Runnable Timer_Tick = new Runnable() {
         public void run() {
             mPointTracker.timeBonus--;
             
-            mTimeView.setText("time bonus: " + String.valueOf(mPointTracker.timeBonus));
-            //This method runs in the same thread as the UI.               
+            mTimeView.setText("time bonus: "
+                    + String.valueOf(mPointTracker.timeBonus));
+            // This method runs in the same thread as the UI.
         }
     };
     
