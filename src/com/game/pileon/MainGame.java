@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -38,6 +40,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
     private DragLayer mDragLayer; // The ViewGroup that supports drag-drop.
     private PointTracker mPointTracker;
     private TextView mPointView;
+    private TextView mTimeView;
     private boolean gameInProgress;
     private SavedGame savedGameState;
     private ArrayList<PileView> mPileViews;
@@ -47,6 +50,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
     private boolean displayIntroDialog = false;
     SharedPreferences mPrefs;
     final String introScreenShownPref = "introScreenShown";
+    private Timer myTimer;
     private static Context mContext;
     static Toast mToast;
     static boolean showToast = true;
@@ -75,9 +79,11 @@ public class MainGame extends Activity implements View.OnTouchListener {
             
             // must be run after setupViews has initialized the text view for
             // the point tracker
-            mPointTracker = new PointTracker(0);
-            mPointTracker.setPointView(mPointView);
+            mPointTracker = new PointTracker(0, GameEngine.STARTINGTIMEBONUS, GameEngine.STARTINGBONUSMULTIPLIER);
+            mPointTracker.setPointView(mPointView, mTimeView);
             mGameEngine.setPointTracker(mPointTracker);
+
+            intiateTimer();
             
         } else {
             // recreate game
@@ -89,9 +95,11 @@ public class MainGame extends Activity implements View.OnTouchListener {
                 mGameEngine = new GameEngine(savedGameState);
                 setupViews();
                 mPointTracker = savedGameState.savePointTracker;
-                mPointTracker.setPointView(mPointView);
+                mPointTracker.setPointView(mPointView, mTimeView);
             }
             Log.i("PO Save", "finished read");
+
+            intiateTimer();
         }
     }
     
@@ -240,6 +248,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
         }
         
         mPointView = (TextView) findViewById(R.id.pointTracker);
+        mTimeView = (TextView) findViewById(R.id.timeView);
     }
     
     @Override
@@ -268,6 +277,42 @@ public class MainGame extends Activity implements View.OnTouchListener {
     public static Context getAppContext() {
         return MainGame.mContext;
     }
+    
+    public void intiateTimer(){
+        
+        myTimer = new Timer();
+        myTimer.schedule(new TimerTask() {          
+            @Override
+            public void run() {
+                if(mPointTracker.timeBonus <= 1){
+                    myTimer.cancel();
+                }
+                TimerMethod();
+                
+            }
+            
+        }, 0, 20);
+    }
+    
+    private void TimerMethod()
+    {
+        //This method is called directly by the timer
+        //and runs in the same thread as the timer.
+        
+        //We call the method that will work with the UI
+        //through the runOnUiThread method.
+        this.runOnUiThread(Timer_Tick);
+    }
+    
+    
+    private Runnable Timer_Tick = new Runnable() {
+        public void run() {
+            mPointTracker.timeBonus--;
+            
+            mTimeView.setText("time bonus: " + String.valueOf(mPointTracker.timeBonus));
+            //This method runs in the same thread as the UI.               
+        }
+    };
     
     private void displayIntroScreen() {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);

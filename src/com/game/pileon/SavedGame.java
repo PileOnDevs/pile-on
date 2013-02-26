@@ -44,7 +44,7 @@ public class SavedGame {
         String savedGameString = "";
         savedGameString += "Piles: " + savePiles.toString() + " Hands: "
                 + saveHands.toString() + " Deck: " + saveDeck.toString()
-                + " Points: " + savePointTracker.toString();
+                + savePointTracker.toString();
         return savedGameString;
     }
     

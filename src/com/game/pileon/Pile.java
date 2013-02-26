@@ -95,7 +95,7 @@ public class Pile {
             return true;
         } else if (cardPlayed.equalColorTo(peek())) {
             Log.i("PO Drag", "card being dropped has same color");
-            return false;
+            return true;
         }
         Log.i("PO Drag", "move is not legal " + cardPlayed.toString());
         return false;

@@ -1,11 +1,14 @@
 package com.game.pileon;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.Gravity;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -25,11 +28,13 @@ public class GameEngine {
     private final static int NUMBEROFCARDSPERCOLOR = 10;
     private final static int NUMBEROFPILES = 3;
     private final static int NUMBEROFHANDS = 5;
+    public final static int STARTINGTIMEBONUS = 10000;
+    public final static int STARTINGBONUSMULTIPLIER = 1;
     
     public boolean isGameOver = false;
     
     private final static String CARDCOLORS[] = { "red", "green", "blue",
-            "yellow" };
+    "yellow" };
     
     private PointTracker mPointTracker;
     

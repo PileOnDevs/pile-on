@@ -77,22 +77,23 @@ public final class R {
         public static final int yellow9=0x7f020037;
     }
     public static final class id {
-        public static final int HandRow=0x7f0a000b;
-        public static final int PileRow=0x7f0a000a;
-        public static final int below_game=0x7f0a000c;
+        public static final int HandRow=0x7f0a000c;
+        public static final int PileRow=0x7f0a000b;
+        public static final int below_game=0x7f0a000d;
         public static final int button1=0x7f0a0001;
         public static final int button2=0x7f0a0004;
         public static final int button3=0x7f0a0005;
         public static final int button4=0x7f0a0003;
-        public static final int checkbox=0x7f0a000e;
+        public static final int checkbox=0x7f0a000f;
         public static final int drag_layer=0x7f0a0006;
         public static final int game_linear_layout=0x7f0a0007;
-        public static final int game_table_layout=0x7f0a0009;
+        public static final int game_table_layout=0x7f0a000a;
         public static final int horizontalLogo=0x7f0a0002;
-        public static final int introTextView=0x7f0a000d;
-        public static final int menu_settings=0x7f0a000f;
+        public static final int introTextView=0x7f0a000e;
+        public static final int menu_settings=0x7f0a0010;
         public static final int pointTracker=0x7f0a0008;
         public static final int textView1=0x7f0a0000;
+        public static final int timeView=0x7f0a0009;
     }
     public static final class integer {
         public static final int num_active_cells=0x7f070001;
