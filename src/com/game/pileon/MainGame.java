@@ -126,6 +126,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
         Intent intent = new Intent(MainGame.this, GameMenu.class);
         intent.putExtra("com.game.pileon.GameInProgress", true);
         mToast.cancel();
+        myTimer.cancel();
         showToast = false;
         startActivity(intent);
     }
@@ -279,7 +280,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
     }
     
     public void intiateTimer(){
-        
+        Log.i("PO Timer", "intiating timer");
         myTimer = new Timer();
         myTimer.schedule(new TimerTask() {          
             @Override

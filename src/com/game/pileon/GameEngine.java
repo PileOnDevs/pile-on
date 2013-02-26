@@ -50,11 +50,12 @@ public class GameEngine {
     
     public GameEngine(SavedGame savedGameState) {
         Deck = savedGameState.saveDeck;
+        Piles = new ArrayList<Pile>();
         
         for (int pileNdx = 0; pileNdx < NUMBEROFPILES; pileNdx++) {
             Piles.add(pileNdx, savedGameState.savePiles.get(pileNdx));
         }
-        
+        Hands = new ArrayList<Hand>();
         for (int handNdx = 0; handNdx < NUMBEROFHANDS; handNdx++) {
             Hands.add(handNdx, savedGameState.saveHands.get(handNdx));
             Hands.get(handNdx).setDeck(Deck);
