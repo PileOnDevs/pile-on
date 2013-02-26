@@ -68,4 +68,8 @@ public class PointTracker {
         updateDisplay();
     }
     
+    public int getFinalScore(){
+        updateDisplay();
+        return points + timeBonus;
+    }
 }

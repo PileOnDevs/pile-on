@@ -50,7 +50,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
     private boolean displayIntroDialog = false;
     SharedPreferences mPrefs;
     final String introScreenShownPref = "introScreenShown";
-    private Timer myTimer;
+    static Timer myTimer;
     private static Context mContext;
     static Toast mToast;
     static boolean showToast = true;
@@ -100,7 +100,8 @@ public class MainGame extends Activity implements View.OnTouchListener {
             }
             Log.i("PO Save", "finished read");
             
-            intiateTimer();
+            if(!mGameEngine.isGameOver())
+                intiateTimer();
         }
     }
     

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TableLayout
+        android:id="@+id/highscoreslist"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grid_background"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="0dip" >
+
+        <TableRow
+            android:id="@+id/listtitle"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="10dp" >
+
+            <TextView android:text="High Scores:" >
+            </TextView>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/score1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="-" >
+            </TextView>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/score2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="-" >
+            </TextView>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/score3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="-" >
+            </TextView>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/score4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="-" >
+            </TextView>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/score5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="-" >
+            </TextView>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/score6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="-" >
+            </TextView>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/score7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="-" >
+            </TextView>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/score8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="-" >
+            </TextView>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/score9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="-" >
+            </TextView>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/score10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="-" >
+            </TextView>
+        </TableRow>
+    </TableLayout>
+
+    <RelativeLayout
+        android:id="@+id/below_scores"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:onClick="backToMain"
+            android:text="@string/GameScreen_back_to_main" />
+    </RelativeLayout>
+
+</LinearLayout>

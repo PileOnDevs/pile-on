@@ -20,7 +20,7 @@ public class GameEngine {
     
     public Deck Deck;
     
-    private final static int NUMBEROFCOLORS = 4;
+    private final static int NUMBEROFCOLORS = 1;
     private final static int NUMBEROFCARDSPERCOLOR = 10;
     private final static int NUMBEROFPILES = 3;
     private final static int NUMBEROFHANDS = 5;
@@ -150,8 +150,14 @@ public class GameEngine {
     public boolean isGameOver() {
         if (Deck.isEmpty() || !moveAvailable()) {
             isGameOver = true;
+            MainGame.myTimer.cancel();
             
-            CharSequence text = "No more moves available";
+            CharSequence text = "";
+            if(Deck.isEmpty())
+                text = "You won!";
+            else if(!moveAvailable())
+                text = "No more moves available.";
+            text = text + " Final score: " + mPointTracker.getFinalScore();
             
             MainGame.mToast = Toast.makeText(MainGame.getAppContext(), text,
                     Toast.LENGTH_SHORT);
