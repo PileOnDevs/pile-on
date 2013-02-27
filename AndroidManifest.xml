@@ -30,6 +30,9 @@
         <activity
             android:name="AboutScreen"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="ScoreScreen"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

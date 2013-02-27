@@ -45,6 +45,12 @@ public class GameMenu extends Activity {
         startActivity(intent);
     }
     
+    public void scores(View view) {
+        Intent intent = new Intent(this, ScoreScreen.class);
+        intent.putExtra("com.game.pileon.GameInProgress", gameInProgress);
+        startActivity(intent);
+    }
+    
     public void launchGame(View view) {
         Intent intent = new Intent(this, MainGame.class);
         startActivity(intent);

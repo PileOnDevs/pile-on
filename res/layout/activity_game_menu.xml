@@ -59,6 +59,16 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/button2"
         android:layout_below="@+id/button2"
+        android:onClick="scores"
+        android:text="@string/GameMenu_score_button" />
+    
+    <Button
+        android:id="@+id/button5"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button3"
+        android:layout_below="@+id/button3"
         android:onClick="about"
         android:text="@string/GameMenu_about_button" />
 

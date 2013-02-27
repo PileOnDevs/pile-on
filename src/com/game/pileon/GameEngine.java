@@ -150,6 +150,7 @@ public class GameEngine {
     public boolean isGameOver() {
         if (Deck.isEmpty() || !moveAvailable()) {
             isGameOver = true;
+            Log.i("PO Game Over", "is game over?: " + Boolean.toString(isGameOver));
             MainGame.myTimer.cancel();
             
             CharSequence text = "";
@@ -163,9 +164,13 @@ public class GameEngine {
                     Toast.LENGTH_SHORT);
             MainGame.mToast.setGravity(Gravity.CENTER, 0, 0);
             makeLongToast();
+            
+            HighScore scoreboard = new HighScore(MainGame.getAppContext());
+            scoreboard.addScore(mPointTracker.getFinalScore());
+            Log.i("PO Game Over", "recorded score: " + mPointTracker.getFinalScore());
         }
         
-        Log.i("PO Game Over", "is game over?: " + Boolean.toString(isGameOver));
+        
         
         return isGameOver;
     }
