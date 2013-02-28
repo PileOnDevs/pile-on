@@ -20,23 +20,22 @@ public class GameEngine {
     
     public Deck Deck;
     
-    private final static int NUMBEROFCOLORS = 4;
-    private final static int NUMBEROFCARDSPERCOLOR = 10;
-    private final static int NUMBEROFPILES = 3;
-    private final static int NUMBEROFHANDS = 5;
+    public final static int NUMBEROFCOLORS = 4;
+    public final static int NUMBEROFCARDSPERCOLOR = 10;
+    public final static int NUMBEROFPILES = 3;
+    public final static int NUMBEROFHANDS = 5;
     public final static int STARTINGTIMEBONUS = 10000;
     public final static int STARTINGBONUSMULTIPLIER = 1;
+    public final static String CARDCOLORS[] = { "red", "green", "blue",
+            "yellow" };
     
     public boolean isGameOver = false;
     
-    private final static String CARDCOLORS[] = { "red", "green", "blue",
-            "yellow" };
-    
     private PointTracker mPointTracker;
+    private ArrayList<Pile> Piles;
+    private ArrayList<Hand> Hands;
     
-    public ArrayList<Pile> Piles;
-    public ArrayList<Hand> Hands;
-    
+    // default constructor in case of a new game
     public GameEngine() {
         createDeck();
         setupGame();
@@ -44,6 +43,7 @@ public class GameEngine {
         isGameOver = false;
     }
     
+    // constructor called if a game in progress is being continued
     public GameEngine(SavedGame savedGameState) {
         Deck = savedGameState.saveDeck;
         Piles = new ArrayList<Pile>();
@@ -63,38 +63,19 @@ public class GameEngine {
         isGameOver = false;
     }
     
-    public Deck createDeck() {
+    private Deck createDeck() {
         Deck = new Deck();
-        String cardID = "";
-        for (int colorNdx = 0; colorNdx < NUMBEROFCOLORS; colorNdx++) {
-            for (int cardNdx = 0; cardNdx < NUMBEROFCARDSPERCOLOR; cardNdx++) {
-                cardID = CARDCOLORS[colorNdx] + Integer.toString(cardNdx + 1);
-                DefaultGameCard cardToAdd = new DefaultGameCard(
-                        CARDCOLORS[colorNdx], cardNdx + 1, cardID);
-                Deck.AddCard(cardToAdd);
-                Log.i("PO CreateDeck", cardToAdd.toString());
-            }
-        }
-        
         Deck.Shuffle();
         return Deck;
     }
     
-    public void addPlaceholderCardsToDeck() {
+    private void addPlaceholderCardsToDeck() {
         for (int cardNdx = 0; cardNdx < NUMBEROFHANDS; cardNdx++) {
-            Deck.addToEnd(createPlaceholderCard());
+            Deck.addToEnd(new DefaultGameCard());
         }
-        
     }
     
-    public Card createPlaceholderCard() {
-        DefaultGameCard placeholder = new DefaultGameCard();
-        Log.i("PO CreateDeck",
-                "adding placeholder card: " + placeholder.toString());
-        return placeholder;
-    }
-    
-    public void createPiles() {
+    private void createPiles() {
         Piles = new ArrayList<Pile>();
         
         for (int pileNdx = 0; pileNdx < NUMBEROFPILES; pileNdx++) {
@@ -102,7 +83,7 @@ public class GameEngine {
         }
     }
     
-    public void createHands() {
+    private void createHands() {
         Hands = new ArrayList<Hand>();
         
         for (int handNdx = 0; handNdx < NUMBEROFHANDS; handNdx++) {
@@ -112,15 +93,13 @@ public class GameEngine {
         }
     }
     
-    public void setupGame() {
+    private void setupGame() {
         createPiles();
         createHands();
     }
     
     public Card dealTopCard() {
-        Card topCard = Deck.dealTopCard();
-        
-        return topCard;
+        return Deck.dealTopCard();
     }
     
     private boolean moveAvailable() {
@@ -138,7 +117,6 @@ public class GameEngine {
                             + " to hand: " + Hands.get(j));
                     moveAvailable = true;
                 }
-                
             }
         }
         Log.i("PO Game Over",
@@ -146,18 +124,23 @@ public class GameEngine {
         return moveAvailable;
     }
     
+    // horrifying method to take care of what happens when a game is over
     @SuppressLint("ShowToast")
     public boolean isGameOver() {
         if (Deck.isEmpty() || !moveAvailable()) {
             isGameOver = true;
-            Log.i("PO Game Over", "is game over?: " + Boolean.toString(isGameOver));
+            Log.i("PO Game Over",
+                    "is game over?: " + Boolean.toString(isGameOver));
+            // stop the time countdown
             MainGame.myTimer.cancel();
             
+            // create and show the toast
             CharSequence text = "";
-            if(Deck.isEmpty())
+            if (Deck.isEmpty()) {
                 text = "You won!";
-            else if(!moveAvailable())
+            } else if (!moveAvailable()) {
                 text = "No more moves available.";
+            }
             text = text + " Final score: " + mPointTracker.getFinalScore();
             
             MainGame.mToast = Toast.makeText(MainGame.getAppContext(), text,
@@ -165,9 +148,11 @@ public class GameEngine {
             MainGame.mToast.setGravity(Gravity.CENTER, 0, 0);
             makeLongToast();
             
+            // add the score to the high score list
             HighScore scoreboard = new HighScore(MainGame.getAppContext());
             scoreboard.addScore(mPointTracker.getFinalScore());
-            Log.i("PO Game Over", "recorded score: " + mPointTracker.getFinalScore());
+            Log.i("PO Game Over",
+                    "recorded score: " + mPointTracker.getFinalScore());
         }
         
         return isGameOver;
@@ -189,6 +174,8 @@ public class GameEngine {
         return Hands;
     }
     
+    // in order to keep the Toast on the screen for more than a few seconds,
+    // this hacky solution was implemented
     private void makeLongToast() {
         Thread t = new Thread() {
             @Override

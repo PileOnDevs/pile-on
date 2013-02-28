@@ -22,9 +22,19 @@ public class Deck {
     
     public Deck() {
         DeckOfCards = new LinkedList<Card>();
+        String cardID = "";
+        for (int colorNdx = 0; colorNdx < GameEngine.NUMBEROFCOLORS; colorNdx++) {
+            for (int cardNdx = 0; cardNdx < GameEngine.NUMBEROFCARDSPERCOLOR; cardNdx++) {
+                cardID = GameEngine.CARDCOLORS[colorNdx] + Integer.toString(cardNdx + 1);
+                DefaultGameCard cardToAdd = new DefaultGameCard(
+                        GameEngine.CARDCOLORS[colorNdx], cardNdx + 1, cardID);
+                addCard(cardToAdd);
+                Log.i("PO CreateDeck", cardToAdd.toString());
+            }
+        }
     }
     
-    public void AddCard(Card cardToAdd) {
+    public void addCard(Card cardToAdd) {
         if (DeckOfCards != null) {
             DeckOfCards.add(cardToAdd);
         }

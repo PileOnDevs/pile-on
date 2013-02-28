@@ -31,12 +31,10 @@ import android.widget.Toast;
 
 @TargetApi(11)
 public class MainGame extends Activity implements View.OnTouchListener {
-    private static int NUM_PILES = 3;
-    private static int NUM_HANDS = 5;
     private GameEngine mGameEngine;
     private DragController mDragController; // Object that sends out drag-drop
-                                            // events while a view is being
-                                            // moved.
+    // events while a view is being
+    // moved.
     private DragLayer mDragLayer; // The ViewGroup that supports drag-drop.
     private PointTracker mPointTracker;
     private TextView mPointView;
@@ -48,10 +46,10 @@ public class MainGame extends Activity implements View.OnTouchListener {
     private float mScaleFactor;
     private boolean scalingComplete = false;
     private boolean displayIntroDialog = false;
+    private static Context mContext;
     SharedPreferences mPrefs;
     final String introScreenShownPref = "introScreenShown";
     static Timer myTimer;
-    private static Context mContext;
     static Toast mToast;
     static boolean showToast = true;
     
@@ -74,6 +72,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
         mDragLayer.setDragController(mDragController);
         
         if (gameInProgress == false) {
+            // GameEngine must be created first before the views can be setup
             mGameEngine = new GameEngine();
             setupViews();
             
@@ -94,6 +93,8 @@ public class MainGame extends Activity implements View.OnTouchListener {
             readSaveData();
             
             if (savedGameState != null) {
+                // GameEngine must be created first before the views can be
+                // setup
                 mGameEngine = new GameEngine(savedGameState);
                 setupViews();
                 mPointTracker = savedGameState.savePointTracker;
@@ -101,8 +102,9 @@ public class MainGame extends Activity implements View.OnTouchListener {
             }
             Log.i("PO Save", "finished read");
             
-            if(!mGameEngine.isGameOver())
+            if (!mGameEngine.isGameOver()) {
                 intiateTimer();
+            }
         }
     }
     
@@ -214,31 +216,30 @@ public class MainGame extends Activity implements View.OnTouchListener {
         Log.i("PO Save", "onRestoreInstanceState");
     }
     
-    /**
-     * One-time setup of initial PileViews and HandViews. After this is done,
-     * the GameEngine will update the PileViews and HandViews with the
-     * underlying card(s) as the game progresses
-     */
+    // One-time setup of initial PileViews and HandViews. After this is done,
+    // the GameEngine will update the PileViews and HandViews with the
+    // underlying card(s) as the game progresses
     public void setupViews() {
-        // setup PileViews - three total
+        // setup PileViews and attach the GameEngine and underlying Pile object
         mPileViews = new ArrayList<PileView>();
         ArrayList<Pile> pileList = mGameEngine.getPileList();
         TableRow pileRow = (TableRow) findViewById(R.id.PileRow);
         
-        for (int pileCount = 0; pileCount < NUM_PILES; pileCount++) {
+        for (int pileCount = 0; pileCount < GameEngine.NUMBEROFPILES; pileCount++) {
             PileView pileView = new PileView(this, pileList.get(pileCount));
             pileView.setGameEngine(mGameEngine);
             mDragController.addDropTarget(pileView);
+            
             mPileViews.add(pileView);
             pileRow.addView(pileView, pileCount);
         }
         
-        // setup HandViews - five total
+        // setup HandViews and attach the underlying Hand object
         mHandViews = new ArrayList<HandView>();
         ArrayList<Hand> handList = mGameEngine.getHandList();
         TableRow handRow = (TableRow) findViewById(R.id.HandRow);
         
-        for (int handCount = 0; handCount < NUM_HANDS; handCount++) {
+        for (int handCount = 0; handCount < GameEngine.NUMBEROFHANDS; handCount++) {
             HandView handView = new HandView(this, handList.get(handCount));
             handView.setOnTouchListener(this);
             TableRow.LayoutParams hlp = new TableRow.LayoutParams(
@@ -247,7 +248,6 @@ public class MainGame extends Activity implements View.OnTouchListener {
             handView.setLayoutParams(hlp);
             
             mHandViews.add(handView);
-            
             handRow.addView(handView, handCount);
         }
         
@@ -255,6 +255,9 @@ public class MainGame extends Activity implements View.OnTouchListener {
         mTimeView = (TextView) findViewById(R.id.timeView);
     }
     
+    // as it turns out, this method is the last thing that gets called as the
+    // activity is created - this makes it the only spot to compute the scale
+    // factor and to display the intro dialog
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         if (!scalingComplete) // only do this once
@@ -267,10 +270,9 @@ public class MainGame extends Activity implements View.OnTouchListener {
         }
         super.onWindowFocusChanged(hasFocus);
         
-        // due to some strange behavior of the AlertDialog, this code is
-        // necessary
-        // to prevent the intro screen from being shown twice, even after the
-        // box is checked
+        // due to the behavior of the AlertDialog, this code is necessary to
+        // prevent the intro screen from being shown twice, even after the box
+        // is checked
         if (!displayIntroDialog) {
             displayIntroScreen();
             displayIntroDialog = true;
@@ -278,11 +280,13 @@ public class MainGame extends Activity implements View.OnTouchListener {
         
     }
     
+    // easy way of getting context wherever required in the activity
     public static Context getAppContext() {
         return MainGame.mContext;
     }
     
-    public void intiateTimer() {
+    // starts the timer for the bonus
+    private void intiateTimer() {
         Log.i("PO Timer", "intiating timer");
         myTimer = new Timer();
         myTimer.schedule(new TimerTask() {
@@ -300,9 +304,9 @@ public class MainGame extends Activity implements View.OnTouchListener {
     
     private void TimerMethod() {
         // This method is called directly by the timer
-        // and runs in the same thread as the timer.
+        // and runs in the same thread as the timer
         
-        // We call the method that will work with the UI
+        // call the method that will work with the UI
         // through the runOnUiThread method.
         this.runOnUiThread(Timer_Tick);
     }
@@ -317,6 +321,8 @@ public class MainGame extends Activity implements View.OnTouchListener {
         }
     };
     
+    // shows a dialog box with a checkbox to dismiss permanently and a short
+    // description of how to play the game
     private void displayIntroScreen() {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         Boolean introScreenShown = mPrefs.getBoolean(introScreenShownPref,
@@ -353,37 +359,31 @@ public class MainGame extends Activity implements View.OnTouchListener {
         }
     }
     
+    // scaling idea acquired from a white paper by an engineer at Vanteon
+    // http://vanteon.com/downloads/Scaling_Android_Apps_White_Paper.pdf
     private float getScaleFactor(View rootView, View container) {
         // Compute the scaling ratio. Note that there are all kinds of games you
-        // could
-        // play here - you could, for example, allow the aspect ratio to be
-        // distorted
-        // by a certain percentage, or you could scale to fill the *larger*
-        // dimension
-        // of the container view (useful if, for example, the container view can
-        // scroll).
+        // could play here - you could, for example, allow the aspect ratio to
+        // be distorted by a certain percentage, or you could scale to fill the
+        // *larger* dimension of the container view (useful if, for example, the
+        // container view can scroll).
         Log.i("POScale", "container width is: " + container.getWidth());
         Log.i("POScale", "rootview width is: " + rootView.getWidth());
         Log.i("POScale", "container height is: " + container.getHeight());
         Log.i("POScale", "rootview height is: " + rootView.getHeight());
         float xScale = (float) container.getWidth() / rootView.getWidth();
         float yScale = (float) container.getHeight() / rootView.getHeight();
-        // scale = Math.min(xScale, yScale);
-        float scale;
+        float scale = Math.max(xScale, yScale);
         
-        if (Float.compare(yScale, xScale) > 0) {
-            scale = yScale;
-        } else {
-            scale = xScale;
-        }
-        
+        // in order to keep the pile sizes from being ridiculous, set a ceiling
+        // on the scaling that will be done
         if (Float.compare(scale, (float) 1.75) > 0) {
             scale = (float) 1.75;
         }
         
         Log.i("POScale", "scale factor is: " + Float.toString(scale));
         
-        // Scale our contents
+        // Scale the contents
         return scale;
     }
     
@@ -417,6 +417,9 @@ public class MainGame extends Activity implements View.OnTouchListener {
             layoutParams.height *= scale;
         }
         
+        // unfortunately, due to the way ImageView LayoutParams work (or don't
+        // work), it was necessary to do these identical instanceof checks for
+        // HandView and PileView to keep Android happy
         if (root instanceof HandView) {
             HandView HandRoot = (HandView) root;
             Log.i("POScale", "scaling a Hand view: " + HandRoot.toString());
@@ -457,13 +460,11 @@ public class MainGame extends Activity implements View.OnTouchListener {
                 (int) (root.getPaddingBottom() * scale));
         
         // If the root view is a TextView, scale the size of its text. Note that
-        // this is not quite precise -
-        // it appears that text can't be exactly scaled to any desired size,
-        // presumably due to limitations
-        // of the font system. You may have to make your fonts a little bit
-        // smaller than you otherwise might
-        // in order to make sure that the text will always fit at any scaling
-        // factor.
+        // this is not quite precise - it appears that text can't be exactly
+        // scaled to any desired size, presumably due to limitations of the font
+        // system. You may have to make your fonts a little bit smaller than you
+        // otherwise might in order to make sure that the text will always fit
+        // at any scaling factor.
         if (root instanceof TextView) {
             TextView textView = (TextView) root;
             Log.d("POScale", "Scaling text size from " + textView.getTextSize()
@@ -479,8 +480,6 @@ public class MainGame extends Activity implements View.OnTouchListener {
             Log.i("POScale", "root is instanceof ViewGroup: " + root.toString());
             ViewGroup groupView = (ViewGroup) root;
             for (int cnt = 0; cnt < groupView.getChildCount(); ++cnt) {
-                // Log.i("POScale", "child of viewgroup: " + root.toString() +
-                // " is " + groupView.getChildAt(cnt).toString());
                 scaleViewAndChildren(groupView.getChildAt(cnt), scale);
             }
         }
