@@ -170,8 +170,6 @@ public class GameEngine {
             Log.i("PO Game Over", "recorded score: " + mPointTracker.getFinalScore());
         }
         
-        
-        
         return isGameOver;
     }
     

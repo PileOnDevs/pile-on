@@ -84,6 +84,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
             mPointTracker.setPointView(mPointView, mTimeView);
             mGameEngine.setPointTracker(mPointTracker);
             
+            showToast = true;
             intiateTimer();
             
         } else {

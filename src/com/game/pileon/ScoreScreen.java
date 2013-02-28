@@ -23,34 +23,31 @@ public class ScoreScreen extends Activity {
         gameInProgress = intent.getBooleanExtra(
                 "com.game.pileon.GameInProgress", false);
         
-
+        scores = new HighScore(this);
+        scoreList = new ArrayList<TextView>(10);
+        
         setupScoreList();
-        testScore();
         displayScores();
     }
     
-    private void testScore(){
-        for(int i = 0; i < 10; i++){
-            scoreList.get(i).setText(55555);
-        }
-        
-    }
-    
     private void setupScoreList(){
-        scoreList = new ArrayList<TextView>(10);
         
         for(int i = 0; i < 10; i++){
             String scoreID = "score" + (i+1);
+            Log.i("PO Scores", "scoreID: " + scoreID);
             int resID = getResources().getIdentifier(scoreID, "id", getPackageName());
             TextView scoreEntry = (TextView)findViewById(resID);
-            scoreList.set(i, scoreEntry);
+            scoreList.add(i, scoreEntry);
             Log.i("PO Scores", "added score view to list: " + scoreEntry.getText());
         }
     }
     
     private void displayScores(){
         for(int i = 0; i < 10; i++){
-            scoreList.get(i).setText(scores.getScore(i));
+            scores.addScore(i);
+            TextView scoreEntry = scoreList.get(i);
+            Log.i("PO Scores", "displaying score: " + scores.getScore(i));
+            scoreEntry.setText(String.valueOf(scores.getScore(i)));
         }
     }
     
