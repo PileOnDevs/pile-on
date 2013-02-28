@@ -106,12 +106,8 @@ public class PileView extends ImageView implements DropTarget {
         canvas.restore();
     }
     
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.game.pileon.DropTarget#onDrop(com.game.pileon.DragSource, int,
-     * int, int, int, com.game.pileon.DragView, java.lang.Object)
-     */
+
+    // see DropTarget for method descriptions for the onDrop/onDrag series
     public void onDrop(DragSource source, int x, int y, int xOffset,
             int yOffset, DragView dragView, Object dragInfo) {
         Assert.assertEquals(true,
@@ -131,12 +127,6 @@ public class PileView extends ImageView implements DropTarget {
         }
     }
     
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.game.pileon.DropTarget#onDragEnter(com.game.pileon.DragSource,
-     * int, int, int, int, com.game.pileon.DragView, java.lang.Object)
-     */
     public void onDragEnter(DragSource source, int x, int y, int xOffset,
             int yOffset, DragView dragView, Object dragInfo) {
         Card cardToBeDropped = getCardToBeDropped(dragInfo);
@@ -146,40 +136,20 @@ public class PileView extends ImageView implements DropTarget {
         if (checkIt) {
             updateDropGraphic();
         }
-        // TODO add in call to updateGraphic() with the cardID for the
-        // "can be dropped onto" graphical change
         Log.i("PO Drag", "Drag enters pileview's airspace");
     }
     
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.game.pileon.DropTarget#onDragOver(com.game.pileon.DragSource,
-     * int, int, int, int, com.game.pileon.DragView, java.lang.Object)
-     */
+
     public void onDragOver(DragSource source, int x, int y, int xOffset,
             int yOffset, DragView dragView, Object dragInfo) {
-        // Log.i("PO Drag", "Drag enters pileview's airspace");
     }
     
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.game.pileon.DropTarget#onDragExit(com.game.pileon.DragSource,
-     * int, int, int, int, com.game.pileon.DragView, java.lang.Object)
-     */
     public void onDragExit(DragSource source, int x, int y, int xOffset,
             int yOffset, DragView dragView, Object dragInfo) {
         updateGraphic();
         Log.i("PO Drag", "Drag exited");
     }
     
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.game.pileon.DropTarget#acceptDrop(com.game.pileon.DragSource,
-     * int, int, int, int, com.game.pileon.DragView, java.lang.Object)
-     */
     public boolean acceptDrop(DragSource source, int x, int y, int xOffset,
             int yOffset, DragView dragView, Object dragInfo) {
         Card cardToBeDropped = getCardToBeDropped(dragInfo);
@@ -190,14 +160,6 @@ public class PileView extends ImageView implements DropTarget {
         return checkIt;
     }
     
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.game.pileon.DropTarget#estimateDropLocation(com.game.pileon.DragSource
-     * , int, int, int, int, com.game.pileon.DragView, java.lang.Object,
-     * android.graphics.Rect)
-     */
     public Rect estimateDropLocation(DragSource source, int x, int y,
             int xOffset, int yOffset, DragView dragView, Object dragInfo,
             Rect recycle) {

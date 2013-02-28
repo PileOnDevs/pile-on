@@ -44,7 +44,7 @@ public class Deck {
         if (DeckOfCards.size() > 0) {
             return DeckOfCards.remove();
         } else {
-            return new DefaultGameCard(); // TODO add in a placeholder card type
+            return new DefaultGameCard();
         }
     }
     
@@ -52,11 +52,7 @@ public class Deck {
         return DeckOfCards.isEmpty();
     }
     
-    /**
-     * Shuffle
-     * 
-     * Shuffles the deck like a little kid would, very scientific
-     */
+    // shuffle deck using the Knuth shuffle
     public void Shuffle() {
         if ((DeckOfCards != null) && (DeckOfCards.size() > 0)) {
             Random randomGenerator = new Random();

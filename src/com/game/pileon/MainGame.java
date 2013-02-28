@@ -126,7 +126,6 @@ public class MainGame extends Activity implements View.OnTouchListener {
     }
     
     public void backToMain(View view) {
-        // TODO insert code to save the state of the game
         Log.i("PO Save", "backToMain");
         Intent intent = new Intent(MainGame.this, GameMenu.class);
         intent.putExtra("com.game.pileon.GameInProgress", true);
@@ -204,7 +203,6 @@ public class MainGame extends Activity implements View.OnTouchListener {
     
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        // run FIRST
         super.onSaveInstanceState(savedInstanceState);
         Log.i("PO Save", "onSaveInstanceState");
         
