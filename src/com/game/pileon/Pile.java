@@ -20,17 +20,15 @@ import android.util.Log;
 public class Pile {
     @ElementList(name = "PileStack")
     private Stack<Card> mPile;
-    
     private PointTracker mPointTracker;
     
     public Pile(Card card) {
         mPile = new Stack<Card>();
-        
-        mPile.push(card);
+        push(card);
     }
     
-    public Pile(@ElementList(name = "PileStack") Stack<Card> PileStack) {
-        mPile = PileStack;
+    public Pile(@ElementList(name = "PileStack") Stack<Card> pileStack) {
+        mPile = pileStack;
     }
     
     // Wrapper methods for the underlying stack, push and pop are private to

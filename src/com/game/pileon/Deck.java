@@ -18,10 +18,10 @@ import android.util.Log;
 public class Deck {
     
     @ElementList
-    private LinkedList<Card> DeckOfCards;
+    private LinkedList<Card> deckOfCards;
     
     public Deck() {
-        DeckOfCards = new LinkedList<Card>();
+        deckOfCards = new LinkedList<Card>();
         String cardID = "";
         for (int colorNdx = 0; colorNdx < GameEngine.NUMBEROFCOLORS; colorNdx++) {
             for (int cardNdx = 0; cardNdx < GameEngine.NUMBEROFCARDSPERCOLOR; cardNdx++) {
@@ -35,39 +35,39 @@ public class Deck {
     }
     
     public void addCard(Card cardToAdd) {
-        if (DeckOfCards != null) {
-            DeckOfCards.add(cardToAdd);
+        if (deckOfCards != null) {
+            deckOfCards.add(cardToAdd);
         }
     }
     
     public Card dealTopCard() {
-        if (DeckOfCards.size() > 0) {
-            return DeckOfCards.remove();
+        if (deckOfCards.size() > 0) {
+            return deckOfCards.remove();
         } else {
             return new DefaultGameCard();
         }
     }
     
     public boolean isEmpty() {
-        return DeckOfCards.isEmpty();
+        return deckOfCards.isEmpty();
     }
     
     // shuffle deck using the Knuth shuffle
     public void Shuffle() {
-        if ((DeckOfCards != null) && (DeckOfCards.size() > 0)) {
+        if ((deckOfCards != null) && (deckOfCards.size() > 0)) {
             Random randomGenerator = new Random();
             
-            int howManyTimesToShuffle = DeckOfCards.size();
-            int howManyCardsInDeck = DeckOfCards.size(); // save this now, it's
+            int howManyTimesToShuffle = deckOfCards.size();
+            int howManyCardsInDeck = deckOfCards.size(); // save this now, it's
             // not going to
             // change
             
             for (int shuffleCount = 0; shuffleCount < howManyCardsInDeck; shuffleCount++) {
                 int whichCardToMove = (randomGenerator
                         .nextInt(howManyTimesToShuffle));
-                DefaultGameCard tempCard = (DefaultGameCard) DeckOfCards
+                DefaultGameCard tempCard = (DefaultGameCard) deckOfCards
                         .remove(whichCardToMove);
-                DeckOfCards.addLast(tempCard);
+                deckOfCards.addLast(tempCard);
                 Log.i("PO Shuffle", tempCard.toString());
                 howManyTimesToShuffle--;
             }
@@ -76,17 +76,14 @@ public class Deck {
     }
     
     public void addToEnd(Card card) {
-        DeckOfCards.addLast(card);
+        deckOfCards.addLast(card);
     }
     
     @Override
     public String toString() {
-        Iterator<Card> ListIter = DeckOfCards.iterator();
         String deckString = new String();
-        while (ListIter.hasNext()) {
-            deckString = deckString + " " + ListIter.next().toString();
-            
-        }
+        for(Card c : deckOfCards)
+            deckString = deckString + " " + c.toString();
         return deckString;
     }
     

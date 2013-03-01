@@ -224,8 +224,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
         TableRow pileRow = (TableRow) findViewById(R.id.PileRow);
         
         for (int pileCount = 0; pileCount < GameEngine.NUMBEROFPILES; pileCount++) {
-            PileView pileView = new PileView(this, pileList.get(pileCount));
-            pileView.setGameEngine(mGameEngine);
+            PileView pileView = new PileView(this, pileList.get(pileCount), mGameEngine);
             mDragController.addDropTarget(pileView);
             
             mPileViews.add(pileView);

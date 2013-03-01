@@ -12,43 +12,32 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ImageView;
 
-/**
- * @author breeze4
- * 
- */
 public class PileView extends ImageView implements DropTarget {
     private Context mContext;
     private Drawable mCardGraphic;
     private Pile mPile;
     private GameEngine mGameEngine;
     
-    /**
-     * @param context
-     */
-    public PileView(Context context, Pile pile) {
-        this(context, null, 0, pile);
-        // default constructor, not used
+    // default constructor, not used
+    public PileView(Context context, Pile pile, GameEngine gameEngine) {
+        this(context, null, 0, pile, gameEngine);
+        
     }
     
-    /**
-     * @param context
-     * @param attrs
-     */
-    public PileView(Context context, AttributeSet attrs, Pile pile) {
-        this(context, attrs, 0, pile);
-        // default constructor, not used
+    // default constructor, not used
+    public PileView(Context context, AttributeSet attrs, Pile pile,
+            GameEngine gameEngine) {
+        this(context, attrs, 0, pile, gameEngine);
     }
     
-    /**
-     * @param context
-     * @param attrs
-     * @param defStyle
-     */
-    public PileView(Context context, AttributeSet attrs, int defStyle, Pile pile) {
+    // constructor used in the game, requires the underlying Pile to be passed
+    // in
+    public PileView(Context context, AttributeSet attrs, int defStyle,
+            Pile pile, GameEngine gameEngine) {
         super(context, attrs, defStyle);
         mContext = context;
-        
-        setPile(pile);
+        mGameEngine = gameEngine;
+        mPile = pile;
         updateGraphic();
         
         Log.i("PO CreateDeck", "pile LayoutParams width: "
@@ -56,18 +45,20 @@ public class PileView extends ImageView implements DropTarget {
                 + getDrawable().getIntrinsicHeight());
     }
     
-    public void updateGraphic() {
+    private void updateGraphic() {
         updateGraphic(mPile.peek().getCardID());
     }
     
-    public void updateGraphic(String cardID) {
+    // general method to get the underlying card for the pile and show it
+    private void updateGraphic(String cardID) {
         int pileImageResource = getDrawable(mContext, cardID);
         setImageResource(pileImageResource);
         mCardGraphic = mContext.getResources().getDrawable(pileImageResource);
         invalidate();
     }
     
-    public void updateDropGraphic() {
+    // this shows the graphic when you drag over a droppable card
+    private void updateDropGraphic() {
         int pileImageResource = getDrawable(mContext, "grey"
                 + mPile.peek().getValue());
         setImageResource(pileImageResource);
@@ -75,7 +66,7 @@ public class PileView extends ImageView implements DropTarget {
         invalidate();
     }
     
-    public int getDrawable(Context context, String name) {
+    private int getDrawable(Context context, String name) {
         Assert.assertNotNull(context);
         Assert.assertNotNull(name);
         
@@ -83,14 +74,14 @@ public class PileView extends ImageView implements DropTarget {
                 context.getPackageName());
     }
     
-    public Card getCardToBeDropped(Object dragObject) {
+    private Card getCardToBeDropped(Object dragObject) {
         HandView handView = (HandView) dragObject;
         Hand hand = handView.mHand;
         DefaultGameCard cardToBeDropped = (DefaultGameCard) hand.mCard;
         return cardToBeDropped;
     }
     
-    public void tellHandToPlayCard(Object dragObject) {
+    private void tellHandToPlayCard(Object dragObject) {
         HandView handView = (HandView) dragObject;
         Hand hand = handView.mHand;
         if (hand.playCard() != null) {
@@ -106,7 +97,6 @@ public class PileView extends ImageView implements DropTarget {
         canvas.restore();
     }
     
-
     // see DropTarget for method descriptions for the onDrop/onDrag series
     public void onDrop(DragSource source, int x, int y, int xOffset,
             int yOffset, DragView dragView, Object dragInfo) {
@@ -139,7 +129,6 @@ public class PileView extends ImageView implements DropTarget {
         Log.i("PO Drag", "Drag enters pileview's airspace");
     }
     
-
     public void onDragOver(DragSource source, int x, int y, int xOffset,
             int yOffset, DragView dragView, Object dragInfo) {
     }
@@ -164,14 +153,6 @@ public class PileView extends ImageView implements DropTarget {
             int xOffset, int yOffset, DragView dragView, Object dragInfo,
             Rect recycle) {
         return null;
-    }
-    
-    public void setPile(Pile pile) {
-        mPile = pile;
-    }
-    
-    public void setGameEngine(GameEngine gameEngine) {
-        mGameEngine = gameEngine;
     }
     
     @Override

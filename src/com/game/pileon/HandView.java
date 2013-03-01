@@ -46,8 +46,7 @@ public class HandView extends ImageView {
     public HandView(Context context, AttributeSet attrs, int defStyle, Hand hand) {
         super(context, attrs, defStyle);
         mContext = context;
-        
-        setHand(hand);
+        mHand = hand;
         updateGraphic();
         
         Log.i("PO CreateDeck", "hand LayoutParams width: "
@@ -55,27 +54,23 @@ public class HandView extends ImageView {
                 + getDrawable().getIntrinsicHeight());
     }
     
-    public void updateGraphic() {
+    private void updateGraphic() {
         updateGraphic(mHand.mCard.getCardID());
     }
     
-    public void updateGraphic(String cardID) {
+    private void updateGraphic(String cardID) {
         int handImageResource = getDrawable(mContext, cardID);
         setImageResource(handImageResource);
         mCardGraphic = mContext.getResources().getDrawable(handImageResource);
         invalidate();
     }
     
-    public int getDrawable(Context context, String name) {
+    private int getDrawable(Context context, String name) {
         Assert.assertNotNull(context);
         Assert.assertNotNull(name);
         
         return context.getResources().getIdentifier(name, "drawable",
                 context.getPackageName());
-    }
-    
-    public void setHand(Hand hand) {
-        mHand = hand;
     }
     
     public boolean isPlaceholder() {
