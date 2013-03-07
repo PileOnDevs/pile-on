@@ -1,2 +1,8 @@
 # Compiled source #
 ###################
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
