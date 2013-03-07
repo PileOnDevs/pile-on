@@ -17,6 +17,7 @@ public final class R {
         public static final int padding_large=0x7f050002;
         public static final int padding_medium=0x7f050001;
         public static final int padding_small=0x7f050000;
+        public static final int padding_xlarge=0x7f050003;
     }
     public static final class drawable {
         public static final int blank=0x7f020000;
@@ -77,37 +78,39 @@ public final class R {
         public static final int yellow9=0x7f020037;
     }
     public static final class id {
-        public static final int HandRow=0x7f0a000d;
-        public static final int PileRow=0x7f0a000c;
-        public static final int below_game=0x7f0a000e;
-        public static final int below_scores=0x7f0a001b;
-        public static final int button1=0x7f0a0001;
-        public static final int button2=0x7f0a0004;
-        public static final int button3=0x7f0a0005;
-        public static final int button4=0x7f0a0003;
-        public static final int button5=0x7f0a0006;
-        public static final int checkbox=0x7f0a001d;
-        public static final int drag_layer=0x7f0a0007;
-        public static final int game_linear_layout=0x7f0a0008;
-        public static final int game_table_layout=0x7f0a000b;
-        public static final int highscoreslist=0x7f0a000f;
-        public static final int horizontalLogo=0x7f0a0002;
-        public static final int introTextView=0x7f0a001c;
-        public static final int listtitle=0x7f0a0010;
-        public static final int menu_settings=0x7f0a001e;
-        public static final int pointTracker=0x7f0a0009;
-        public static final int score1=0x7f0a0011;
-        public static final int score10=0x7f0a001a;
-        public static final int score2=0x7f0a0012;
-        public static final int score3=0x7f0a0013;
-        public static final int score4=0x7f0a0014;
-        public static final int score5=0x7f0a0015;
-        public static final int score6=0x7f0a0016;
-        public static final int score7=0x7f0a0017;
-        public static final int score8=0x7f0a0018;
-        public static final int score9=0x7f0a0019;
-        public static final int textView1=0x7f0a0000;
-        public static final int timeView=0x7f0a000a;
+        public static final int HandRow=0x7f0a000e;
+        public static final int PileRow=0x7f0a000d;
+        public static final int aboutLink=0x7f0a0001;
+        public static final int aboutText=0x7f0a0000;
+        public static final int below_game=0x7f0a000f;
+        public static final int below_scores=0x7f0a001d;
+        public static final int button1=0x7f0a0002;
+        public static final int button2=0x7f0a0005;
+        public static final int button3=0x7f0a0006;
+        public static final int button4=0x7f0a0004;
+        public static final int button5=0x7f0a0007;
+        public static final int checkbox=0x7f0a001f;
+        public static final int drag_layer=0x7f0a0008;
+        public static final int game_linear_layout=0x7f0a0009;
+        public static final int game_table_layout=0x7f0a000c;
+        public static final int highscoreslist=0x7f0a0011;
+        public static final int horizontalLogo=0x7f0a0003;
+        public static final int introTextView=0x7f0a001e;
+        public static final int listtitle=0x7f0a0012;
+        public static final int menu_settings=0x7f0a0020;
+        public static final int pointTracker=0x7f0a000a;
+        public static final int score1=0x7f0a0013;
+        public static final int score10=0x7f0a001c;
+        public static final int score2=0x7f0a0014;
+        public static final int score3=0x7f0a0015;
+        public static final int score4=0x7f0a0016;
+        public static final int score5=0x7f0a0017;
+        public static final int score6=0x7f0a0018;
+        public static final int score7=0x7f0a0019;
+        public static final int score8=0x7f0a001a;
+        public static final int score9=0x7f0a001b;
+        public static final int textView1=0x7f0a0010;
+        public static final int timeView=0x7f0a000b;
     }
     public static final class integer {
         public static final int num_active_cells=0x7f070001;
@@ -127,10 +130,10 @@ public final class R {
         public static final int activity_game_menu=0x7f090000;
     }
     public static final class string {
-        public static final int AboutScreen_about_game=0x7f06000d;
+        public static final int AboutScreen_about_game=0x7f06000c;
         /**  AboutScreen activity 
          */
-        public static final int AboutScreen_back_to_main=0x7f06000c;
+        public static final int AboutScreen_back_to_main=0x7f06000b;
         public static final int GameMenu_about_button=0x7f060006;
         /**  string naming convention: "activityname_stringlabel" 
  GameMenu activity 
@@ -139,26 +142,25 @@ public final class R {
         public static final int GameMenu_continue_game_button=0x7f060004;
         public static final int GameMenu_help_button=0x7f060005;
         public static final int GameMenu_label_text=0x7f060002;
-        public static final int GameMenu_logoDescription=0x7f060008;
         public static final int GameMenu_menu_settings=0x7f060001;
         public static final int GameMenu_new_game_button=0x7f060003;
         public static final int GameMenu_score_button=0x7f060007;
-        public static final int GameScreen_back_to_main=0x7f060011;
+        public static final int GameScreen_back_to_main=0x7f060010;
         /**  GameScreen activity 
          */
-        public static final int GameScreen_filler=0x7f060010;
+        public static final int GameScreen_filler=0x7f06000f;
         /**  HelpScreen activity 
          */
-        public static final int HelpScreen_back_to_main=0x7f06000e;
-        public static final int HelpScreen_game_rules=0x7f06000f;
+        public static final int HelpScreen_back_to_main=0x7f06000d;
+        public static final int HelpScreen_game_rules=0x7f06000e;
         /**  GameScreen placeholders 
          */
-        public static final int deckrow=0x7f060012;
-        public static final int dontshow=0x7f06000b;
-        public static final int handrow=0x7f060014;
-        public static final int introTextBody=0x7f060009;
-        public static final int ok=0x7f06000a;
-        public static final int pilerow=0x7f060013;
+        public static final int deckrow=0x7f060011;
+        public static final int dontshow=0x7f06000a;
+        public static final int handrow=0x7f060013;
+        public static final int introTextBody=0x7f060008;
+        public static final int ok=0x7f060009;
+        public static final int pilerow=0x7f060012;
     }
     public static final class style {
         public static final int AppTheme=0x7f080000;

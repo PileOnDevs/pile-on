@@ -54,7 +54,7 @@ public class HandView extends ImageView {
                 + getDrawable().getIntrinsicHeight());
     }
     
-    private void updateGraphic() {
+    public void updateGraphic() {
         updateGraphic(mHand.mCard.getCardID());
     }
     
