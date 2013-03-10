@@ -55,7 +55,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.i("PO Save", "onCreate");
+        // Log.i("PO Save", "onCreate");
         super.onCreate(savedInstanceState);
         MainGame.mContext = getApplicationContext();
         setContentView(R.layout.activity_game_screen);
@@ -89,7 +89,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
         } else {
             // recreate game
             // writing and reading
-            Log.i("PO Save", "continuing game");
+            // Log.i("PO Save", "continuing game");
             readSaveData();
             
             if (savedGameState != null) {
@@ -100,7 +100,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
                 mPointTracker = savedGameState.savePointTracker;
                 mPointTracker.setPointView(mPointView, mTimeView);
             }
-            Log.i("PO Save", "finished read");
+            // Log.i("PO Save", "finished read");
             
             if (!mGameEngine.isGameOver()) {
                 intiateTimer();
@@ -113,20 +113,20 @@ public class MainGame extends Activity implements View.OnTouchListener {
         savedGameState = new SavedGame(mGameEngine.getPileList(),
                 mGameEngine.getHandList(), mGameEngine.Deck, mPointTracker);
         writeSaveData();
-        Log.i("PO Save", "finished write");
+        // Log.i("PO Save", "finished write");
         super.onPause();
-        Log.i("PO Save", "onPause");
+        // Log.i("PO Save", "onPause");
     }
     
     @Override
     public void onResume() {
         super.onResume();
-        Log.i("PO Save", "onResume");
+        // Log.i("PO Save", "onResume");
         
     }
     
     public void backToMain(View view) {
-        Log.i("PO Save", "backToMain");
+        //// Log.i("PO Save", "backToMain");
         Intent intent = new Intent(MainGame.this, GameMenu.class);
         intent.putExtra("com.game.pileon.GameInProgress", true);
         mToast.cancel();
@@ -190,7 +190,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
         // I use the dragInfo to pass along the object being dragged.
         // I'm not sure how the Launcher designers do this.
         Object dragInfo = v;
-        Log.i("PO Drag", "startDrag in MainGame runs");
+        // Log.i("PO Drag", "startDrag in MainGame runs");
         mDragController.startDrag(v, mDragLayer, dragInfo,
                 DragController.DRAG_ACTION_MOVE);
         return true;
@@ -204,14 +204,14 @@ public class MainGame extends Activity implements View.OnTouchListener {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        Log.i("PO Save", "onSaveInstanceState");
+        // Log.i("PO Save", "onSaveInstanceState");
         
     }
     
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        Log.i("PO Save", "onRestoreInstanceState");
+        // Log.i("PO Save", "onRestoreInstanceState");
     }
     
     // One-time setup of initial PileViews and HandViews. After this is done,
@@ -284,7 +284,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
     
     // starts the timer for the bonus
     private void intiateTimer() {
-        Log.i("PO Timer", "intiating timer");
+        // Log.i("PO Timer", "intiating timer");
         myTimer = new Timer();
         myTimer.schedule(new TimerTask() {
             @Override
@@ -326,32 +326,32 @@ public class MainGame extends Activity implements View.OnTouchListener {
                 false);
         
         if (!introScreenShown) { // should be !introScreenShown
-            Log.i("PO Dialog", "enters dialog stuff: " + introScreenShown);
+            // Log.i("PO Dialog", "enters dialog stuff: " + introScreenShown);
             final View introText = View.inflate(this, R.layout.introtext, null);
             
             new AlertDialog.Builder(this)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setView(introText)
-                    .setCancelable(false)
-                    .setPositiveButton(R.string.ok,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                        int which) {
-                                    dialog.dismiss();
-                                    CheckBox dontShowAgain = (CheckBox) introText
-                                            .findViewById(R.id.checkbox);
-                                    if (dontShowAgain.isChecked()) {
-                                        SharedPreferences.Editor editor = mPrefs
-                                                .edit();
-                                        editor.putBoolean(introScreenShownPref,
-                                                true);
-                                        editor.commit();
-                                        Log.i("PO Dialog", "saved preference");
-                                    }
-                                }
-                            }).show();
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .setView(introText)
+            .setCancelable(false)
+            .setPositiveButton(R.string.ok,
+                    new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog,
+                        int which) {
+                    dialog.dismiss();
+                    CheckBox dontShowAgain = (CheckBox) introText
+                            .findViewById(R.id.checkbox);
+                    if (dontShowAgain.isChecked()) {
+                        SharedPreferences.Editor editor = mPrefs
+                                .edit();
+                        editor.putBoolean(introScreenShownPref,
+                                true);
+                        editor.commit();
+                        //// Log.i("PO Dialog", "saved preference");
+                    }
+                }
+            }).show();
             introScreenShown = mPrefs.getBoolean(introScreenShownPref, false);
-            Log.i("PO Dialog", "exiting dialog stuff: " + introScreenShown);
+            //// Log.i("PO Dialog", "exiting dialog stuff: " + introScreenShown);
             
         }
     }
@@ -364,10 +364,10 @@ public class MainGame extends Activity implements View.OnTouchListener {
         // be distorted by a certain percentage, or you could scale to fill the
         // *larger* dimension of the container view (useful if, for example, the
         // container view can scroll).
-        Log.i("POScale", "container width is: " + container.getWidth());
-        Log.i("POScale", "rootview width is: " + rootView.getWidth());
-        Log.i("POScale", "container height is: " + container.getHeight());
-        Log.i("POScale", "rootview height is: " + rootView.getHeight());
+        //        // Log.i("POScale", "container width is: " + container.getWidth());
+        //        // Log.i("POScale", "rootview width is: " + rootView.getWidth());
+        //        // Log.i("POScale", "container height is: " + container.getHeight());
+        //        // Log.i("POScale", "rootview height is: " + rootView.getHeight());
         float xScale = (float) container.getWidth() / rootView.getWidth();
         float yScale = (float) container.getHeight() / rootView.getHeight();
         float scale = Math.max(xScale, yScale);
@@ -378,7 +378,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
             scale = (float) 1.75;
         }
         
-        Log.i("POScale", "scale factor is: " + Float.toString(scale));
+        // Log.i("POScale", "scale factor is: " + Float.toString(scale));
         
         // Scale the contents
         return scale;
@@ -395,22 +395,22 @@ public class MainGame extends Activity implements View.OnTouchListener {
      */
     public void scaleViewAndChildren(View root, float scale) {
         // Retrieve the view's layout information
-        Log.i("POScale", "seeing about scaling view: " + root.toString());
+        // Log.i("POScale", "seeing about scaling view: " + root.toString());
         ViewGroup.LayoutParams layoutParams = root.getLayoutParams();
         
         // Scale the view itself
         if ((layoutParams.width != ViewGroup.LayoutParams.MATCH_PARENT)
                 && (layoutParams.width != ViewGroup.LayoutParams.WRAP_CONTENT)) {
-            Log.i("POScale", "scaling view: " + root.toString()
-                    + " old width: " + layoutParams.width + " new width: "
-                    + (layoutParams.width * scale));
+            // Log.i("POScale", "scaling view: " + root.toString()
+            //        + " old width: " + layoutParams.width + " new width: "
+            //        + (layoutParams.width * scale));
             layoutParams.width *= scale;
         }
         if ((layoutParams.height != ViewGroup.LayoutParams.MATCH_PARENT)
                 && (layoutParams.height != ViewGroup.LayoutParams.WRAP_CONTENT)) {
-            Log.i("POScale", "scaling view: " + root.toString()
-                    + " old height: " + layoutParams.height + " new height: "
-                    + (layoutParams.height * scale));
+            // Log.i("POScale", "scaling view: " + root.toString()
+            //        + " old height: " + layoutParams.height + " new height: "
+            //        + (layoutParams.height * scale));
             layoutParams.height *= scale;
         }
         
@@ -419,7 +419,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
         // HandView and PileView to keep Android happy
         if (root instanceof HandView) {
             HandView HandRoot = (HandView) root;
-            Log.i("POScale", "scaling a Hand view: " + HandRoot.toString());
+            // Log.i("POScale", "scaling a Hand view: " + HandRoot.toString());
             int width = (int) (HandRoot.getDrawable().getIntrinsicWidth() * scale);
             int height = (int) (HandRoot.getDrawable().getIntrinsicHeight() * scale);
             TableRow.LayoutParams handLayoutParams = new TableRow.LayoutParams(
@@ -429,7 +429,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
         }
         if (root instanceof PileView) {
             PileView pileRoot = (PileView) root;
-            Log.i("POScale", "scaling a Pile view: " + pileRoot.toString());
+            // Log.i("POScale", "scaling a Pile view: " + pileRoot.toString());
             int width = (int) (pileRoot.getDrawable().getIntrinsicWidth() * scale);
             int height = (int) (pileRoot.getDrawable().getIntrinsicHeight() * scale);
             TableRow.LayoutParams pileLayoutParams = new TableRow.LayoutParams(
@@ -464,8 +464,8 @@ public class MainGame extends Activity implements View.OnTouchListener {
         // at any scaling factor.
         if (root instanceof TextView) {
             TextView textView = (TextView) root;
-            Log.d("POScale", "Scaling text size from " + textView.getTextSize()
-                    + " to " + (textView.getTextSize() * scale));
+            // Log.d("POScale", "Scaling text size from " + textView.getTextSize()
+            //         + " to " + (textView.getTextSize() * scale));
             textView.setTextSize(textView.getTextSize() * scale);
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(textView.getWindowToken(), 0);
@@ -474,7 +474,7 @@ public class MainGame extends Activity implements View.OnTouchListener {
         // If the root view is a ViewGroup, scale all of its children
         // recursively
         if (root instanceof ViewGroup) {
-            Log.i("POScale", "root is instanceof ViewGroup: " + root.toString());
+            // Log.i("POScale", "root is instanceof ViewGroup: " + root.toString());
             ViewGroup groupView = (ViewGroup) root;
             for (int cnt = 0; cnt < groupView.getChildCount(); ++cnt) {
                 scaleViewAndChildren(groupView.getChildAt(cnt), scale);

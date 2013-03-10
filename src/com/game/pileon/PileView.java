@@ -40,9 +40,9 @@ public class PileView extends ImageView implements DropTarget {
         mPile = pile;
         updateGraphic();
         
-        Log.i("PO CreateDeck", "pile LayoutParams width: "
-                + getDrawable().getIntrinsicWidth() + " height: "
-                + getDrawable().getIntrinsicHeight());
+        // Log.i("PO CreateDeck", "pile LayoutParams width: "
+        //        + getDrawable().getIntrinsicWidth() + " height: "
+        //        + getDrawable().getIntrinsicHeight());
     }
     
     private void updateGraphic() {
@@ -108,12 +108,12 @@ public class PileView extends ImageView implements DropTarget {
         
         if (dropSuccess) {
             updateGraphic(mPile.peek().getCardID());
-            Log.i("PO Drag", "invalidate graphic and redraw");
+            // Log.i("PO Drag", "invalidate graphic and redraw");
             tellHandToPlayCard(dragInfo);
             mGameEngine.isGameOver();
         } else {
             updateGraphic(mPile.peek().getCardID());
-            Log.i("PO Game", "this game is OVER (or the drop failed somehow)");
+            // Log.i("PO Game", "this game is OVER (or the drop failed somehow)");
         }
     }
     
@@ -121,12 +121,12 @@ public class PileView extends ImageView implements DropTarget {
             int yOffset, DragView dragView, Object dragInfo) {
         Card cardToBeDropped = getCardToBeDropped(dragInfo);
         Boolean checkIt = mPile.isMoveLegal(cardToBeDropped);
-        Log.i("PO Drag", "onDragEnter is move legal? " + checkIt.toString());
+        // Log.i("PO Drag", "onDragEnter is move legal? " + checkIt.toString());
         
         if (checkIt) {
             updateDropGraphic();
         }
-        Log.i("PO Drag", "Drag enters pileview's airspace");
+        // Log.i("PO Drag", "Drag enters pileview's airspace");
     }
     
     public void onDragOver(DragSource source, int x, int y, int xOffset,
@@ -136,16 +136,16 @@ public class PileView extends ImageView implements DropTarget {
     public void onDragExit(DragSource source, int x, int y, int xOffset,
             int yOffset, DragView dragView, Object dragInfo) {
         updateGraphic();
-        Log.i("PO Drag", "Drag exited");
+        // Log.i("PO Drag", "Drag exited");
     }
     
     public boolean acceptDrop(DragSource source, int x, int y, int xOffset,
             int yOffset, DragView dragView, Object dragInfo) {
         Card cardToBeDropped = getCardToBeDropped(dragInfo);
-        Log.i("PO Drag", "card being dropped " + cardToBeDropped.toString());
-        Log.i("PO Drag", "card being dropped onto " + mPile.peek().toString());
+        // Log.i("PO Drag", "card being dropped " + cardToBeDropped.toString());
+        // Log.i("PO Drag", "card being dropped onto " + mPile.peek().toString());
         Boolean checkIt = mPile.isMoveLegal(cardToBeDropped);
-        Log.i("PO Drag", "is move legal? " + checkIt.toString());
+        // Log.i("PO Drag", "is move legal? " + checkIt.toString());
         return checkIt;
     }
     

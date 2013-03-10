@@ -49,9 +49,9 @@ public class HandView extends ImageView {
         mHand = hand;
         updateGraphic();
         
-        Log.i("PO CreateDeck", "hand LayoutParams width: "
-                + getDrawable().getIntrinsicWidth() + " height: "
-                + getDrawable().getIntrinsicHeight());
+        // Log.i("PO CreateDeck", "hand LayoutParams width: "
+        //        + getDrawable().getIntrinsicWidth() + " height: "
+        //        + getDrawable().getIntrinsicHeight());
     }
     
     public void updateGraphic() {

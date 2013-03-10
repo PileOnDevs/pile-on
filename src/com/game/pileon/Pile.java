@@ -86,16 +86,16 @@ public class Pile {
      */
     public boolean isMoveLegal(Card cardPlayed) {
         if (cardPlayed == null) {
-            Log.i("PO Drag", "card being dropped is null");
+            // Log.i("PO Drag", "card being dropped is null");
             return false;
         } else if (cardPlayed.equalValueTo(peek())) {
-            Log.i("PO Drag", "card being dropped has same value");
+            // Log.i("PO Drag", "card being dropped has same value");
             return true;
         } else if (cardPlayed.equalColorTo(peek())) {
-            Log.i("PO Drag", "card being dropped has same color");
+            // Log.i("PO Drag", "card being dropped has same color");
             return true;
         }
-        Log.i("PO Drag", "move is not legal " + cardPlayed.toString());
+        // Log.i("PO Drag", "move is not legal " + cardPlayed.toString());
         return false;
     }
     

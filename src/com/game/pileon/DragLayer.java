@@ -106,7 +106,7 @@ public class DragLayer extends TableLayout implements DragSource {
     
     public void onDropCompleted(View target, boolean success) {
         
-        Log.i("PO Drop", "DragLayer: Drop operation completed");
+        // Log.i("PO Drop", "DragLayer: Drop operation completed");
     }
     
 } // end class

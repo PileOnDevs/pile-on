@@ -45,7 +45,7 @@ public class Hand {
     public Card playCard() {
         Card oldCard = mCard;
         getCardFromDeck();
-        // //Log.i("PO Hand", "oldCard: " + oldCard.toString() + " newCard: "
+        // Log.i("PO Hand", "oldCard: " + oldCard.toString() + " newCard: "
         // + newCard.toString());
         return oldCard; // TODO this returns the old card, but not used right
                         // now

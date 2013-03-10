@@ -34,11 +34,11 @@ public class ScoreScreen extends Activity {
         
         for(int i = 0; i < 10; i++){
             String scoreID = "score" + (i+1);
-            Log.i("PO Scores", "scoreID: " + scoreID);
+            // Log.i("PO Scores", "scoreID: " + scoreID);
             int resID = getResources().getIdentifier(scoreID, "id", getPackageName());
             TextView scoreEntry = (TextView)findViewById(resID);
             scoreList.add(i, scoreEntry);
-            Log.i("PO Scores", "added score view to list: " + scoreEntry.getText());
+            // Log.i("PO Scores", "added score view to list: " + scoreEntry.getText());
         }
     }
     
@@ -46,7 +46,7 @@ public class ScoreScreen extends Activity {
         for(int i = 0; i < 10; i++){
             scores.addScore(i);
             TextView scoreEntry = scoreList.get(i);
-            Log.i("PO Scores", "displaying score: " + scores.getScore(i));
+            // Log.i("PO Scores", "displaying score: " + scores.getScore(i));
             scoreEntry.setText(String.valueOf(scores.getScore(i)));
         }
     }

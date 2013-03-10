@@ -29,7 +29,7 @@ public class Deck {
                 DefaultGameCard cardToAdd = new DefaultGameCard(
                         GameEngine.CARDCOLORS[colorNdx], cardNdx + 1, cardID);
                 addCard(cardToAdd);
-                Log.i("PO CreateDeck", cardToAdd.toString());
+                // Log.i("PO CreateDeck", cardToAdd.toString());
             }
         }
     }
@@ -68,7 +68,7 @@ public class Deck {
                 DefaultGameCard tempCard = (DefaultGameCard) deckOfCards
                         .remove(whichCardToMove);
                 deckOfCards.addLast(tempCard);
-                Log.i("PO Shuffle", tempCard.toString());
+                // Log.i("PO Shuffle", tempCard.toString());
                 howManyTimesToShuffle--;
             }
         }

@@ -113,14 +113,14 @@ public class GameEngine {
         for (int i = 0; i < NUMBEROFPILES; i++) {
             for (int j = 0; j < NUMBEROFHANDS; j++) {
                 if (Piles.get(i).isMoveLegal(Hands.get(j).mCard)) {
-                    Log.i("PO Game Over", "comparing pile: " + Piles.get(i)
-                            + " to hand: " + Hands.get(j));
+                    // Log.i("PO Game Over", "comparing pile: " + Piles.get(i)
+                    //        + " to hand: " + Hands.get(j));
                     moveAvailable = true;
                 }
             }
         }
-        Log.i("PO Game Over",
-                "any moves left?: " + Boolean.toString(moveAvailable));
+        // Log.i("PO Game Over",
+        //        "any moves left?: " + Boolean.toString(moveAvailable));
         return moveAvailable;
     }
     
@@ -129,8 +129,8 @@ public class GameEngine {
     public boolean isGameOver() {
         if (Deck.isEmpty() || !moveAvailable()) {
             isGameOver = true;
-            Log.i("PO Game Over",
-                    "is game over?: " + Boolean.toString(isGameOver));
+            // Log.i("PO Game Over",
+            //        "is game over?: " + Boolean.toString(isGameOver));
             // stop the time countdown
             MainGame.myTimer.cancel();
             
@@ -151,8 +151,8 @@ public class GameEngine {
             // add the score to the high score list
             HighScore scoreboard = new HighScore(MainGame.getAppContext());
             scoreboard.addScore(mPointTracker.getFinalScore());
-            Log.i("PO Game Over",
-                    "recorded score: " + mPointTracker.getFinalScore());
+            // Log.i("PO Game Over",
+            //        "recorded score: " + mPointTracker.getFinalScore());
         }
         
         return isGameOver;

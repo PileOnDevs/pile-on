@@ -4,6 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    
+    <ImageView
+        android:id="@+id/horizontalLogo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_design_1" />
+    
     <TableLayout
         android:id="@+id/highscoreslist"
         android:layout_width="fill_parent"
